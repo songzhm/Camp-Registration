@@ -17,7 +17,7 @@ CREATE TABLE applicants (
 	forms_checked integer,
 	equipments_checked integer,
 	comp_id integer,
-	parent_id integer,
+	-- parent_id integer,
 	emergency_contact_id varchar,
 	bunkhouse_id integer,
 	trib_id integer
@@ -53,6 +53,8 @@ CREATE TABLE camps (
 
 );
 
+/*
+
 CREATE TABLE parents (
 	parent_id integer primary key not null,
 	first_name varchar,
@@ -60,6 +62,8 @@ CREATE TABLE parents (
 	FOREIGN KEY(parent_id) REFERENCES applicants(parent_id)
 
 );
+
+*/
 
 CREATE TABLE address_book (
 	address_id integer primary key not null,
