@@ -1,5 +1,5 @@
 CREATE TABLE applicant (
-	userId integer primary key not null,
+	id integer primary key not null,
 	firstName varchar,
 	lastName varchar,
 	gender varchar,
@@ -23,33 +23,34 @@ CREATE TABLE applicant (
 );
 
 CREATE TABLE decision (
-	decisionId integer primary key not null,
-	decisionDescription varchar,
-	FOREIGN KEY(decisionId) REFERENCES applicants(decisionId)
+	id integer primary key not null,
+	description varchar,
+	FOREIGN KEY(id) REFERENCES applicants(decisionId)
 
 );
 
 CREATE TABLE bunkhouse (
-	bunkhouseId integer primary key not null,
+	id integer primary key not null,
 	name varchar,
 	gender varchar,
-	FOREIGN KEY(bunkhouseId) REFERENCES applicants(bunkhouseId)
+	FOREIGN KEY(id) REFERENCES applicants(bunkhouseId)
 
 );
 
 CREATE TABLE tribe (
-	tribeId integer primary key not null,
+	id integer primary key not null,
 	name varchar,
-	FOREIGN KEY(tribeId) REFERENCES applicants(tribeId)
+	FOREIGN KEY(id) REFERENCES applicants(tribeId)
 
 );
 
 CREATE TABLE camp (
-	campId integer primary key not null,
+	id integer primary key not null,
+	name varchar,
 	startDate datetime,
 	endDate datetime,
 	totalCapacity integer,
-	FOREIGN KEY(campId) REFERENCES applicants(campId)
+	FOREIGN KEY(id) REFERENCES applicants(campId)
 
 );
 
@@ -66,22 +67,22 @@ CREATE TABLE parents (
 */
 
 CREATE TABLE address_book (
-	addressId integer primary key not null,
+	id integer primary key not null,
 	line1 varchar,
 	line2 varchar,
 	city varchar,
 	state varchar,
 	zipCode varchar,
-	FOREIGN KEY(addressId) REFERENCES applicants(addressId)
+	FOREIGN KEY(id) REFERENCES applicants(addressId)
 
 );
 
 CREATE TABLE emergency_contact (
-	emergencyContactId integer primary key not null,
+	id integer primary key not null,
 	firstName varchar,
 	lastName varchar,
 	phone varchar,
-	FOREIGN KEY(emergencyContactId) REFERENCES applicants(emergencyContactId)
+	FOREIGN KEY(id) REFERENCES applicants(emergencyContactId)
 
 );
 

@@ -27,7 +27,7 @@ class DB(object):
                 for key, value in decisions.items():
 
                     conn.execute("""
-                    insert into decision (decisionId, decisionDescription)
+                    insert into decision (id, description)
                     values ({},\'{}\')
                     """.format(int(key),str(value))
                     )
@@ -41,7 +41,7 @@ class DB(object):
 
                 for key, value in bunkhouses.items():
                     conn.execute("""
-                    insert into bunkhouse (bunkhouseId, name,gender)
+                    insert into bunkhouse (id, name,gender)
                     values ({},\'{}\',\'{}\')
                     """.format(int(key),value['name'],value['gender'])
                     )
@@ -55,20 +55,27 @@ class DB(object):
 
                 for key, value in tribes.items():
                     conn.execute("""
-                    insert into tribe (tribeId, name)
+                    insert into tribe (id, name)
                     values ({},\'{}\')
                     """.format(int(key),value['name'])
                     )
             
-                camps = {'1':{'startDate':datetime.date(2016, 6, 6),'endDate':datetime.date(2016, 6, 19), 'totalCapacity':36},
-                '2':{'startDate':datetime.date(2016, 7, 4),'endDate':datetime.date(2016, 7, 17), 'totalCapacity':36},
-                '3':{'startDate':datetime.date(2016, 8, 8),'endDate':datetime.date(2016, 8, 21), 'totalCapacity':36}}
+                camps = \
+                {'1':{'startDate':datetime.date(2016, 6, 6),\
+                'endDate':datetime.date(2016, 6, 19), 'totalCapacity':36 ,\
+                'name': 'c1'},
+                '2':{'startDate':datetime.date(2016, 7, 4), \
+                'endDate':datetime.date(2016, 7, 17), 'totalCapacity':36,\
+                'name': 'c2'},
+                '3':{'startDate':datetime.date(2016, 8, 8),\
+                'endDate':datetime.date(2016, 8, 21), 'totalCapacity':36,\
+                'name': 'c3'}}
 
                 for key, value in camps.items():
                     conn.execute("""
-                    insert into camp (campId, startDate,endDate, totalCapacity)
+                    insert into camp (id, startDate,endDate, totalCapacity)
                     values ({},\'{}\',\'{}\',\'{}\')
-                    """.format(int(key),value['startDate'],value['endDate'], value['totalCapacity'])
+                    """.format(int(key),value['startDate'],value['name'],value['endDate'], value['totalCapacity'])
                     )
                     
 
@@ -104,7 +111,18 @@ class DB(object):
         try:
             for record in data:
                 # test to see if this record exists
-                res = self.select(tableName,record)
+                # compose the where condition
+                
+                conditionList = []
+                condition = ""
+
+                for key, value in record.items():
+                    conditionList.append(str(key)+"="+"\'"+str(value)+"\'")
+                
+                condition = "and ".join(conditionList)
+
+
+                res = self.select(tableName,condition)
                 if len(res['result'])>0:
                     duplicatedRecords.append(record)
                 else:
@@ -136,21 +154,16 @@ class DB(object):
 
             
     #TODO.need to rewrite select, insert will be reflected
-    def select(self, tableName, data):
+    def select(self, tableName, condition):
         '''
-        data is a dict, key is column name and value is lookup value
+        condition is a string, which is the conditions in where clause
         '''
         ok = False
         result = []
-        if len(data)==0:
+        if condition=='':
             queryStatement = "select * from " + tableName
         else:
-            queryStatement = "select * from "+ tableName + " where "
-            l = []
-            for key,value in data.items():
-                l.append(str(key) + "=" +"\"" + str(value) + "\"")
-            
-            queryStatement += " and ".join(map(str,l))
+            queryStatement = "select * from "+ tableName + " where " + condition
 
         try:
 
@@ -250,13 +263,13 @@ class DB(object):
 
 
 
-db = DB('../db/camp.db','../db/Camp_schema.sql')
+# db = DB('/db/camp.db','/db/Camp_schema.sql')
 
-data = [{'startDate':'2018-06-06','endDate':'2019-07-07', 'totalCapacity':36},\
-{'startDate':'2016-06-06','endDate':'2016-07-07', 'totalCapacity':36},\
-{'startDate':'2016-06-06','endDate':'2016-07-07', 'totalCapacity':36}]
+# data = [{'startDate':'2018-06-06','endDate':'2019-07-07', 'totalCapacity':36},\
+# {'startDate':'2016-06-06','endDate':'2016-07-07', 'totalCapacity':36},\
+# {'startDate':'2016-06-06','endDate':'2016-07-07', 'totalCapacity':36}]
 
-print(db.insert('camp', data))
+# print(db.insert('camp', data))
 
 # data = {'startDate':'2016-06-06','endDate':'2016-07-07'}
 
@@ -273,4 +286,4 @@ print(db.insert('camp', data))
 
 
 
-db.disconnect()
+# db.disconnect()

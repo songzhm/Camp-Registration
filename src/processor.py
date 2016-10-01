@@ -9,20 +9,22 @@ import os
 class Processor(object):
     def __init__(self):
         cwd = os.getcwd()
-        self.db = DB(os.getcwd()+'../db/camp.db',os.getcwd()+'../db/Camp_schema.sql')
+        print(os.getcwd()+'/db/camp.db')
+        self.db = DB(os.getcwd()+'/db/camp.db',os.getcwd()+'/db/Camp_schema.sql')
         self.__numberOfCamps = 3
         self.__numberOfGirlBunkhouses = 3
         self.__numberOfBoyBunkhouses = 3
         self.__totalGrilNumber = self.__numberOfGirlBunkhouses*6
         self.__totalBoyNumber = self.__numberOfBoyBunkhouses*6
         self.camps = self.registerCamps()
+        self.campers = self.registerCampers()
         
 
-    def registerCamps():
+    def registerCamps(self):
         '''
         create Camp objects
         '''
-        lookUpData= {}
+        lookUpData= ''
         campData = self.interacteDB('select','camp',lookUpData)
         camps = []
         if campData['ok']:
@@ -38,13 +40,34 @@ class Processor(object):
         
         return camps
 
-    def registerCampers():
+    def registerCampers(camp):
         '''
         create Camp objects
         '''
-        lookUpData = {}
+        lookUpData= 'gender = \'M\' and campId = ' + str(camp.id)
+        applicantData = self.interacteDB('select','applicant',lookUpData)
+        campers = []
+        if applicantData['ok']:
+            applicantData = applicantData['result']
+            for i in range(len(applicantData)):
+                a = applicantData[i]
+                campers.append(Applicant(a['firstName'], a['lastName'],\
+                                            a['age'],a['gender'],a['dateOfBirth'],\
+                                            a['email'], a['tshirtSize'], \
+                                            a['homePhone'], a['cellPhone'],\
+                                            a['emergencyPhone'], a['emergencyContact'], \
+                                            a['line1'], a['line2'], a['city'], \
+                                            a['state'], a['zipCode'], a['payment'],\
+                                            a['applicationDate'], a['reviewDate'], \
+                                            a['decisionId'], a['formsChecked'], \
+                                            a['equipmentsChecked'], a['campId'], \
+                                            a['bunkhouseId'], a['tribeId']))
+        else:
+            print('error in retriving applicant process')
         
-        return True
+
+        
+        return applicants
 
 
     def interacteDB(self, operation, tableName, data):
@@ -53,7 +76,7 @@ class Processor(object):
         input:
             operation: select/insert/update/delete
             tableName: table name 
-            data: dict()
+            data: depend on interaction type
         '''
 
 
@@ -64,7 +87,7 @@ class Processor(object):
         elif operation == "update":
             res = self.db.update(tableName,data)
         elif operation == "delete":
-            res = self.db.delete(,tableName,data)
+            res = self.db.delete(tableName,data)
         return res
 
     def checkSpaceAvilibility(self, campId):
@@ -99,8 +122,13 @@ class Processor(object):
         self.db.disconnect()
         return 0
 
+
+
 p = Processor()
 
+p.registerCamps()
+print(p.camps)
+p.kill()
 
 # print("processor is running, counting for 5")
 # for i in range(5):
