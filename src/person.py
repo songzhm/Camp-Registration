@@ -59,7 +59,7 @@ class Applicant(Person):
     tshirtSize, homePhone, cellPhone,emergencyPhone, emergencyContact, \
     line1, line2, city, state, zipCode, \
     payment=False, applicationDate=datetime.datetime.now(), \
-    reviewDate=datetime.datetime.now(),  isAccepted=False, \
+    reviewDate=datetime.datetime.now(),  decisionId=0, \
     formsChecked=False, equipmentsChecked=False, campId=0, bunkhouseId=0, \
     tribeId=0):
         self.firstName = firstName
@@ -68,7 +68,6 @@ class Applicant(Person):
         self.gender = gender
         self.dateOfBirth = dateOfBirth
         self.email = email
-        self.tshirtSize = tshirtSize
         self.homePhone = homePhone
         self.cellPhone = cellPhone
         self.emergencyPhone = emergencyContact
@@ -76,7 +75,7 @@ class Applicant(Person):
         self.payment = payment
         self.applicationDate = applicationDate
         self.reviewDate = reviewDate
-        self.isAccepted = isAccepted
+        self.decisionId = decisionId
         self.fromsChecked = formsChecked
         self.equipmentsChecked = equipmentsChecked
         self.campId = campId

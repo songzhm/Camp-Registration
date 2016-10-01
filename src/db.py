@@ -1,6 +1,7 @@
+import datetime
 import os
 import sqlite3
-import datetime
+
 
 class DB(object):
     def __init__(self, dbFile, schemaFile):
@@ -26,7 +27,7 @@ class DB(object):
                 for key, value in decisions.items():
 
                     conn.execute("""
-                    insert into decisions (decision_id, decision_description)
+                    insert into decision (decisionId, decisionDescription)
                     values ({},\'{}\')
                     """.format(int(key),str(value))
                     )
@@ -40,7 +41,7 @@ class DB(object):
 
                 for key, value in bunkhouses.items():
                     conn.execute("""
-                    insert into bunkhouses (bunkhouse_id, name,gender)
+                    insert into bunkhouse (bunkhouseId, name,gender)
                     values ({},\'{}\',\'{}\')
                     """.format(int(key),value['name'],value['gender'])
                     )
@@ -54,20 +55,20 @@ class DB(object):
 
                 for key, value in tribes.items():
                     conn.execute("""
-                    insert into tribes (tribe_id, name)
+                    insert into tribe (tribeId, name)
                     values ({},\'{}\')
                     """.format(int(key),value['name'])
                     )
             
-                camps = {'1':{'start_date':datetime.date(2016, 6, 6),'end_date':datetime.date(2016, 6, 19)},
-                '2':{'start_date':datetime.date(2016, 7, 4),'end_date':datetime.date(2016, 7, 17)},
-                '3':{'start_date':datetime.date(2016, 8, 8),'end_date':datetime.date(2016, 8, 21)}}
+                camps = {'1':{'startDate':datetime.date(2016, 6, 6),'endDate':datetime.date(2016, 6, 19), 'totalCapacity':36},
+                '2':{'startDate':datetime.date(2016, 7, 4),'endDate':datetime.date(2016, 7, 17), 'totalCapacity':36},
+                '3':{'startDate':datetime.date(2016, 8, 8),'endDate':datetime.date(2016, 8, 21), 'totalCapacity':36}}
 
                 for key, value in camps.items():
                     conn.execute("""
-                    insert into camps (camp_id, start_date,end_date)
-                    values ({},\'{}\',\'{}\')
-                    """.format(int(key),value['start_date'],value['end_date'])
+                    insert into camp (campId, startDate,endDate, totalCapacity)
+                    values ({},\'{}\',\'{}\',\'{}\')
+                    """.format(int(key),value['startDate'],value['endDate'], value['totalCapacity'])
                     )
                     
 
@@ -91,41 +92,65 @@ class DB(object):
         ok = False
         result = {}
 
+        duplicatedRecords = []
+
+
         sampleRecord = data[0]
         
         cols = list(sampleRecord.keys())
         
-        queryStatement = "insert into " + str(tableName) + " (" + ", ".join(map(str,cols)) + ") values ("
+        queryStatement = "insert or ignore into " + str(tableName) + \
+        " (" + ", ".join(map(str,cols)) + ") values ("
         try:
             for record in data:
-                query = queryStatement
-                values = list(record.values())
-                values = ['\''+str(x)+'\'' for x in values]
-                query += ', '.join(map(str, values)) + ')'
-                self.cursor.execute(query)
+                # test to see if this record exists
+                res = self.select(tableName,record)
+                if len(res['result'])>0:
+                    duplicatedRecords.append(record)
+                else:
+                
+                    query = queryStatement
+                    values = list(record.values())
+                    values = ['\''+str(x)+'\'' for x in values]
+                    query += ', '.join(map(str, values)) + ')'
+                    self.cursor.execute(query)
 
             self.conn.commit()
 
             ok = True
+            msg = str(len(data)-len(duplicatedRecords)) + ' record(s) ' + \
+            'inserted, and ' + str(len(duplicatedRecords)) + \
+            ' record(s) exist already.'
+            result = {'msg': msg}
 
             return {'ok':ok,'result':result}
         except:
+
+            result = {'msg': 'error happend in db insert process'}
             
             return {'ok':ok,'result':result}
-        
+
+
+
+
+
+            
+    #TODO.need to rewrite select, insert will be reflected
     def select(self, tableName, data):
         '''
         data is a dict, key is column name and value is lookup value
         '''
         ok = False
         result = []
-
-        queryStatement = "select * from "+ tableName + " where "
-        l = []
-        for key,value in data.items():
-            l.append(str(key) + "=" +"\"" + str(value) + "\"")
-        
-        queryStatement += " and ".join(map(str,l))
+        if len(data)==0:
+            queryStatement = "select * from " + tableName
+        else:
+            queryStatement = "select * from "+ tableName + " where "
+            l = []
+            for key,value in data.items():
+                l.append(str(key) + "=" +"\"" + str(value) + "\"")
+            
+            queryStatement += " and ".join(map(str,l))
 
         try:
 
@@ -225,27 +250,27 @@ class DB(object):
 
 
 
-# db = DB('../db/camp.db','../db/Camp_schema.sql')
+db = DB('../db/camp.db','../db/Camp_schema.sql')
 
-# data = [{'camp_id':4,'start_date':'2016-06-06','end_date':'2016-07-07'},\
-# {'camp_id':5,'start_date':'2016-06-06','end_date':'2016-07-07'},\
-# {'camp_id':6,'start_date':'2016-06-06','end_date':'2016-07-07'}]
+data = [{'startDate':'2018-06-06','endDate':'2019-07-07', 'totalCapacity':36},\
+{'startDate':'2016-06-06','endDate':'2016-07-07', 'totalCapacity':36},\
+{'startDate':'2016-06-06','endDate':'2016-07-07', 'totalCapacity':36}]
 
-# db.insert('camps', data)
+print(db.insert('camp', data))
 
-# data = {'start_date':'2016-06-06','end_date':'2016-07-07'}
+# data = {'startDate':'2016-06-06','endDate':'2016-07-07'}
 
-# db.select('camps',data)
+# db.select('camp',data)
 
-# data = {'newData': {'start_date':'2018-06-06','end_date':'2018-07-07'},\
-# 'conditions':{'camp_id':4}}
+# data = {'newData': {'startDate':'2018-06-06','endDate':'2018-07-07'},\
+# 'conditions':{'campId':4}}
 
-# db.update('camps',data)
+# db.update('camp',data)
 
-# data = {'start_date':'2016-06-06','end_date':'2016-07-07'}
+# data = {'startDate':'2016-06-06','endDate':'2016-07-07'}
 
-# db.delete('camps',data)
+# db.delete('camp',data)
 
 
 
-# db.disconnect()
+db.disconnect()

@@ -41,9 +41,7 @@ class menu:
         button2 = Button(top, text = "Quit",fg="green", command=quit)
         button1.grid(row=4)
         button2.grid(row=4, column=1)
-'''
-github
-'''
+
     def ViewModify(self):
         self.master.destroy()
         top = Tk()

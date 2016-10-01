@@ -1,4 +1,4 @@
-from processor import *
+from src import processor
 
 
 def main():

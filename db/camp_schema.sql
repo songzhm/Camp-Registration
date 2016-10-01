@@ -1,55 +1,55 @@
-CREATE TABLE applicants (
-	user_id integer primary key not null,
-	first_name varchar,
-	last_name varchar,
+CREATE TABLE applicant (
+	userId integer primary key not null,
+	firstName varchar,
+	lastName varchar,
 	gender varchar,
-	Tshirt_size varchar,
-	dob datetime,
-	address_id integer,
+	dateOfBirth datetime,
+	addressId integer,
 	email varchar,
-	home_phone varchar,
-	cell_phone varchar,
-	emergency_phone varchar,
+	homePhone varchar,
+	cellPhone varchar,
+	emergencyPhone varchar,
 	payment integer,
-	application_date datetime,
-	review_date datetime,
-	decision_id integer,
-	forms_checked integer,
-	equipments_checked integer,
-	comp_id integer,
+	applicationDate datetime,
+	reviewDate datetime,
+	decisionId integer,
+	formsChecked integer,
+	equipmentsChecked integer,
+	compId integer,
 	-- parent_id integer,
-	emergency_contact_id varchar,
-	bunkhouse_id integer,
-	trib_id integer
+	emergencyContactId varchar,
+	bunkhouseId integer,
+	tribeId integer
 );
 
-CREATE TABLE decisions (
-	decision_id integer primary key not null,
-	decision_description varchar,
-	FOREIGN KEY(decision_id) REFERENCES applicants(decision_id)
+CREATE TABLE decision (
+	decisionId integer primary key not null,
+	decisionDescription varchar,
+	FOREIGN KEY(decisionId) REFERENCES applicants(decisionId)
 
 );
 
-CREATE TABLE bunkhouses (
-	bunkhouse_id integer primary key not null,
+CREATE TABLE bunkhouse (
+	bunkhouseId integer primary key not null,
 	name varchar,
 	gender varchar,
-	FOREIGN KEY(bunkhouse_id) REFERENCES applicants(bunkhouse_id)
+	FOREIGN KEY(bunkhouseId) REFERENCES applicants(bunkhouseId)
 
 );
 
-CREATE TABLE tribes (
-	tribe_id integer primary key not null,
+CREATE TABLE tribe (
+	tribeId integer primary key not null,
 	name varchar,
-	FOREIGN KEY(tribe_id) REFERENCES applicants(tribe_id)
+	FOREIGN KEY(tribeId) REFERENCES applicants(tribeId)
 
 );
 
-CREATE TABLE camps (
-	camp_id integer primary key not null,
-	start_date datetime,
-	end_date datetime,
-	FOREIGN KEY(camp_id) REFERENCES applicants(camp_id)
+CREATE TABLE camp (
+	campId integer primary key not null,
+	startDate datetime,
+	endDate datetime,
+	totalCapacity integer,
+	FOREIGN KEY(campId) REFERENCES applicants(campId)
 
 );
 
@@ -66,22 +66,22 @@ CREATE TABLE parents (
 */
 
 CREATE TABLE address_book (
-	address_id integer primary key not null,
-	line_1 varchar,
-	line_2 varchar,
+	addressId integer primary key not null,
+	line1 varchar,
+	line2 varchar,
 	city varchar,
 	state varchar,
-	zip_code varchar,
-	FOREIGN KEY(address_id) REFERENCES applicants(address_id)
+	zipCode varchar,
+	FOREIGN KEY(addressId) REFERENCES applicants(addressId)
 
 );
 
-CREATE TABLE emergency_contacts (
-	emergency_contact_id integer primary key not null,
-	first_name varchar,
-	last_name varchar,
+CREATE TABLE emergency_contact (
+	emergencyContactId integer primary key not null,
+	firstName varchar,
+	lastName varchar,
 	phone varchar,
-	FOREIGN KEY(emergency_contact_id) REFERENCES applicants(emergency_contact_id)
+	FOREIGN KEY(emergencyContactId) REFERENCES applicants(emergencyContactId)
 
 );
 

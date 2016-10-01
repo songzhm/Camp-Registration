@@ -1,11 +1,10 @@
 class Camp(object):
-    def __init__(self, id, name, tribes, bunkhouses, startDate, endDate):
+    def __init__(self, id, name, startDate, endDate, totalCapacity):
         self.id = id
         self.name = name
-        self.tribes = tribes
-        self.bunkhouses = bunkhouses
         self.startDate = startDate
         self.endDate = endDate
+        self.totalCapacity = totalCapacity
 
 class Bunkhouse(object):
     def __init__(self, id, name, campers):
