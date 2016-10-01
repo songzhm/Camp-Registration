@@ -1,6 +1,7 @@
 from camp import *
 from person import *
 from db import *
+from arrivalInstraction import *
 import time
 import os
 
@@ -90,22 +91,18 @@ class Processor(object):
             res = self.db.delete(tableName,data)
         return res
 
-    def checkSpaceAvilibility(self, campId):
+    def checkSpaceAvilibility(self, camp):
         '''
         this function check the space availability from a given camp id
         '''
         avilibility = 0
 
         return avilibility
-    
-    # def makeAcceptanceDecision(self,applicantId):
-    #     '''
-    #     this function check if there is any availability in the camp and return
-    #     the corresponding message 
-    #     '''
-    #     result = {'decision':'', msg:''}
-    #     pass
-    #     return result
+
+    def generateLetterOfAcceptance(self, applicant, camp):
+        letter = LetterOfAcceptance(applicant,camp)
+
+        return letter.generateLetter()
 
 
     def assignBunkhouses(self, campers, requirements):

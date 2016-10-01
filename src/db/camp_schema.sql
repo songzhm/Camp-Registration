@@ -8,7 +8,6 @@ CREATE TABLE applicant (
 	email varchar,
 	homePhone varchar,
 	cellPhone varchar,
-	emergencyPhone varchar,
 	payment integer,
 	applicationDate datetime,
 	reviewDate datetime,
