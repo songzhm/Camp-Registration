@@ -8,7 +8,6 @@ CREATE TABLE applicant (
 	email varchar,
 	homePhone varchar,
 	cellPhone varchar,
-	emergencyPhone varchar,
 	payment integer,
 	applicationDate datetime,
 	reviewDate datetime,
@@ -66,7 +65,7 @@ CREATE TABLE parents (
 
 */
 
-CREATE TABLE address_book (
+CREATE TABLE address (
 	id integer primary key not null,
 	line1 varchar,
 	line2 varchar,
@@ -77,7 +76,7 @@ CREATE TABLE address_book (
 
 );
 
-CREATE TABLE emergency_contact (
+CREATE TABLE emergencyContact (
 	id integer primary key not null,
 	firstName varchar,
 	lastName varchar,
