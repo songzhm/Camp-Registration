@@ -15,10 +15,10 @@ class Processor(object):
         self.__numberOfCamps = 3
         self.__numberOfGirlBunkhouses = 3
         self.__numberOfBoyBunkhouses = 3
-        self.__totalGrilNumber = self.__numberOfGirlBunkhouses*6
-        self.__totalBoyNumber = self.__numberOfBoyBunkhouses*6
+        self.__totalGrilNumber = self.__numberOfGirlBunkhouses*12
+        self.__totalBoyNumber = self.__numberOfBoyBunkhouses*12
         self.camps = self.registerCamps()
-        self.campers = self.registerCampers()
+        # self.campers = self.registerCampers()
         
 
     def registerCamps(self):
@@ -99,8 +99,8 @@ class Processor(object):
         addressData['state'] = data['state']
         addressData['zipCode'] = data['zipCode']
 
-        if not self.interacteDB('insert','applicant',addressData):
-            print('insert new applicant failed')
+        self.interacteDB('insert','address',[addressData])
+
         
         # lookUp Address id
 
@@ -108,20 +108,47 @@ class Processor(object):
         ' and city = ' + '\'' + str(data['city']) +'\'' + ' and state = ' + '\'' +str(data['state']) +'\'' + \
         ' and zipCode = ' + '\'' + str(data['zipCode']) + '\''
 
-        res = self.interacteDB('select','applicant',condition)
+        res = self.interacteDB('select','address',condition)
 
         if res['ok']:
-            id = res['id']
+            address_id = res['result'][0]['id']
         else:
             print('error in look up address id')
 
 
+        emergencyContactData = {}
+        emergencyContactData['name'] = data['emergencyContactName']
+        emergencyContactData['phone'] = data['emergencyContactPhone']
+
+
+        if emergencyContactData['name']=='':
+            
+            self.interacteDB('insert','emergencyContact',[emergencyContactData])
+            
+            # lookUp emergencyContact id
+
+            condition ='name = \'' + str(data['emergencyContactName']) + '\'' +\
+            'and phone = \'' + str(data['emergencyContactPhone']) + '\'' 
+
+            res = self.interacteDB('select','emergencyContact',condition)
+            if res['ok']:
+                emergencyContact_id = res['result'][0]['id']
+            else:
+                print('error in look up emergency id')
+        else:
+            emergencyContact_id = ''
+
+
+
+
+
         applicantData = {}
         applicantData['firstName'] = data['firstName']
-        applicantData['lastNmae'] = data['lastName']
+        applicantData['lastName'] = data['lastName']
         applicantData['gender'] = data['gender']
         applicantData['dateOfBirth'] = data['dateOfBirth']
-        applicantData['addressId'] = str(id)
+        applicantData['addressId'] = str(address_id)
+        applicantData['email'] = data['email']
         applicantData['homePhone'] = data['homePhone']
         applicantData['cellPhone'] = data['cellPhone']
         applicantData['payment'] = data['payment']
@@ -131,11 +158,12 @@ class Processor(object):
         applicantData['formsChecked'] = data['formsChecked']
         applicantData['equipmentsChecked'] = data['equipmentsChecked']
         applicantData['campId'] = data['campId']
-        applicantData['emergencyContactId'] = data['emergencyContactId']
+        applicantData['emergencyContactId'] = str(emergencyContact_id)
         applicantData['bunkhouseId'] = data['bunkhouseId']
         applicantData['tribeId'] = data['tribeId']
+        applicantData['waitingList'] = data['waitingList']
 
-        res = self.interacteDB('insert','applicant',applicantData)
+        res = self.interacteDB('insert','applicant',[applicantData])
 
         return res
 
@@ -171,11 +199,14 @@ class Processor(object):
 
 
 
-p = Processor()
 
-p.registerCamps()
-print(p.camps)
-p.kill()
+
+
+# p = Processor()
+
+# p.registerCamps()
+# print(p.camps)
+# p.kill()
 
 # print("processor is running, counting for 5")
 # for i in range(5):

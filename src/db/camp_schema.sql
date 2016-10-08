@@ -14,18 +14,17 @@ CREATE TABLE applicant (
 	decisionId integer,
 	formsChecked integer,
 	equipmentsChecked integer,
-	compId integer,
-	-- parent_id integer,
+	campId integer,
 	emergencyContactId varchar,
 	bunkhouseId integer,
-	tribeId integer
+	tribeId integer,
+	waitingList integer
 );
 
 CREATE TABLE decision (
 	id integer primary key not null,
 	description varchar,
 	FOREIGN KEY(id) REFERENCES applicants(decisionId)
-
 );
 
 CREATE TABLE bunkhouse (
@@ -33,14 +32,12 @@ CREATE TABLE bunkhouse (
 	name varchar,
 	gender varchar,
 	FOREIGN KEY(id) REFERENCES applicants(bunkhouseId)
-
 );
 
 CREATE TABLE tribe (
 	id integer primary key not null,
 	name varchar,
 	FOREIGN KEY(id) REFERENCES applicants(tribeId)
-
 );
 
 CREATE TABLE camp (
@@ -50,20 +47,7 @@ CREATE TABLE camp (
 	endDate datetime,
 	totalCapacity integer,
 	FOREIGN KEY(id) REFERENCES applicants(campId)
-
 );
-
-/*
-
-CREATE TABLE parents (
-	parent_id integer primary key not null,
-	first_name varchar,
-	last_name varchar,
-	FOREIGN KEY(parent_id) REFERENCES applicants(parent_id)
-
-);
-
-*/
 
 CREATE TABLE address (
 	id integer primary key not null,
@@ -73,15 +57,11 @@ CREATE TABLE address (
 	state varchar,
 	zipCode varchar,
 	FOREIGN KEY(id) REFERENCES applicants(addressId)
-
 );
 
 CREATE TABLE emergencyContact (
 	id integer primary key not null,
-	firstName varchar,
-	lastName varchar,
+	name varchar,
 	phone varchar,
 	FOREIGN KEY(id) REFERENCES applicants(emergencyContactId)
-
 );
-

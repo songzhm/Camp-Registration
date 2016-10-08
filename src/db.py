@@ -62,20 +62,20 @@ class DB(object):
             
                 camps = \
                 {'1':{'startDate':datetime.date(2016, 6, 6),\
-                'endDate':datetime.date(2016, 6, 19), 'totalCapacity':36 ,\
+                'endDate':datetime.date(2016, 6, 19), 'totalCapacity':72 ,\
                 'name': 'c1'},
                 '2':{'startDate':datetime.date(2016, 7, 4), \
-                'endDate':datetime.date(2016, 7, 17), 'totalCapacity':36,\
+                'endDate':datetime.date(2016, 7, 17), 'totalCapacity':72,\
                 'name': 'c2'},
                 '3':{'startDate':datetime.date(2016, 8, 8),\
-                'endDate':datetime.date(2016, 8, 21), 'totalCapacity':36,\
+                'endDate':datetime.date(2016, 8, 21), 'totalCapacity':72,\
                 'name': 'c3'}}
 
                 for key, value in camps.items():
                     conn.execute("""
-                    insert into camp (id, startDate,endDate, totalCapacity)
-                    values ({},\'{}\',\'{}\',\'{}\')
-                    """.format(int(key),value['startDate'],value['name'],value['endDate'], value['totalCapacity'])
+                    insert into camp (id, name, startDate, endDate, totalCapacity)
+                    values ({},\'{}\',\'{}\',\'{}\',\'{}\')
+                    """.format(int(key),value['name'],value['startDate'],value['endDate'], value['totalCapacity'])
                     )
                     
 
@@ -142,8 +142,8 @@ class DB(object):
             result = {'msg': msg}
 
             return {'ok':ok,'result':result}
-        except:
-
+        except Exception as e:
+            print(e)
             result = {'msg': 'error happend in db insert process'}
             
             return {'ok':ok,'result':result}
@@ -153,7 +153,6 @@ class DB(object):
 
 
             
-    #TODO.need to rewrite select, insert will be reflected
     def select(self, tableName, condition):
         '''
         condition is a string, which is the conditions in where clause
