@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+# from person import Applicant
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -196,6 +197,9 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineEmergencyName, 13, 2, 1, 1)
         self.pushButtonSubmit = QtGui.QPushButton(DialogAddNewApplicant)
         self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
+        # click submit button
+        self.pushButtonSubmit.clicked.connect(self.submitDataToDB)
+
         self.gridLayout.addWidget(self.pushButtonSubmit, 23, 3, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
@@ -203,6 +207,12 @@ class Ui_DialogAddNewApplicant(object):
 
         self.retranslateUi(DialogAddNewApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogAddNewApplicant)
+
+    def submitDataToDB(self):
+        firstName = self.lineFirstName.text()
+        lastName = self.lineLastName.text()
+        dob = self.dateEditDOB.date()
+        print(dob)
 
     def retranslateUi(self, DialogAddNewApplicant):
         DialogAddNewApplicant.setWindowTitle(_translate("DialogAddNewApplicant", "Add New Applicant", None))
