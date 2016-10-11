@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1291</width>
-    <height>999</height>
+    <width>1229</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,13 +31,6 @@
    <item row="0" column="1">
     <widget class="QLineEdit" name="lineFirstName"/>
    </item>
-   <item row="0" column="4">
-    <widget class="QLabel" name="labelDOB">
-     <property name="text">
-      <string>Date of Birth</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="3">
     <widget class="QLineEdit" name="lineLastName"/>
    </item>
@@ -52,13 +45,6 @@
     <widget class="Line" name="line">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="5">
-    <widget class="QPushButton" name="pushButtonLookUp">
-     <property name="text">
-      <string>Look Up</string>
      </property>
     </widget>
    </item>
@@ -179,18 +165,46 @@
        <string>Tribe Id</string>
       </property>
      </column>
-     <column>
-      <property name="text">
-       <string>Waiting List</string>
-      </property>
-     </column>
     </widget>
    </item>
-   <item row="0" column="5">
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelCamp">
+     <property name="text">
+      <string>Camp</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelDOB">
+     <property name="text">
+      <string>Date of Birth</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
     <widget class="QDateEdit" name="dateEditDOB"/>
+   </item>
+   <item row="0" column="5" rowspan="2">
+    <widget class="QPushButton" name="pushButtonLookUp">
+     <property name="text">
+      <string>Look Up</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBoxCamp"/>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineFirstName</tabstop>
+  <tabstop>lineLastName</tabstop>
+  <tabstop>comboBoxCamp</tabstop>
+  <tabstop>dateEditDOB</tabstop>
+  <tabstop>pushButtonLookUp</tabstop>
+  <tabstop>tableWidgetApplicantTable</tabstop>
+  <tabstop>pushButtonUpdate</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

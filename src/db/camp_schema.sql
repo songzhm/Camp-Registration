@@ -17,8 +17,7 @@ CREATE TABLE applicant (
 	campId integer,
 	emergencyContactId varchar,
 	bunkhouseId integer,
-	tribeId integer,
-	waitingList integer
+	tribeId integer
 );
 
 CREATE TABLE decision (

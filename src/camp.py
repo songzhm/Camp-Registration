@@ -7,14 +7,15 @@ class Camp(object):
         self.totalCapacity = totalCapacity
 
 class Bunkhouse(object):
-    def __init__(self, id, name, campers):
+    def __init__(self, id, name,gender):
         self.id = id
         self.name = name
-        self.campers = campers
+        self.gender = gender
+        self.campers = []
 
 class Tribe(object):
-    def __init__(self, id, name, campers):
+    def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.campers = campers
+        self.campers = []
 

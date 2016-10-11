@@ -18,6 +18,8 @@ class Processor(object):
         self.__totalGrilNumber = self.__numberOfGirlBunkhouses*12
         self.__totalBoyNumber = self.__numberOfBoyBunkhouses*12
         self.camps = self.registerCamps()
+        self.bunkhouses = self.registerBunkhouses()
+        self.tribes = self.registerTribes()
         # self.campers = self.registerCampers()
         
 
@@ -40,6 +42,44 @@ class Processor(object):
 
         
         return camps
+
+    def registerBunkhouses(self):
+        '''
+        create Bunkhouses objects
+        '''
+        lookUpData= ''
+        bunkhouseData = self.interacteDB('select','bunkhouse',lookUpData)
+        bunkhouses = []
+        if bunkhouseData['ok']:
+            bunkhouseData = bunkhouseData['result']
+            for i in range(len(bunkhouseData)):
+                b = bunkhouseData[i]
+                bunkhouses.append(Bunkhouse(b['id'],b['name'],b['gender']))
+        else:
+            print('error in retriving bunkhouse` process')
+        
+
+        
+        return bunkhouses
+
+    def registerTribes(self):
+        '''
+        create Tribes objects
+        '''
+        lookUpData= ''
+        tribeData = self.interacteDB('select','tribe',lookUpData)
+        tribes = []
+        if tribeData['ok']:
+            tribeData = tribeData['result']
+            for i in range(len(tribeData)):
+                t = tribeData[i]
+                tribes.append(Tribe(t['id'],t['name']))
+        else:
+            print('error in retriving tribe` process')
+        
+
+        
+        return tribes
 
     def registerCampers(camp):
         '''
@@ -91,22 +131,22 @@ class Processor(object):
             res = self.db.delete(tableName,data)
         return res
 
-    def addNewApplicant(self, data):
+    def addNewApplicant(self, applicant):
         addressData = {}
-        addressData['line1'] = data['line1']
-        addressData['line2'] = data['line2']
-        addressData['city'] = data['city']
-        addressData['state'] = data['state']
-        addressData['zipCode'] = data['zipCode']
+        addressData['line1'] = applicant.address.line1
+        addressData['line2'] = applicant.address.line2
+        addressData['city'] = applicant.address.city
+        addressData['state'] = applicant.address.state
+        addressData['zipCode'] = applicant.address.zipCode
 
         self.interacteDB('insert','address',[addressData])
 
         
         # lookUp Address id
 
-        condition ='line1 = ' + '\'' + str(data['line1']) + '\'' + ' and line2 = ' + '\'' + str(data['line2'])+ '\'' +\
-        ' and city = ' + '\'' + str(data['city']) +'\'' + ' and state = ' + '\'' +str(data['state']) +'\'' + \
-        ' and zipCode = ' + '\'' + str(data['zipCode']) + '\''
+        condition ='line1 = ' + '\'' + str(applicant.address.line1) + '\'' + ' and line2 = ' + '\'' + str(applicant.address.line2)+ '\'' +\
+        ' and city = ' + '\'' + str(applicant.address.city) +'\'' + ' and state = ' + '\'' +str(applicant.address.state) +'\'' + \
+        ' and zipCode = ' + '\'' + str(applicant.address.zipCode) + '\''
 
         res = self.interacteDB('select','address',condition)
 
@@ -117,8 +157,8 @@ class Processor(object):
 
 
         emergencyContactData = {}
-        emergencyContactData['name'] = data['emergencyContactName']
-        emergencyContactData['phone'] = data['emergencyContactPhone']
+        emergencyContactData['name'] = applicant.emergencyContactName
+        emergencyContactData['phone'] = applicant.emergencyContactPhone
 
 
         if emergencyContactData['name']=='':
@@ -127,8 +167,8 @@ class Processor(object):
             
             # lookUp emergencyContact id
 
-            condition ='name = \'' + str(data['emergencyContactName']) + '\'' +\
-            'and phone = \'' + str(data['emergencyContactPhone']) + '\'' 
+            condition ='name = \'' + str(applicant.emergencyContactName) + '\'' +\
+            'and phone = \'' + str(applicant.emergencyContactPhone) + '\'' 
 
             res = self.interacteDB('select','emergencyContact',condition)
             if res['ok']:
@@ -143,25 +183,24 @@ class Processor(object):
 
 
         applicantData = {}
-        applicantData['firstName'] = data['firstName']
-        applicantData['lastName'] = data['lastName']
-        applicantData['gender'] = data['gender']
-        applicantData['dateOfBirth'] = data['dateOfBirth']
+        applicantData['firstName'] = applicant.firstName
+        applicantData['lastName'] = applicant.lastName
+        applicantData['gender'] = applicant.gender
+        applicantData['dateOfBirth'] = applicant.dateOfBirth
         applicantData['addressId'] = str(address_id)
-        applicantData['email'] = data['email']
-        applicantData['homePhone'] = data['homePhone']
-        applicantData['cellPhone'] = data['cellPhone']
-        applicantData['payment'] = data['payment']
-        applicantData['applicationDate'] = data['applicationDate']
-        applicantData['reviewDate'] = data['reviewDate']
-        applicantData['decisionId'] = data['decisionId']
-        applicantData['formsChecked'] = data['formsChecked']
-        applicantData['equipmentsChecked'] = data['equipmentsChecked']
-        applicantData['campId'] = data['campId']
+        applicantData['email'] = applicant.email
+        applicantData['homePhone'] = applicant.homePhone
+        applicantData['cellPhone'] = applicant.cellPhone
+        applicantData['payment'] = applicant.payment
+        applicantData['applicationDate'] = applicant.applicationDate
+        applicantData['reviewDate'] = applicant.reviewDate
+        applicantData['decisionId'] = applicant.decisionId
+        applicantData['formsChecked'] = applicant.formsChecked
+        applicantData['equipmentsChecked'] = applicant.equipmentsChecked
+        applicantData['campId'] = applicant.campId
         applicantData['emergencyContactId'] = str(emergencyContact_id)
-        applicantData['bunkhouseId'] = data['bunkhouseId']
-        applicantData['tribeId'] = data['tribeId']
-        applicantData['waitingList'] = data['waitingList']
+        applicantData['bunkhouseId'] = applicant.bunkhouseId
+        applicantData['tribeId'] = applicant.tribeId
 
         res = self.interacteDB('insert','applicant',[applicantData])
 

@@ -7,8 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-from campRegAddNewApplicantUI import Ui_DialogAddNewApplicant
-from campRegLookUpApplicantUI import Ui_DialogLookUpApplicant
+from campRegAddNewApplicantUI import *
+from campRegLookUpApplicantUI import *
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8

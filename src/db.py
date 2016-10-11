@@ -22,7 +22,7 @@ class DB(object):
 
                 print('Inserting initial data')
 
-                decisions = {'1':'acceptance', '2':'conditional acceptance', '3':'denial'}
+                decisions = {'1':'acceptance', '2':'conditional acceptance', '3':'denial','4':'waiting list'}
                 
                 for key, value in decisions.items():
 
