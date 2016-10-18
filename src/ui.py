@@ -121,6 +121,7 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineGender, 1, 4, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
+        self.dateApplicationDate.setDate(QtCore.QDate(1800,1,1))
         self.gridLayout.addWidget(self.dateApplicationDate, 16, 2, 1, 1)
         self.labelLastName = QtGui.QLabel(DialogAddNewApplicant)
         self.labelLastName.setObjectName(_fromUtf8("labelLastName"))
@@ -145,6 +146,7 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineFirstName, 1, 2, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
+        self.dateReviewDate.setDate(QtCore.QDate(1800,1,1))
         self.gridLayout.addWidget(self.dateReviewDate, 16, 4, 1, 1)
         self.comboBoxBunkhouse = QtGui.QComboBox(DialogAddNewApplicant)
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
@@ -278,12 +280,17 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineEmergencyName, 13, 2, 1, 1)
         self.pushButtonSubmit = QtGui.QPushButton(DialogAddNewApplicant)
         self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
+        self.gridLayout.addWidget(self.pushButtonSubmit, 22, 4, 1, 1)
+        self.pushButtonGenerateLetter = QtGui.QPushButton(DialogAddNewApplicant)
+        self.pushButtonGenerateLetter.setObjectName(_fromUtf8("pushButtonGenerateLetter"))
+        self.gridLayout.addWidget(self.pushButtonGenerateLetter, 22, 2, 1, 1)
         # click submit button
-        self.pushButtonSubmit.clicked.connect(lambda:self.submitDataToDB())
+        self.pushButtonSubmit.clicked.connect(lambda:self.submitDataToDB(DialogAddNewApplicant))
+        self.pushButtonGenerateLetter.clicked.connect(lambda:self.generateLetter(DialogAddNewApplicant))
 
-        self.gridLayout.addWidget(self.pushButtonSubmit, 23, 3, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
 
         self.retranslateUi(DialogAddNewApplicant)
@@ -321,7 +328,34 @@ class Ui_DialogAddNewApplicant(object):
         self.comboBoxTribe.addItems([str(x.name) for x in self.p.tribes])
         self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial'])
 
-    def submitDataToDB(self):
+        # list = [firstName, lastName,..]
+    def checkBlankCells(self):
+        if self.lineFirstName.text()=='' or self.lineGender.text()==''\
+        or self.lineLastName.text()=='' or self.dateEditDOB.date().toPyDate()==datetime.date(1800,1,1)\
+        or self.lineEmail.text()=='' or self.lineHomePhone.text()=='' or self.lineCellPhone.text()==''\
+        or self.comboBoxCamp.currentIndex==0 or self.lineLine1.text()=='' or self.lineCity.text()==''\
+        or self.lineState.text()=='' or self.lineState.text()=='' or self.lineZipCode.text()=='':
+            return True
+        else:
+            return False
+        
+    def generateLetter(self,DialogAddNewApplicant):
+        letter = self.p.generateLetterOfAcceptance(self.comboBoxAcceptanceDecision.currentIndex(),\
+        self.p.camps[self.comboBoxCamp.currentIndex()-1])
+
+        self.DialogLetterOfAcceptance = QtGui.QDialog()
+        ui = Ui_DialogLetterOfAcceptance()
+        ui.setupUi(self.DialogLetterOfAcceptance)
+        ui.writeLetter(letter)
+        
+        self.DialogLetterOfAcceptance.show()
+
+        # QtGui.QMessageBox.warning(DialogAddNewApplicant,"Letter Of Acceptance",
+        # letter, QtGui.QMessageBox.Cancel,
+        # QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+        # QtGui.QMessageBox.about(DialogAddNewApplicant,'Letter Of Acceptance',letter)
+        
+    def submitDataToDB(self,DialogAddNewApplicant):
         firstName = self.lineFirstName.text()
         lastName = self.lineLastName.text()
         gender = self.lineGender.text()
@@ -330,7 +364,7 @@ class Ui_DialogAddNewApplicant(object):
         email = self.lineEmail.text()
         homePhone = self.lineHomePhone.text()
         cellPhone = self.lineCellPhone.text()
-        campId = self.comboBoxCamp.currentIndex()+1
+        campId = self.comboBoxCamp.currentIndex()
         line1 = self.lineLine1.text()
         line2 = self.lineLine2.text()
         city = self.lineCity.text()
@@ -355,19 +389,47 @@ class Ui_DialogAddNewApplicant(object):
         reviewDate = reviewDate,decisionId = decisionId,formsChecked = formsChecked,\
         equipmentsChecked = equipmentsChecked,campId = campId,bunkhouseId = bunkhouseId,\
         tribeId = tribeId)
-        res = self.p.addNewApplicant(a)
+        validationRes = self.p.validateApplicant(campId-1,gender,age)
+        print(self.checkBlankCells())
+        if self.checkBlankCells():
+            
+            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Invalid Inputs",
+            "The fileds with * cannot be empty.", QtGui.QMessageBox.Cancel,
+            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+            
+        elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not validationRes['ok']:
+            
+            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Application cannot be accepted",
+            "This application cannot be accepted due to {}".format(validationRes['msg']), QtGui.QMessageBox.Cancel,
+            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+        
+        elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not self.checkBoxPayment.isChecked():
+            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Application cannot be accepted",
+            "This application cannot be accepted since the payment check has not been recieve", QtGui.QMessageBox.Cancel,
+            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
 
-        print(res)
+        else:
+            res = self.p.addNewApplicant(a)
+            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Success",
+            res['result'], QtGui.QMessageBox.Ok,
+            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+
+            DialogAddNewApplicant.accept()
+
+            print(res)
+            
+
+            # popup window
         
 
     def retranslateUi(self, DialogAddNewApplicant):
         DialogAddNewApplicant.setWindowTitle(_translate("DialogAddNewApplicant", "Add New Applicant", None))
-        self.labelGender.setText(_translate("DialogAddNewApplicant", "Gender", None))
-        self.labelLastName.setText(_translate("DialogAddNewApplicant", "Last Name", None))
+        self.labelGender.setText(_translate("DialogAddNewApplicant", "Gender *", None))
+        self.labelLastName.setText(_translate("DialogAddNewApplicant", "Last Name *", None))
         self.label_18.setText(_translate("DialogAddNewApplicant", "Applicant Basic Information:", None))
-        self.labelFirstName.setText(_translate("DialogAddNewApplicant", "First Name", None))
-        self.labelApplicationDate.setText(_translate("DialogAddNewApplicant", "Application Date", None))
-        self.labelDOB.setText(_translate("DialogAddNewApplicant", "Date of Birth", None))
+        self.labelFirstName.setText(_translate("DialogAddNewApplicant", "First Name *", None))
+        self.labelApplicationDate.setText(_translate("DialogAddNewApplicant", "Application Date *", None))
+        self.labelDOB.setText(_translate("DialogAddNewApplicant", "Date of Birth *", None))
         self.labelReviewDate.setText(_translate("DialogAddNewApplicant", "Review Date", None))
         self.labelAcceptanceDecision.setText(_translate("DialogAddNewApplicant", "Accepted?", None))
         self.labelPayment.setText(_translate("DialogAddNewApplicant", "Payment", None))
@@ -377,22 +439,25 @@ class Ui_DialogAddNewApplicant(object):
         self.labelEquipmentsCheck.setText(_translate("DialogAddNewApplicant", "Equipments", None))
         self.labelLine2.setText(_translate("DialogAddNewApplicant", "Line 2", None))
         self.checkBoxFormsCheck.setText(_translate("DialogAddNewApplicant", "Camper has all required forms?", None))
-        self.labelLine1.setText(_translate("DialogAddNewApplicant", "Line 1", None))
-        self.labelCamp.setText(_translate("DialogAddNewApplicant", "Camp Interested", None))
-        self.labelState.setText(_translate("DialogAddNewApplicant", "State", None))
-        self.labelCity.setText(_translate("DialogAddNewApplicant", "City", None))
+        self.labelLine1.setText(_translate("DialogAddNewApplicant", "Line 1 *", None))
+        self.labelCamp.setText(_translate("DialogAddNewApplicant", "Camp Interested *", None))
+        self.labelState.setText(_translate("DialogAddNewApplicant", "State *", None))
+        self.labelCity.setText(_translate("DialogAddNewApplicant", "City *", None))
         self.labelEmergencyName.setText(_translate("DialogAddNewApplicant", "Name", None))
         self.labelTribe.setText(_translate("DialogAddNewApplicant", "Tribe", None))
         self.labelFormsCheck.setText(_translate("DialogAddNewApplicant", "Forms", None))
         self.label_14.setText(_translate("DialogAddNewApplicant", "Emergency Contact:", None))
-        self.labelCellPhone.setText(_translate("DialogAddNewApplicant", "Cell Phone", None))
+        self.labelCellPhone.setText(_translate("DialogAddNewApplicant", "Cell Phone *", None))
         self.label_17.setText(_translate("DialogAddNewApplicant", "Admin:", None))
-        self.labelZipCode.setText(_translate("DialogAddNewApplicant", "ZipCode", None))
-        self.labelEmail.setText(_translate("DialogAddNewApplicant", "Email:", None))
-        self.labelHomePhone.setText(_translate("DialogAddNewApplicant", "Home Phone", None))
+        self.labelZipCode.setText(_translate("DialogAddNewApplicant", "ZipCode *", None))
+        self.labelEmail.setText(_translate("DialogAddNewApplicant", "Email *", None))
+        self.labelHomePhone.setText(_translate("DialogAddNewApplicant", "Home Phone *", None))
         self.checkBoxEquipmentsCheck.setText(_translate("DialogAddNewApplicant", "Camper has all required equipments?", None))
         self.labelEmergencyPhone.setText(_translate("DialogAddNewApplicant", "Phone", None))
         self.pushButtonSubmit.setText(_translate("DialogAddNewApplicant", "Submit", None))
+        self.pushButtonSubmit.setText(_translate("DialogAddNewApplicant", "Submit", None))
+        self.pushButtonGenerateLetter.setText(_translate("DialogAddNewApplicant", "Generate Acceptance Letter", None))
+
 
 class Ui_DialogLookUpApplicant(object):
     def setupUi(self, DialogLookUpApplicant,p):
@@ -479,6 +544,7 @@ class Ui_DialogLookUpApplicant(object):
         self.gridLayout.addWidget(self.labelDOB, 1, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogLookUpApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
         self.gridLayout.addWidget(self.dateEditDOB, 1, 3, 1, 1)
         self.pushButtonLookUp = QtGui.QPushButton(DialogLookUpApplicant)
         self.pushButtonLookUp.setObjectName(_fromUtf8("pushButtonLookUp"))
@@ -619,6 +685,26 @@ class Ui_DialogLookUpApplicant(object):
 
 
 
+class Ui_DialogLetterOfAcceptance(object):
+    def setupUi(self, DialogLetterOfAcceptance):
+        DialogLetterOfAcceptance.setObjectName(_fromUtf8("DialogLetterOfAcceptance"))
+        DialogLetterOfAcceptance.resize(443, 348)
+        self.textBrowserLetterOfAcceptance = QtGui.QTextBrowser(DialogLetterOfAcceptance)
+        self.textBrowserLetterOfAcceptance.setGeometry(QtCore.QRect(40, 20, 371, 271))
+        self.textBrowserLetterOfAcceptance.setObjectName(_fromUtf8("textBrowserLetterOfAcceptance"))
+        self.pushButtonOkay = QtGui.QPushButton(DialogLetterOfAcceptance)
+        self.pushButtonOkay.setGeometry(QtCore.QRect(190, 310, 75, 23))
+        self.pushButtonOkay.setObjectName(_fromUtf8("pushButtonOkay"))
+
+        self.retranslateUi(DialogLetterOfAcceptance)
+        QtCore.QMetaObject.connectSlotsByName(DialogLetterOfAcceptance)
+
+    def writeLetter(self, letter):
+        self.textBrowserLetterOfAcceptance.setText(letter)
+
+    def retranslateUi(self, DialogLetterOfAcceptance):
+        DialogLetterOfAcceptance.setWindowTitle(_translate("DialogLetterOfAcceptance", "Letter of Acceptance", None))
+        self.pushButtonOkay.setText(_translate("DialogLetterOfAcceptance", "Okay", None))
 
 
 if __name__ == "__main__":

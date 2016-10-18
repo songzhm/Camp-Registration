@@ -13,10 +13,6 @@ class Processor(object):
         print(os.getcwd()+'/db/camp.db')
         self.db = DB(os.getcwd()+'/db/camp.db',os.getcwd()+'/db/Camp_schema.sql')
         self.__numberOfCamps = 3
-        self.__numberOfGirlBunkhouses = 3
-        self.__numberOfBoyBunkhouses = 3
-        self.__totalGrilNumber = self.__numberOfGirlBunkhouses*12
-        self.__totalBoyNumber = self.__numberOfBoyBunkhouses*12
         self.camps = self.registerCamps()
         self.bunkhouses = self.registerBunkhouses()
         self.tribes = self.registerTribes()
@@ -208,16 +204,46 @@ class Processor(object):
 
         
 
-    def checkSpaceAvilibility(self, camp):
+    def checkSpaceAvilibility(self, campId,gender):
         '''
-        this function check the space availability from a given camp id
+        this function check the space availability from a given camp id and gender
         '''
-        avilibility = 0
 
-        return avilibility
+        occupiedSpace = self.interacteDB('select','applicant','campId = '+str(campId)+'and gender = '+str(gender))
 
-    def generateLetterOfAcceptance(self, applicant, camp):
-        letter = LetterOfAcceptance(applicant,camp)
+        if occupiedSpace['ok']:
+            occupiedSpace=len(occupiedSpace['result'])
+
+            if gender == 'M':
+                if self.camps[campId].totalBoyNumber > occupiedSpace:
+                    return True
+                else:
+                    return False
+            elif gender == 'F':
+                if self.camps[campId].totalGrilNumber > occupiedSpace:
+                    return True
+                else:
+                    return False
+                
+            
+        else:
+            print('error happend at checkSpaceAvilibility')
+
+    def validateApplicant(self, campId, gender, age):
+        '''
+        this function check the space and the age constraints 
+        '''
+        if 9<=age<=18:
+            if self.checkSpaceAvilibility(campId,gender):
+                return {'ok':True,'msg':''}
+            else:
+                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId].name}
+            
+        else:
+            return {'ok':False,'msg':'applicant need to be 9-18 years old'}
+
+    def generateLetterOfAcceptance(self, decisionId, camp):
+        letter = LetterOfAcceptance(decisionId,camp)
 
         return letter.generateLetter()
 

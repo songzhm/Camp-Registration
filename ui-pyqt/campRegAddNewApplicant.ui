@@ -233,13 +233,6 @@
      </property>
     </widget>
    </item>
-   <item row="24" column="3">
-    <widget class="QPushButton" name="pushButtonSubmit">
-     <property name="text">
-      <string>Submit</string>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="4">
     <widget class="QDateEdit" name="dateEditDOB"/>
    </item>
@@ -327,6 +320,20 @@
    <item row="1" column="4">
     <widget class="QLineEdit" name="lineLastName"/>
    </item>
+   <item row="22" column="4">
+    <widget class="QPushButton" name="pushButtonSubmit">
+     <property name="text">
+      <string>Submit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="22" column="2">
+    <widget class="QPushButton" name="pushButtonGenerateLetter">
+     <property name="text">
+      <string>Generate Acceptance Letter</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -353,7 +360,6 @@
   <tabstop>checkBoxEquipmentsCheck</tabstop>
   <tabstop>comboBoxBunkhouse</tabstop>
   <tabstop>comboBoxTribe</tabstop>
-  <tabstop>pushButtonSubmit</tabstop>
  </tabstops>
  <resources/>
  <connections/>

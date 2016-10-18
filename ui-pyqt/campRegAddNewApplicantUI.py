@@ -142,9 +142,6 @@ class Ui_DialogAddNewApplicant(object):
         self.checkBoxFormsCheck = QtGui.QCheckBox(DialogAddNewApplicant)
         self.checkBoxFormsCheck.setObjectName(_fromUtf8("checkBoxFormsCheck"))
         self.gridLayout.addWidget(self.checkBoxFormsCheck, 19, 2, 1, 1)
-        self.pushButtonSubmit = QtGui.QPushButton(DialogAddNewApplicant)
-        self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
-        self.gridLayout.addWidget(self.pushButtonSubmit, 24, 3, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
@@ -200,6 +197,12 @@ class Ui_DialogAddNewApplicant(object):
         self.lineLastName = QtGui.QLineEdit(DialogAddNewApplicant)
         self.lineLastName.setObjectName(_fromUtf8("lineLastName"))
         self.gridLayout.addWidget(self.lineLastName, 1, 4, 1, 1)
+        self.pushButtonSubmit = QtGui.QPushButton(DialogAddNewApplicant)
+        self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
+        self.gridLayout.addWidget(self.pushButtonSubmit, 22, 4, 1, 1)
+        self.pushButtonGenerateLetter = QtGui.QPushButton(DialogAddNewApplicant)
+        self.pushButtonGenerateLetter.setObjectName(_fromUtf8("pushButtonGenerateLetter"))
+        self.gridLayout.addWidget(self.pushButtonGenerateLetter, 22, 2, 1, 1)
 
         self.retranslateUi(DialogAddNewApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogAddNewApplicant)
@@ -225,7 +228,6 @@ class Ui_DialogAddNewApplicant(object):
         DialogAddNewApplicant.setTabOrder(self.checkBoxFormsCheck, self.checkBoxEquipmentsCheck)
         DialogAddNewApplicant.setTabOrder(self.checkBoxEquipmentsCheck, self.comboBoxBunkhouse)
         DialogAddNewApplicant.setTabOrder(self.comboBoxBunkhouse, self.comboBoxTribe)
-        DialogAddNewApplicant.setTabOrder(self.comboBoxTribe, self.pushButtonSubmit)
 
     def retranslateUi(self, DialogAddNewApplicant):
         DialogAddNewApplicant.setWindowTitle(_translate("DialogAddNewApplicant", "Add New Applicant", None))
@@ -252,7 +254,6 @@ class Ui_DialogAddNewApplicant(object):
         self.labelFormsCheck.setText(_translate("DialogAddNewApplicant", "Forms", None))
         self.labelEmail.setText(_translate("DialogAddNewApplicant", "Email:", None))
         self.checkBoxFormsCheck.setText(_translate("DialogAddNewApplicant", "Camper has all required forms?", None))
-        self.pushButtonSubmit.setText(_translate("DialogAddNewApplicant", "Submit", None))
         self.labelState.setText(_translate("DialogAddNewApplicant", "State", None))
         self.labelCamp.setText(_translate("DialogAddNewApplicant", "Camp Interested", None))
         self.labelCity.setText(_translate("DialogAddNewApplicant", "City", None))
@@ -260,6 +261,8 @@ class Ui_DialogAddNewApplicant(object):
         self.labelZipCode.setText(_translate("DialogAddNewApplicant", "ZipCode", None))
         self.labelLastName.setText(_translate("DialogAddNewApplicant", "Last Name", None))
         self.labelGender.setText(_translate("DialogAddNewApplicant", "Gender", None))
+        self.pushButtonSubmit.setText(_translate("DialogAddNewApplicant", "Submit", None))
+        self.pushButtonGenerateLetter.setText(_translate("DialogAddNewApplicant", "Generate Acceptance Letter", None))
 
 
 if __name__ == "__main__":

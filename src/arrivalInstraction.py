@@ -1,36 +1,35 @@
 
 class LetterOfAcceptance(object):
 
-    def __init__(self, applicant, camp):
-        self.applicant = applicant
+    def __init__(self, decisionId, camp):
+        self.decisionId = decisionId
         self.camp = camp
 
     def generateLetter(self):
         res = ''
-        if self.applicant.decisionId ==1 :
-            res += 'Welcome to '+ camp.name +'! '
-            res += 'The camp will start from ' + str(camp.startDate) + ' to '+ \
-            str(camp.endDate) + '.\n'
+        if self.decisionId ==1 :
+            res += 'Welcome to '+ self.camp.name +'! '
+            res += 'The camp will start from ' + str(self.camp.startDate) + ' to '+ \
+            str(self.camp.endDate) + '.\n'
 
             res += 'Please make sure bring the following forms and equipments:\n'
             res += 'Forms:\n'+ str(Forms()) + '\n'
             res += 'Equipments:\n' + str(Equipments()) + '\n'
 
-        elif self.applicant.decisionId ==2 :
-            res += 'Welcome to '+ camp.name +'! '
-            res += 'The camp will start from ' + str(camp.startDate) + ' to '+ \
-            str(camp.endDate) + '.\n'
+        elif self.decisionId ==2 :
+            res += 'Welcome to '+ self.camp.name +'! '
+            res += 'The camp will start from ' + str(self.camp.startDate) + ' to '+ \
+            str(self.camp.endDate) + '.\n'
             res += 'Your space has been reserved, '
             res += 'but please make sure make the payment before the camp starts.'
-            res += 'The camp will start from ' + str(camp.startDate) + ' to '+ \
-            str(camp.endDate) + '.\n'
+
 
             res += 'Please make sure bring the following forms and equipments:\n'
             res += 'Forms:\n'+ str(Forms()) + '\n'
             res += 'Equipments:\n' + str(Equipments()) + '\n'
-        elif self.applicant.decisionId ==3 :
+        elif self.decisionId ==3 :
             res += 'Thank you for interesting in camping with us!'
-            res += 'However, your application cannot be accepted because we only accept applicant within age 9-18.'
+            res += '\nHowever, your application cannot be accepted because we only accept applicant within age 9-18 and when there is enough empty space in the camp you interested.'
             
         else:
             res += 'Decision has not been made.'
@@ -46,7 +45,7 @@ class Forms(object):
 
         res = ''
 
-        for form in forms:
+        for form in self.forms:
             res+='* '+ form + '\n'
 
         return res
@@ -59,7 +58,7 @@ class Equipments(object):
     def __str__(self):
         res = ''
 
-        for equipment in equipments:
-            res+='* ' + form + '\n'
+        for equipment in self.equipments:
+            res+='* ' + equipment + '\n'
         
         return res
