@@ -13,12 +13,10 @@ class Processor(object):
         print(os.getcwd()+'/db/camp.db')
         self.db = DB(os.getcwd()+'/db/camp.db',os.getcwd()+'/db/Camp_schema.sql')
         self.__numberOfCamps = 3
-        self.__numberOfGirlBunkhouses = 3
-        self.__numberOfBoyBunkhouses = 3
-        self.__totalGrilNumber = self.__numberOfGirlBunkhouses*6
-        self.__totalBoyNumber = self.__numberOfBoyBunkhouses*6
         self.camps = self.registerCamps()
-        self.campers = self.registerCampers()
+        self.bunkhouses = self.registerBunkhouses()
+        self.tribes = self.registerTribes()
+        # self.campers = self.registerCampers()
         
 
     def registerCamps(self):
@@ -40,6 +38,44 @@ class Processor(object):
 
         
         return camps
+
+    def registerBunkhouses(self):
+        '''
+        create Bunkhouses objects
+        '''
+        lookUpData= ''
+        bunkhouseData = self.interacteDB('select','bunkhouse',lookUpData)
+        bunkhouses = []
+        if bunkhouseData['ok']:
+            bunkhouseData = bunkhouseData['result']
+            for i in range(len(bunkhouseData)):
+                b = bunkhouseData[i]
+                bunkhouses.append(Bunkhouse(b['id'],b['name'],b['gender']))
+        else:
+            print('error in retriving bunkhouse` process')
+        
+
+        
+        return bunkhouses
+
+    def registerTribes(self):
+        '''
+        create Tribes objects
+        '''
+        lookUpData= ''
+        tribeData = self.interacteDB('select','tribe',lookUpData)
+        tribes = []
+        if tribeData['ok']:
+            tribeData = tribeData['result']
+            for i in range(len(tribeData)):
+                t = tribeData[i]
+                tribes.append(Tribe(t['id'],t['name']))
+        else:
+            print('error in retriving tribe` process')
+        
+
+        
+        return tribes
 
     def registerCampers(camp):
         '''
@@ -91,66 +127,123 @@ class Processor(object):
             res = self.db.delete(tableName,data)
         return res
 
-    def addNewApplicant(self, data):
+    def addNewApplicant(self, applicant):
         addressData = {}
-        addressData['line1'] = data['line1']
-        addressData['line2'] = data['line2']
-        addressData['city'] = data['city']
-        addressData['state'] = data['state']
-        addressData['zipCode'] = data['zipCode']
+        addressData['line1'] = applicant.address.line1
+        addressData['line2'] = applicant.address.line2
+        addressData['city'] = applicant.address.city
+        addressData['state'] = applicant.address.state
+        addressData['zipCode'] = applicant.address.zipCode
 
-        if not self.interacteDB('insert','applicant',addressData):
-            print('insert new applicant failed')
+        self.interacteDB('insert','address',[addressData])
+
         
         # lookUp Address id
 
-        condition ='line1 = ' + '\'' + str(data['line1']) + '\'' + ' and line2 = ' + '\'' + str(data['line2'])+ '\'' +\
-        ' and city = ' + '\'' + str(data['city']) +'\'' + ' and state = ' + '\'' +str(data['state']) +'\'' + \
-        ' and zipCode = ' + '\'' + str(data['zipCode']) + '\''
+        condition ='line1 = ' + '\'' + str(applicant.address.line1) + '\'' + ' and line2 = ' + '\'' + str(applicant.address.line2)+ '\'' +\
+        ' and city = ' + '\'' + str(applicant.address.city) +'\'' + ' and state = ' + '\'' +str(applicant.address.state) +'\'' + \
+        ' and zipCode = ' + '\'' + str(applicant.address.zipCode) + '\''
 
-        res = self.interacteDB('select','applicant',condition)
+        res = self.interacteDB('select','address',condition)
 
         if res['ok']:
-            id = res['id']
+            address_id = res['result'][0]['id']
         else:
             print('error in look up address id')
 
 
-        applicantData = {}
-        applicantData['firstName'] = data['firstName']
-        applicantData['lastNmae'] = data['lastName']
-        applicantData['gender'] = data['gender']
-        applicantData['dateOfBirth'] = data['dateOfBirth']
-        applicantData['addressId'] = str(id)
-        applicantData['homePhone'] = data['homePhone']
-        applicantData['cellPhone'] = data['cellPhone']
-        applicantData['payment'] = data['payment']
-        applicantData['applicationDate'] = data['applicationDate']
-        applicantData['reviewDate'] = data['reviewDate']
-        applicantData['decisionId'] = data['decisionId']
-        applicantData['formsChecked'] = data['formsChecked']
-        applicantData['equipmentsChecked'] = data['equipmentsChecked']
-        applicantData['campId'] = data['campId']
-        applicantData['emergencyContactId'] = data['emergencyContactId']
-        applicantData['bunkhouseId'] = data['bunkhouseId']
-        applicantData['tribeId'] = data['tribeId']
+        emergencyContactData = {}
+        emergencyContactData['name'] = applicant.emergencyContactName
+        emergencyContactData['phone'] = applicant.emergencyContactPhone
 
-        res = self.interacteDB('insert','applicant',applicantData)
+
+        if emergencyContactData['name']=='':
+            
+            self.interacteDB('insert','emergencyContact',[emergencyContactData])
+            
+            # lookUp emergencyContact id
+
+            condition ='name = \'' + str(applicant.emergencyContactName) + '\'' +\
+            'and phone = \'' + str(applicant.emergencyContactPhone) + '\'' 
+
+            res = self.interacteDB('select','emergencyContact',condition)
+            if res['ok']:
+                emergencyContact_id = res['result'][0]['id']
+            else:
+                print('error in look up emergency id')
+        else:
+            emergencyContact_id = ''
+
+
+
+
+
+        applicantData = {}
+        applicantData['firstName'] = applicant.firstName
+        applicantData['lastName'] = applicant.lastName
+        applicantData['gender'] = applicant.gender
+        applicantData['dateOfBirth'] = applicant.dateOfBirth
+        applicantData['addressId'] = str(address_id)
+        applicantData['email'] = applicant.email
+        applicantData['homePhone'] = applicant.homePhone
+        applicantData['cellPhone'] = applicant.cellPhone
+        applicantData['payment'] = applicant.payment
+        applicantData['applicationDate'] = applicant.applicationDate
+        applicantData['reviewDate'] = applicant.reviewDate
+        applicantData['decisionId'] = applicant.decisionId
+        applicantData['formsChecked'] = applicant.formsChecked
+        applicantData['equipmentsChecked'] = applicant.equipmentsChecked
+        applicantData['campId'] = applicant.campId
+        applicantData['emergencyContactId'] = str(emergencyContact_id)
+        applicantData['bunkhouseId'] = applicant.bunkhouseId
+        applicantData['tribeId'] = applicant.tribeId
+
+        res = self.interacteDB('insert','applicant',[applicantData])
 
         return res
 
         
 
-    def checkSpaceAvilibility(self, camp):
+    def checkSpaceAvilibility(self, campId,gender):
         '''
-        this function check the space availability from a given camp id
+        this function check the space availability from a given camp id and gender
         '''
-        avilibility = 0
 
-        return avilibility
+        occupiedSpace = self.interacteDB('select','applicant','campId = '+str(campId)+'and gender = '+str(gender))
 
-    def generateLetterOfAcceptance(self, applicant, camp):
-        letter = LetterOfAcceptance(applicant,camp)
+        if occupiedSpace['ok']:
+            occupiedSpace=len(occupiedSpace['result'])
+
+            if gender == 'M':
+                if self.camps[campId].totalBoyNumber > occupiedSpace:
+                    return True
+                else:
+                    return False
+            elif gender == 'F':
+                if self.camps[campId].totalGrilNumber > occupiedSpace:
+                    return True
+                else:
+                    return False
+                
+            
+        else:
+            print('error happend at checkSpaceAvilibility')
+
+    def validateApplicant(self, campId, gender, age):
+        '''
+        this function check the space and the age constraints 
+        '''
+        if 9<=age<=18:
+            if self.checkSpaceAvilibility(campId,gender):
+                return {'ok':True,'msg':''}
+            else:
+                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId].name}
+            
+        else:
+            return {'ok':False,'msg':'applicant need to be 9-18 years old'}
+
+    def generateLetterOfAcceptance(self, decisionId, camp):
+        letter = LetterOfAcceptance(decisionId,camp)
 
         return letter.generateLetter()
 
@@ -171,11 +264,14 @@ class Processor(object):
 
 
 
-p = Processor()
 
-p.registerCamps()
-print(p.camps)
-p.kill()
+
+
+# p = Processor()
+
+# p.registerCamps()
+# print(p.camps)
+# p.kill()
 
 # print("processor is running, counting for 5")
 # for i in range(5):

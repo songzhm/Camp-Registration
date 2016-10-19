@@ -56,7 +56,7 @@ class Employee(Person):
 
 class Applicant(Person):
     def __init__(self,firstName, lastName,age,gender,dateOfBirth,email, \
-    tshirtSize, homePhone, cellPhone,emergencyPhone, emergencyContact, \
+    homePhone, cellPhone,emergencyContactPhone, emergencyContactName, \
     line1, line2, city, state, zipCode, \
     payment=False, applicationDate=datetime.datetime.now(), \
     reviewDate=datetime.datetime.now(),  decisionId=0, \
@@ -70,13 +70,13 @@ class Applicant(Person):
         self.email = email
         self.homePhone = homePhone
         self.cellPhone = cellPhone
-        self.emergencyPhone = emergencyContact
-        self.emergencyContact = emergencyContact
+        self.emergencyContactPhone = emergencyContactPhone
+        self.emergencyContactName = emergencyContactName
         self.payment = payment
         self.applicationDate = applicationDate
         self.reviewDate = reviewDate
         self.decisionId = decisionId
-        self.fromsChecked = formsChecked
+        self.formsChecked = formsChecked
         self.equipmentsChecked = equipmentsChecked
         self.campId = campId
         self.bunkhouseId = bunkhouseId

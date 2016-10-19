@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogLookUpApplicant</class>
+ <widget class="QDialog" name="DialogLookUpApplicant">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1229</width>
+    <height>784</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Look Up Applicant</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelLastName">
+     <property name="text">
+      <string>Last Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelFirstName">
+     <property name="text">
+      <string>First Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineFirstName"/>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLineEdit" name="lineLastName"/>
+   </item>
+   <item row="4" column="5">
+    <widget class="QPushButton" name="pushButtonUpdate">
+     <property name="text">
+      <string>Update</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="6">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="6">
+    <widget class="QTableWidget" name="tableWidgetApplicantTable">
+     <column>
+      <property name="text">
+       <string>First Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Last Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Gender</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Date Of Birth</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Line 1</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Line 2</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>City</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>State</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Zip Code</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Home Phone</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Cell Phone</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Payment</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Application Date</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Review Date</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Decision Id</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Forms Checked</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Equipments Checked</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Camp Id</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Emergency Contact Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Emergency Contact Phone Number</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bunkhouse Id</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Tribe Id</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelCamp">
+     <property name="text">
+      <string>Camp</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelDOB">
+     <property name="text">
+      <string>Date of Birth</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QDateEdit" name="dateEditDOB"/>
+   </item>
+   <item row="0" column="5" rowspan="2">
+    <widget class="QPushButton" name="pushButtonLookUp">
+     <property name="text">
+      <string>Look Up</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBoxCamp"/>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>lineFirstName</tabstop>
+  <tabstop>lineLastName</tabstop>
+  <tabstop>comboBoxCamp</tabstop>
+  <tabstop>dateEditDOB</tabstop>
+  <tabstop>pushButtonLookUp</tabstop>
+  <tabstop>tableWidgetApplicantTable</tabstop>
+  <tabstop>pushButtonUpdate</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
