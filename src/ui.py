@@ -8,8 +8,10 @@
 
 from PyQt4 import QtCore, QtGui
 import sys
+import datetime
+from src.processor import *
 
-from processor import *
+
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -1139,18 +1141,13 @@ class Ui_DialogUpdateApplicant(object):
         reviewDate = reviewDate,decisionId = decisionId,formsChecked = formsChecked,\
         equipmentsChecked = equipmentsChecked,campId = campId,bunkhouseId = bunkhouseId,\
         tribeId = tribeId)
-        validationRes = self.p.validateApplicant(campId,gender,age)
+
         if self.checkBlankCells():
             
             QtGui.QMessageBox.warning(DialogUpdateApplicant,"Invalid Inputs",
             "The fileds with * cannot be empty.", QtGui.QMessageBox.Cancel,
             QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
             
-        elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not validationRes['ok']:
-            
-            QtGui.QMessageBox.warning(DialogUpdateApplicant,"Application cannot be accepted",
-            "This application cannot be accepted due to {}".format(validationRes['msg']), QtGui.QMessageBox.Cancel,
-            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
         
         elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not self.checkBoxPayment.isChecked():
             QtGui.QMessageBox.warning(DialogUpdateApplicant,"Application cannot be accepted",
@@ -1213,13 +1210,3 @@ class Ui_DialogUpdateApplicant(object):
         
         
         
-if __name__ == "__main__":
-    p = Processor()
-    app = QtGui.QApplication(sys.argv)
-    MainWindow = QtGui.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow,p)
-    MainWindow.show()
-    sys.exit(app.exec_())
-    p.kill()
-

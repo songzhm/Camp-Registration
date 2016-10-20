@@ -1,7 +1,7 @@
-from camp import *
-from person import *
-from db import *
-from arrivalInstraction import *
+from src.camp import *
+from src.person import *
+from src.db import *
+from src.arrivalInstraction import *
 import time
 import os
 
@@ -10,8 +10,8 @@ import os
 class Processor(object):
     def __init__(self):
         cwd = os.getcwd()
-        print(os.getcwd()+'/db/camp.db')
-        self.db = DB(os.getcwd()+'/db/camp.db',os.getcwd()+'/db/Camp_schema.sql')
+        print(cwd + os.path.sep + 'src' + os.path.sep + 'db' + os.path.sep + 'camp.db')
+        self.db = DB(cwd + os.path.sep + 'src' + os.path.sep + 'db' + os.path.sep + 'camp.db',cwd + os.path.sep + 'src' + os.path.sep + 'db' + os.path.sep + 'Camp_schema.sql')
         self.__numberOfCamps = 3
         self.camps = self.registerCamps()
         self.bunkhouses = self.registerBunkhouses()
@@ -215,15 +215,21 @@ class Processor(object):
 
         addressId = lookUpRes['result'][0]['addressId']
 
-        self.interacteDB('update','address',{'newData':addressData,'conditions':{'id':str(addressId)}})
+        if addressId == "":
+            self.interacteDB('insert','address',[addressData])
+        else:
+            self.interacteDB('update','address',{'newData':addressData,'conditions':{'id':str(addressId)}})
 
         emergencyContactData = {}
         emergencyContactData['name'] = applicant.emergencyContactName
         emergencyContactData['phone'] = applicant.emergencyContactPhone
         
         emergencyContactId = lookUpRes['result'][0]['emergencyContactId']
-
-        self.interacteDB('update','emergencyContact',{'newData':emergencyContactData,'conditions':{'id':str(emergencyContactId)}})
+        
+        if emergencyContactId=="":
+            self.interacteDB('insert','emergencyContact',[emergencyContactData])
+        else:
+            self.interacteDB('update','emergencyContact',{'newData':emergencyContactData,'conditions':{'id':str(emergencyContactId)}})
 
         applicantData = {}
         applicantData['firstName'] = applicant.firstName
