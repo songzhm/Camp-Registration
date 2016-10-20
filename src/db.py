@@ -164,32 +164,32 @@ class DB(object):
         else:
             queryStatement = "select * from "+ tableName + " where " + condition
 
-        try:
+        # try:
 
-            self.cursor.execute('PRAGMA TABLE_INFO({})'.format(tableName))
+        self.cursor.execute('PRAGMA TABLE_INFO({})'.format(tableName))
 
-            # collect names in a list
-            names = [tup[1] for tup in self.cursor.fetchall()]
+        # collect names in a list
+        names = [tup[1] for tup in self.cursor.fetchall()]
 
 
-            self.cursor.execute(queryStatement)
+        self.cursor.execute(queryStatement)
 
-            allRows = self.cursor.fetchall()
-            
-            ok = True
-            
-            if len(allRows)>0:
-                for row in allRows:
-                    dic = {}
-                    for i in range(len(names)):
-                        dic[str(names[i])] = row[i]
-                    result.append(dic)
-                    
+        allRows = self.cursor.fetchall()
+        
+        ok = True
+        
+        if len(allRows)>0:
+            for row in allRows:
+                dic = {}
+                for i in range(len(names)):
+                    dic[str(names[i])] = row[i]
+                result.append(dic)
+                
 
-            return {'ok':ok,'result':result}
+        return {'ok':ok,'result':result}
 
-        except:
-            return {'ok':ok,'result':result}
+        # except:
+        #     return {'ok':ok,'result':result}
 
     def update(self, tableName, data):
         '''

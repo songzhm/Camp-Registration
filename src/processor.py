@@ -209,8 +209,9 @@ class Processor(object):
         this function check the space availability from a given camp id and gender
         '''
 
-        occupiedSpace = self.interacteDB('select','applicant','campId = '+str(campId)+'and gender = '+str(gender))
-
+        occupiedSpace = self.interacteDB('select','applicant','campId = \''+str(campId)+\
+        '\' and gender = \''+gender+ '\' and decisionId != \'3\' ')
+        
         if occupiedSpace['ok']:
             occupiedSpace=len(occupiedSpace['result'])
 

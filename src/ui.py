@@ -410,8 +410,9 @@ class Ui_DialogAddNewApplicant(object):
 
         else:
             res = self.p.addNewApplicant(a)
+            print(res)
             QtGui.QMessageBox.warning(DialogAddNewApplicant,"Success",
-            res['result'], QtGui.QMessageBox.Ok,
+            res['result']['msg'], QtGui.QMessageBox.Ok,
             QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
 
             DialogAddNewApplicant.accept()
@@ -586,7 +587,7 @@ class Ui_DialogLookUpApplicant(object):
         applicants = res['result']
         self.tableWidgetApplicantTable.clear()
         if len(applicants)>0:
-            self.tableWidgetApplicantTable.setRowCount(len(applicants)+1)
+            self.tableWidgetApplicantTable.setRowCount(len(applicants))
             self.tableWidgetApplicantTable.setColumnCount(len(applicants[0]))
 
             cols = ['First Name', 'Last Name','Gender','Date Of Birth','Line 1',\
@@ -617,7 +618,7 @@ class Ui_DialogLookUpApplicant(object):
 
             for i, a in enumerate(applicants_list):
                 for j,item in enumerate(a):
-                    self.tableWidgetApplicantTable.setItem(i+1,j,QtGui.QTableWidgetItem(item))
+                    self.tableWidgetApplicantTable.setItem(i,j,QtGui.QTableWidgetItem(item))
    
 
 
