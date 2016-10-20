@@ -1,7 +1,7 @@
-from camp import *
-from person import *
-from db import *
-from arrivalInstraction import *
+from src.camp import *
+from src.person import *
+from src.db import *
+from src.arrivalInstraction import *
 import time
 import os
 
@@ -10,8 +10,8 @@ import os
 class Processor(object):
     def __init__(self):
         cwd = os.getcwd()
-        print(os.getcwd()+'/db/camp.db')
-        self.db = DB(os.getcwd()+'/db/camp.db',os.getcwd()+'/db/Camp_schema.sql')
+        print(cwd + os.path.sep + 'src' + os.path.sep + 'db' + os.path.sep + 'camp.db')
+        self.db = DB(cwd + os.path.sep + 'src' + os.path.sep + 'db' + os.path.sep + 'camp.db',cwd + os.path.sep + 'src' + os.path.sep + 'db' + os.path.sep + 'Camp_schema.sql')
         self.__numberOfCamps = 3
         self.camps = self.registerCamps()
         self.bunkhouses = self.registerBunkhouses()
@@ -202,6 +202,65 @@ class Processor(object):
 
         return res
 
+
+    def updateApplicant(self, applicant,id):
+        addressData = {}
+        addressData['line1'] = applicant.address.line1
+        addressData['line2'] = applicant.address.line2
+        addressData['city'] = applicant.address.city
+        addressData['state'] = applicant.address.state
+        addressData['zipCode'] = applicant.address.zipCode
+
+        lookUpRes = self.interacteDB('select','applicant','id = \''+str(id)+'\'')
+
+        addressId = lookUpRes['result'][0]['addressId']
+
+        if addressId == "":
+            self.interacteDB('insert','address',[addressData])
+        else:
+            self.interacteDB('update','address',{'newData':addressData,'conditions':{'id':str(addressId)}})
+
+        emergencyContactData = {}
+        emergencyContactData['name'] = applicant.emergencyContactName
+        emergencyContactData['phone'] = applicant.emergencyContactPhone
+        
+        emergencyContactId = lookUpRes['result'][0]['emergencyContactId']
+        print(emergencyContactId)
+        if emergencyContactId=="":
+            self.interacteDB('insert','emergencyContact',[emergencyContactData])
+        else:
+            self.interacteDB('update','emergencyContact',{'newData':emergencyContactData,'conditions':{'id':str(emergencyContactId)}})
+
+        applicantData = {}
+        applicantData['firstName'] = applicant.firstName
+        applicantData['lastName'] = applicant.lastName
+        applicantData['gender'] = applicant.gender
+        applicantData['dateOfBirth'] = applicant.dateOfBirth
+        applicantData['addressId'] = str(addressId)
+        applicantData['email'] = applicant.email
+        applicantData['homePhone'] = applicant.homePhone
+        applicantData['cellPhone'] = applicant.cellPhone
+        applicantData['payment'] = applicant.payment
+        applicantData['applicationDate'] = applicant.applicationDate
+        applicantData['reviewDate'] = applicant.reviewDate
+        applicantData['decisionId'] = applicant.decisionId
+        applicantData['formsChecked'] = applicant.formsChecked
+        applicantData['equipmentsChecked'] = applicant.equipmentsChecked
+        applicantData['campId'] = applicant.campId
+        applicantData['emergencyContactId'] = str(emergencyContactId)
+        applicantData['bunkhouseId'] = applicant.bunkhouseId
+        applicantData['tribeId'] = applicant.tribeId
+
+        res = self.interacteDB('update','applicant',{'newData':applicantData,'conditions':{'id':id}})
+
+
+        
+
+        return res
+
+        
+
+
         
 
     def checkSpaceAvilibility(self, campId,gender):
@@ -209,21 +268,22 @@ class Processor(object):
         this function check the space availability from a given camp id and gender
         '''
 
-        occupiedSpace = self.interacteDB('select','applicant','campId = '+str(campId)+'and gender = '+str(gender))
-
+        occupiedSpace = self.interacteDB('select','applicant','campId = \''+str(campId)+\
+        '\' and gender = \''+gender+ '\' and decisionId != \'3\' ')
+        
         if occupiedSpace['ok']:
             occupiedSpace=len(occupiedSpace['result'])
 
             if gender == 'M':
                 if self.camps[campId].totalBoyNumber > occupiedSpace:
-                    return True
+                    return {'ok':True,'availableSpace':self.camps[campId-1].totalBoyNumber - occupiedSpace}
                 else:
-                    return False
+                    return {'ok':False,'availableSpace':0}
             elif gender == 'F':
                 if self.camps[campId].totalGrilNumber > occupiedSpace:
-                    return True
+                    return {'ok':True,'availableSpace':self.camps[campId-1].totalGrilNumber - occupiedSpace}
                 else:
-                    return False
+                    return {'ok':False,'availableSpace':0}
                 
             
         else:
@@ -234,18 +294,24 @@ class Processor(object):
         this function check the space and the age constraints 
         '''
         if 9<=age<=18:
-            if self.checkSpaceAvilibility(campId,gender):
-                return {'ok':True,'msg':''}
+            res = self.checkSpaceAvilibility(campId,gender)
+            if res['ok']:
+                return {'ok':True,'msg':'','availableSpace':res['availableSpace']}
             else:
-                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId].name}
+                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId-1].name,'availableSpace':res['availableSpace']}
             
         else:
-            return {'ok':False,'msg':'applicant need to be 9-18 years old'}
+            return {'ok':False,'msg':'applicant need to be 9-18 years old'  }
 
     def generateLetterOfAcceptance(self, decisionId, camp):
         letter = LetterOfAcceptance(decisionId,camp)
 
         return letter.generateLetter()
+    
+    def generateCheckList(self, type):
+        cl = CheckList()
+        return cl.generageCheckList(type)
+
 
 
     def assignBunkhouses(self, campers, requirements):

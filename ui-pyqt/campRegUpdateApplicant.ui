@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogUpdateApplicant</class>
+ <widget class="QDialog" name="DialogUpdateApplicant">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1389</width>
+    <height>1010</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Update Applicant</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="6" column="3" colspan="2">
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="labelCamp">
+        <property name="text">
+         <string>Camp Interested</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxCamp"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelCampAvilability">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="13" column="1" colspan="4">
+    <widget class="QLabel" name="label_14">
+     <property name="text">
+      <string>Emergency Contact:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="21" column="4">
+    <widget class="QComboBox" name="comboBoxTribe"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="labelFirstName">
+     <property name="text">
+      <string>First Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="lineFirstName"/>
+   </item>
+   <item row="21" column="2">
+    <widget class="QComboBox" name="comboBoxBunkhouse"/>
+   </item>
+   <item row="17" column="2">
+    <widget class="QDateEdit" name="dateApplicationDate"/>
+   </item>
+   <item row="18" column="1">
+    <widget class="QLabel" name="labelPayment">
+     <property name="text">
+      <string>Payment</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="2">
+    <widget class="QCheckBox" name="checkBoxPayment">
+     <property name="text">
+      <string>Check Recieved?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="3">
+    <widget class="QLabel" name="labelLine2">
+     <property name="text">
+      <string>Line 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QLabel" name="labelDOB">
+     <property name="text">
+      <string>Date of Birth</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="3">
+    <widget class="QLabel" name="labelAcceptanceDecision">
+     <property name="text">
+      <string>Accepted?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1" colspan="4">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="1">
+    <widget class="QLabel" name="labelEmergencyName">
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="4">
+    <widget class="QDateEdit" name="dateReviewDate"/>
+   </item>
+   <item row="17" column="3">
+    <widget class="QLabel" name="labelReviewDate">
+     <property name="text">
+      <string>Review Date</string>
+     </property>
+    </widget>
+   </item>
+   <item row="21" column="1">
+    <widget class="QLabel" name="labelBunkhouse">
+     <property name="text">
+      <string>Bunkhouse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="1">
+    <widget class="QLabel" name="labelApplicationDate">
+     <property name="text">
+      <string>Application Date</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="4">
+    <widget class="QLineEdit" name="lineEmergencyPhone"/>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLabel" name="labelLine1">
+     <property name="text">
+      <string>Line 1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="3">
+    <widget class="QLabel" name="labelEquipmentsCheck">
+     <property name="text">
+      <string>Equipments</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <widget class="QLineEdit" name="lineCity"/>
+   </item>
+   <item row="14" column="3">
+    <widget class="QLabel" name="labelEmergencyPhone">
+     <property name="text">
+      <string>Phone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="4">
+    <widget class="QLineEdit" name="lineState"/>
+   </item>
+   <item row="14" column="2">
+    <widget class="QLineEdit" name="lineEmergencyName"/>
+   </item>
+   <item row="9" column="4">
+    <widget class="QLineEdit" name="lineLine2"/>
+   </item>
+   <item row="19" column="2">
+    <widget class="QCheckBox" name="checkBoxFormsCheck">
+     <property name="text">
+      <string>Camper has all required forms?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <widget class="QLabel" name="labelZipCode">
+     <property name="text">
+      <string>ZipCode</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2">
+    <widget class="QLineEdit" name="lineLine1"/>
+   </item>
+   <item row="19" column="4">
+    <widget class="QCheckBox" name="checkBoxEquipmentsCheck">
+     <property name="text">
+      <string>Camper has all required equipments?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="1">
+    <widget class="QLabel" name="labelFormsCheck">
+     <property name="text">
+      <string>Forms</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="1">
+    <widget class="QLabel" name="label_17">
+     <property name="text">
+      <string>Admin:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="4">
+    <widget class="QComboBox" name="comboBoxAcceptanceDecision"/>
+   </item>
+   <item row="5" column="3">
+    <widget class="QLabel" name="labelHomePhone">
+     <property name="text">
+      <string>Home Phone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="21" column="3">
+    <widget class="QLabel" name="labelTribe">
+     <property name="text">
+      <string>Tribe</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLineEdit" name="lineCellPhone"/>
+   </item>
+   <item row="11" column="2">
+    <widget class="QLineEdit" name="lineZipCode"/>
+   </item>
+   <item row="2" column="4">
+    <widget class="QDateEdit" name="dateEditDOB"/>
+   </item>
+   <item row="15" column="1" colspan="4">
+    <widget class="Line" name="line_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="labelEmail">
+     <property name="text">
+      <string>Email:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QLabel" name="labelLastName">
+     <property name="text">
+      <string>Last Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="4">
+    <widget class="QLineEdit" name="lineHomePhone"/>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="labelGender">
+     <property name="text">
+      <string>Gender</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLineEdit" name="lineGender"/>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLineEdit" name="lineLastName"/>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLineEdit" name="lineEmail"/>
+   </item>
+   <item row="10" column="1">
+    <widget class="QLabel" name="labelCity">
+     <property name="text">
+      <string>City</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1" colspan="4">
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="3">
+    <widget class="QLabel" name="labelState">
+     <property name="text">
+      <string>State</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="labelCellPhone">
+     <property name="text">
+      <string>Cell Phone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLabel" name="label_5">
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Address:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2" colspan="2">
+    <widget class="QWidget" name="widget" native="true"/>
+   </item>
+   <item row="22" column="1" colspan="4">
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QPushButton" name="pushButtonSubmit">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>30</y>
+        <width>281</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Submit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonCheckList">
+      <property name="geometry">
+       <rect>
+        <x>820</x>
+        <y>30</y>
+        <width>211</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Checkin Checklist</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_18">
+     <property name="text">
+      <string>Applicant Basic Information:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelId">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>lineFirstName</tabstop>
+  <tabstop>lineLastName</tabstop>
+  <tabstop>lineGender</tabstop>
+  <tabstop>dateEditDOB</tabstop>
+  <tabstop>lineEmail</tabstop>
+  <tabstop>lineHomePhone</tabstop>
+  <tabstop>lineCellPhone</tabstop>
+  <tabstop>comboBoxCamp</tabstop>
+  <tabstop>lineLine1</tabstop>
+  <tabstop>lineLine2</tabstop>
+  <tabstop>lineCity</tabstop>
+  <tabstop>lineState</tabstop>
+  <tabstop>lineZipCode</tabstop>
+  <tabstop>lineEmergencyName</tabstop>
+  <tabstop>lineEmergencyPhone</tabstop>
+  <tabstop>dateApplicationDate</tabstop>
+  <tabstop>dateReviewDate</tabstop>
+  <tabstop>checkBoxPayment</tabstop>
+  <tabstop>comboBoxAcceptanceDecision</tabstop>
+  <tabstop>checkBoxFormsCheck</tabstop>
+  <tabstop>checkBoxEquipmentsCheck</tabstop>
+  <tabstop>comboBoxBunkhouse</tabstop>
+  <tabstop>comboBoxTribe</tabstop>
+  <tabstop>pushButtonCheckList</tabstop>
+  <tabstop>pushButtonSubmit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

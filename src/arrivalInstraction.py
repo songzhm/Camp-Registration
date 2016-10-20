@@ -36,6 +36,17 @@ class LetterOfAcceptance(object):
 
         return res
 
+class CheckList():
+    def __init__(self):
+        self.form = Forms()
+        self.equipment = Equipments()
+
+    def generageCheckList(self,type):
+        if type == "form":
+            return str(self.form)
+        elif type == "equipment":
+            return str(self.equipment)
+        
 
 class Forms(object):
     def __init__(self):

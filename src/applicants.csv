@@ -1,9 +1,0 @@
-firstName,lastName,gender,dateOfBirth,line1,line2,city,state,zipCode,email,homePhone,cellPhone,payment,applicationDate,reviewDate,decisionId,formsChecked,equipmentsChecked,campId,emergencyContactName,emergencyContactPhone,bunkhouseId,tribeId,waitingList
-ming,song,M,1/1/1988,"123, asdfas",asdfs,dafs,ca,91711,asdlfkaskfdj,123123,7687687,1,10/8/2016,10/8/2016,1,0,0,1,,,0,0,0
-asdf,poiuj,F,2/1/1995,"123,klasjdfkl",akljdfkjh,sdf,ca,91786,asdf,12341,1234123,1,10/8/2016,10/8/2016,1,0,0,1,,,0,0,0
-asjdfl,iauyweirpo,M,6/3/1989,"987,asdf",iupoi,cvalkj,ca,91767,asdf,123412,123123,1,9/8/2016,9/10/2016,1,0,0,1,,,0,0,0
-fg,kj,M,6/6/1994,alsdkfj,2134,asld,ca,91767,asdf,234234,987987,1,9/8/2016,9/10/2016,1,0,0,1,,,0,0,0
-oiupqowijei,pasoiudfpje,F,1/1/1988,"123, asdfas",asdfs,dafs,ca,91711,asdlfkaskfdj,123123,7687687,0,10/8/2016,10/8/2016,1,0,0,1,,,0,0,0
-njinin,msadgfuhg,F,2/21/1987,"123,klasjdfkl",akljdfkjh,sdf,ca,91786,sdfgsd,1234456,657345327,0,10/8/2016,10/8/2016,1,0,0,1,,,0,0,0
-xzcv,qwer,M,6/3/1989,"987,asdf",iupoi,cvalkj,ca,91767,asdf,123412,123123,0,9/8/2016,9/10/2016,1,0,0,1,,,0,0,0
-qwer,vadf,F,6/6/1994,alsdkfj,2134,asld,ca,91767,asdf,234234,987987,0,9/8/2016,9/10/2016,1,0,0,1,,,0,0,0
