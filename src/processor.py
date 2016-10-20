@@ -225,7 +225,7 @@ class Processor(object):
         emergencyContactData['phone'] = applicant.emergencyContactPhone
         
         emergencyContactId = lookUpRes['result'][0]['emergencyContactId']
-        
+        print(emergencyContactId)
         if emergencyContactId=="":
             self.interacteDB('insert','emergencyContact',[emergencyContactData])
         else:
@@ -298,10 +298,10 @@ class Processor(object):
             if res['ok']:
                 return {'ok':True,'msg':'','availableSpace':res['availableSpace']}
             else:
-                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId-1].name}
+                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId-1].name,'availableSpace':res['availableSpace']}
             
         else:
-            return {'ok':False,'msg':'applicant need to be 9-18 years old'}
+            return {'ok':False,'msg':'applicant need to be 9-18 years old'  }
 
     def generateLetterOfAcceptance(self, decisionId, camp):
         letter = LetterOfAcceptance(decisionId,camp)

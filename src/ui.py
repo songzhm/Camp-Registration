@@ -638,6 +638,7 @@ class Ui_DialogLookUpApplicant(object):
             condition = ' and '.join(cons)
         res = self.p.interacteDB('select','applicant',condition) 
         applicants = res['result']
+        
         self.tableWidgetApplicantTable.clear()
         cols = ['Id','First Name', 'Last Name','Gender','Date Of Birth','Line 1',\
             'Line 2','City','State','Zip Code','Email','Home Phone','Cell Phone',\
