@@ -194,7 +194,7 @@ class DB(object):
     def update(self, tableName, data):
         '''
         data is a dict which contains two elements:
-        1. data that need to ne updated in a dict 
+        1. newData that need to ne updated in a dict 
         2. conditions in a dict
         '''
 
@@ -218,7 +218,6 @@ class DB(object):
         
         queryStatement += " and ".join(map(str,l))
 
-        print(queryStatement)
 
         self.cursor.execute(queryStatement)
 

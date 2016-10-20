@@ -202,6 +202,59 @@ class Processor(object):
 
         return res
 
+
+    def updateApplicant(self, applicant,id):
+        addressData = {}
+        addressData['line1'] = applicant.address.line1
+        addressData['line2'] = applicant.address.line2
+        addressData['city'] = applicant.address.city
+        addressData['state'] = applicant.address.state
+        addressData['zipCode'] = applicant.address.zipCode
+
+        lookUpRes = self.interacteDB('select','applicant','id = \''+str(id)+'\'')
+
+        addressId = lookUpRes['result'][0]['addressId']
+
+        self.interacteDB('update','address',{'newData':addressData,'conditions':{'id':str(addressId)}})
+
+        emergencyContactData = {}
+        emergencyContactData['name'] = applicant.emergencyContactName
+        emergencyContactData['phone'] = applicant.emergencyContactPhone
+        
+        emergencyContactId = lookUpRes['result'][0]['emergencyContactId']
+
+        self.interacteDB('update','emergencyContact',{'newData':emergencyContactData,'conditions':{'id':str(emergencyContactId)}})
+
+        applicantData = {}
+        applicantData['firstName'] = applicant.firstName
+        applicantData['lastName'] = applicant.lastName
+        applicantData['gender'] = applicant.gender
+        applicantData['dateOfBirth'] = applicant.dateOfBirth
+        applicantData['addressId'] = str(addressId)
+        applicantData['email'] = applicant.email
+        applicantData['homePhone'] = applicant.homePhone
+        applicantData['cellPhone'] = applicant.cellPhone
+        applicantData['payment'] = applicant.payment
+        applicantData['applicationDate'] = applicant.applicationDate
+        applicantData['reviewDate'] = applicant.reviewDate
+        applicantData['decisionId'] = applicant.decisionId
+        applicantData['formsChecked'] = applicant.formsChecked
+        applicantData['equipmentsChecked'] = applicant.equipmentsChecked
+        applicantData['campId'] = applicant.campId
+        applicantData['emergencyContactId'] = str(emergencyContactId)
+        applicantData['bunkhouseId'] = applicant.bunkhouseId
+        applicantData['tribeId'] = applicant.tribeId
+
+        res = self.interacteDB('update','applicant',{'newData':applicantData,'conditions':{'id':id}})
+
+
+        
+
+        return res
+
+        
+
+
         
 
     def checkSpaceAvilibility(self, campId,gender):
@@ -217,14 +270,14 @@ class Processor(object):
 
             if gender == 'M':
                 if self.camps[campId].totalBoyNumber > occupiedSpace:
-                    return True
+                    return {'ok':True,'availableSpace':self.camps[campId-1].totalBoyNumber - occupiedSpace}
                 else:
-                    return False
+                    return {'ok':False,'availableSpace':0}
             elif gender == 'F':
                 if self.camps[campId].totalGrilNumber > occupiedSpace:
-                    return True
+                    return {'ok':True,'availableSpace':self.camps[campId-1].totalGrilNumber - occupiedSpace}
                 else:
-                    return False
+                    return {'ok':False,'availableSpace':0}
                 
             
         else:
@@ -235,10 +288,11 @@ class Processor(object):
         this function check the space and the age constraints 
         '''
         if 9<=age<=18:
-            if self.checkSpaceAvilibility(campId,gender):
-                return {'ok':True,'msg':''}
+            res = self.checkSpaceAvilibility(campId,gender)
+            if res['ok']:
+                return {'ok':True,'msg':'','availableSpace':res['availableSpace']}
             else:
-                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId].name}
+                return {'ok':False,'msg':'there is no space in camp '+self.camps[campId-1].name}
             
         else:
             return {'ok':False,'msg':'applicant need to be 9-18 years old'}
@@ -247,6 +301,11 @@ class Processor(object):
         letter = LetterOfAcceptance(decisionId,camp)
 
         return letter.generateLetter()
+    
+    def generateCheckList(self, type):
+        cl = CheckList()
+        return cl.generageCheckList(type)
+
 
 
     def assignBunkhouses(self, campers, requirements):

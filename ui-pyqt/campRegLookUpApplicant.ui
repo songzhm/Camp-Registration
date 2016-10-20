@@ -52,6 +52,11 @@
     <widget class="QTableWidget" name="tableWidgetApplicantTable">
      <column>
       <property name="text">
+       <string>Id</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>First Name</string>
       </property>
      </column>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogAddNewApplicant</class>
- <widget class="QDialog" name="DialogAddNewApplicant">
+ <class>DialogUpdateApplicant</class>
+ <widget class="QDialog" name="DialogUpdateApplicant">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Add New Applicant</string>
+   <string>Update Applicant</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -332,13 +332,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" colspan="2">
-    <widget class="QLabel" name="label_18">
-     <property name="text">
-      <string>Applicant Basic Information:</string>
-     </property>
-    </widget>
-   </item>
    <item row="8" column="2" colspan="2">
     <widget class="QWidget" name="widget" native="true"/>
    </item>
@@ -350,19 +343,6 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QPushButton" name="pushButtonGenerateLetter">
-      <property name="geometry">
-       <rect>
-        <x>740</x>
-        <y>30</y>
-        <width>291</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Generate Acceptance Letter</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButtonSubmit">
       <property name="geometry">
        <rect>
@@ -379,7 +359,7 @@
      <widget class="QPushButton" name="pushButtonCheckList">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>820</x>
         <y>30</y>
         <width>211</width>
         <height>40</height>
@@ -389,6 +369,20 @@
        <string>Checkin Checklist</string>
       </property>
      </widget>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_18">
+     <property name="text">
+      <string>Applicant Basic Information:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelId">
+     <property name="text">
+      <string/>
+     </property>
     </widget>
    </item>
   </layout>
@@ -418,7 +412,6 @@
   <tabstop>comboBoxBunkhouse</tabstop>
   <tabstop>comboBoxTribe</tabstop>
   <tabstop>pushButtonCheckList</tabstop>
-  <tabstop>pushButtonGenerateLetter</tabstop>
   <tabstop>pushButtonSubmit</tabstop>
  </tabstops>
  <resources/>
