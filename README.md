@@ -1,3 +1,5 @@
 # Camp-Registration
 class project
 develop env python 3 + sqlite 3
+presentation link:
+https://docs.google.com/presentation/d/1L_-4Jkg8OemI2luZm-QX5eM7_qbGQ4OcVQhDDl0vVZU/edit?usp=sharing
