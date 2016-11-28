@@ -11,3 +11,6 @@ develop env python 3 + sqlite 3
 
     https://www.zenhub.com/
 
+* Build exe file (replace "C:\Users\Ming\AppData\..." with your local PyQt4 path)
+    `PyInstaller -y -F --distpath="." -p "C:\Users\Ming\AppData\Local\Programs\Python\Python35\Lib\site-packages\PyQt4" --windowed main.py`
+
