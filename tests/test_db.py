@@ -9,7 +9,6 @@ def db(request):
 
 
     dbFile = os.getcwd() + os.path.sep+ 'tests'+os.path.sep+'camp_test.db'
-    print(dbFile)
     db = DB(dbFile,'')
     yield db
     print('disconnecting testing db connection')
@@ -22,7 +21,6 @@ def db(request):
 def test_db_insert(db):
     res = db.insert("camp",[{'id':'4','name':'c4','startDate':'2016-10-10','endDate':'2016-12-10','totalCapacity':'72'}])
     assert res['ok'] == True
-    assert 0
 
 def test_db_select(db):
     res = db.select("camp",'')
