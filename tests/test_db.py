@@ -8,6 +8,7 @@ def db(request):
     dbFile = 'tests\camp_test.db'
     db = DB(dbFile,'')
     yield db
+    print('disconnecting testing db connection')
     db.disconnect()
     
 
@@ -32,6 +33,10 @@ def test_db_update(db):
     assert db.select("camp","id = 4")['result'][0]['startDate'] == '2016-10-10'
 
 
-
+def test_db_deleting(db):
+    res = db.delete("camp",{'id':4})
+    assert res['ok'] == True
+    res = db.select("camp",'')
+    assert len(res['result']) == 3
     
 
