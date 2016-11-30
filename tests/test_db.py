@@ -5,6 +5,7 @@ import pytest
 @pytest.fixture(scope = "module")
 def db(request):
     print('creating testing db connection')
+    print(os.getcwd())
     dbFile = 'tests\camp_test.db'
     db = DB(dbFile,'')
     yield db
