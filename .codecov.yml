@@ -3,6 +3,8 @@ codecov:
   notify:
     require_ci_to_pass: yes
   token: 632bd6d7-f5c8-49d1-90fb-09ff22c1630a
+  ci:
+    - !ci.appveyor.com
 
 coverage:
   precision: 2
