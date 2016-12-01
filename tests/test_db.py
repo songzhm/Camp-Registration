@@ -5,7 +5,6 @@ import pytest
 @pytest.fixture(scope = "module")
 def db(request):
     print('creating testing db connection')
-    print(os.getcwd())
 
 
     dbFile = os.getcwd() + os.path.sep+ 'tests'+os.path.sep+'camp_test.db'
