@@ -3,6 +3,8 @@ python:
     - "3.5.1"
     - "3.5.2"
 
+before_install: pip install codecov
+
 # before_install:
 #     - sudo mkdir -p /downloads
 #     - sudo chmod a+rw /downloads
@@ -40,4 +42,6 @@ python:
 #     - pip install -r requirements.txt
 install: true
 script: 
-    - py.test -v
+    - py.test -v --cov
+after_success:
+    - codecov
