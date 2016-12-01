@@ -77,34 +77,34 @@ class Processor(object):
         
         return tribes
 
-    def registerCampers(camp):
-        '''
-        create Camp objects
-        '''
-        lookUpData= 'gender = \'M\' and campId = ' + str(camp.id)
-        applicantData = self.interacteDB('select','applicant',lookUpData)
-        campers = []
-        if applicantData['ok']:
-            applicantData = applicantData['result']
-            for i in range(len(applicantData)):
-                a = applicantData[i]
-                campers.append(Applicant(a['firstName'], a['lastName'],\
-                                            a['age'],a['gender'],a['dateOfBirth'],\
-                                            a['email'], a['tshirtSize'], \
-                                            a['homePhone'], a['cellPhone'],\
-                                            a['emergencyPhone'], a['emergencyContact'], \
-                                            a['line1'], a['line2'], a['city'], \
-                                            a['state'], a['zipCode'], a['payment'],\
-                                            a['applicationDate'], a['reviewDate'], \
-                                            a['decisionId'], a['formsChecked'], \
-                                            a['equipmentsChecked'], a['campId'], \
-                                            a['bunkhouseId'], a['tribeId']))
-        else:
-            print('error in retriving applicant process')
+    # def registerCampers(camp):
+    #     '''
+    #     create Camp objects
+    #     '''
+    #     lookUpData= 'gender = \'M\' and campId = ' + str(camp.id)
+    #     applicantData = self.interacteDB('select','applicant',lookUpData)
+    #     campers = []
+    #     if applicantData['ok']:
+    #         applicantData = applicantData['result']
+    #         for i in range(len(applicantData)):
+    #             a = applicantData[i]
+    #             campers.append(Applicant(a['firstName'], a['lastName'],\
+    #                                         a['age'],a['gender'],a['dateOfBirth'],\
+    #                                         a['email'], a['tshirtSize'], \
+    #                                         a['homePhone'], a['cellPhone'],\
+    #                                         a['emergencyPhone'], a['emergencyContact'], \
+    #                                         a['line1'], a['line2'], a['city'], \
+    #                                         a['state'], a['zipCode'], a['payment'],\
+    #                                         a['applicationDate'], a['reviewDate'], \
+    #                                         a['decisionId'], a['formsChecked'], \
+    #                                         a['equipmentsChecked'], a['campId'], \
+    #                                         a['bunkhouseId'], a['tribeId']))
+    #     else:
+    #         print('error in retriving applicant process')
         
 
         
-        return campers
+    #     return campers
 
 
     def interacteDB(self, operation, tableName, data):
@@ -275,12 +275,12 @@ class Processor(object):
             occupiedSpace=len(occupiedSpace['result'])
 
             if gender == 'M':
-                if self.camps[campId].totalBoyNumber > occupiedSpace:
+                if self.camps[campId-1].totalBoyNumber > occupiedSpace:
                     return {'ok':True,'availableSpace':self.camps[campId-1].totalBoyNumber - occupiedSpace}
                 else:
                     return {'ok':False,'availableSpace':0}
             elif gender == 'F':
-                if self.camps[campId].totalGrilNumber > occupiedSpace:
+                if self.camps[campId-1].totalGrilNumber > occupiedSpace:
                     return {'ok':True,'availableSpace':self.camps[campId-1].totalGrilNumber - occupiedSpace}
                 else:
                     return {'ok':False,'availableSpace':0}

@@ -9,6 +9,9 @@ class Camp(object):
         self.totalGrilNumber = 36
         self.totalBoyNumber = 36
         self.totalCapacity = totalCapacity
+    
+    # def __str__(self):
+    #     return str(self.id)+" "+ str(self.name)
 
 class Bunkhouse(object):
     def __init__(self, id, name,gender):
