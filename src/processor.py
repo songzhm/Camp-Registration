@@ -104,7 +104,7 @@ class Processor(object):
         
 
         
-        return applicants
+        return campers
 
 
     def interacteDB(self, operation, tableName, data):
