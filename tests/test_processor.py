@@ -16,5 +16,12 @@ def processor(request):
 
 
 def test_processor_registerCamps(processor):
-    assert len(processor.registerCamps()) ==3
+    assert len(processor.registerCamps()) == 3
+
+def test_processor_registerBunkhouses(processor):
+    assert len(processor.registerBunkhouses()) == 6
+
+def test_processor_registerTribes(processor):
+    assert len(processor.registerTribes()) == 6
+
 
