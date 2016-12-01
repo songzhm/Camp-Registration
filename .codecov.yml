@@ -5,13 +5,13 @@ codecov:
   token: 632bd6d7-f5c8-49d1-90fb-09ff22c1630a
 
 coverage:
-  precision: 5
+  precision: 2
   round: up
   range: "70...100"
 
   status:
     project: yes
-    patch: yes
+    patch: no
     changes: no
 
 parsers:
