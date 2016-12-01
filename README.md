@@ -3,7 +3,9 @@ class project
 develop env python 3 + sqlite 3
 
 
-Build Status: https://travis-ci.com/songzhm/Camp-Registration.svg?token=eZqkyDBTstz7c4k1na4p&branch=master
+Build Status: 
+
+[![Build Status](https://travis-ci.com/songzhm/Camp-Registration.svg?token=eZqkyDBTstz7c4k1na4p&branch=master)](https://travis-ci.com/songzhm/Camp-Registration)
 
 * presentation link:
 
