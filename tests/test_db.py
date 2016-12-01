@@ -24,7 +24,7 @@ def test_db_insert(db):
     res = db.insert("camp",[{'id':'4','name':'c4','startDate':'2016-10-10','endDate':'2016-12-10','totalCapacity':'72'}])
     assert res['ok'] == True
     res = db.insert("camp",[{'campId':'4','name':'c4','startDate':'2016-10-10','endDate':'2016-12-10','totalCapacity':'72'}])
-    assert res['ok'] == False
+    assert res['result']['msg'] == 'error happend in db insert process'
 
 def test_db_select(db):
     res = db.select("camp",'')
