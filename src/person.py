@@ -20,39 +20,39 @@ class Person(object):
         return str(self)
 
 
-class Employee(Person):
-    def __init__(self,firstName, lastName, age, gender, dateOfBirth, \
-    email, position, userName = "xxx", password = "xxx"):
-        self.firstName = firstName
-        self.lastName = lastName
-        self.age = age
-        self.gender = gender
-        self.dateOfBirth = dateOfBirth
-        self.email = email
-        self.position = position
-        self.__userName = userName
-        self.__password = password
+# class Employee(Person):
+#     def __init__(self,firstName, lastName, age, gender, dateOfBirth, \
+#     email, position, userName = "xxx", password = "xxx"):
+#         self.firstName = firstName
+#         self.lastName = lastName
+#         self.age = age
+#         self.gender = gender
+#         self.dateOfBirth = dateOfBirth
+#         self.email = email
+#         self.position = position
+#         self.__userName = userName
+#         self.__password = password
     
-    def __str__(self):
-        return 'First Name: ' + self.firstName + '\n' + 'Last Name: ' + \
-        self.lastName + '\n' + 'Age: ' + str(self.age) + '\n' + 'Gender: ' + \
-        self.gender + '\n' + 'Date of Birth: ' + self.dateOfBirth + '\n' + \
-        'Email: ' + self.email + '\n' + 'position: ' + self.position 
+#     def __str__(self):
+#         return 'First Name: ' + self.firstName + '\n' + 'Last Name: ' + \
+#         self.lastName + '\n' + 'Age: ' + str(self.age) + '\n' + 'Gender: ' + \
+#         self.gender + '\n' + 'Date of Birth: ' + self.dateOfBirth + '\n' + \
+#         'Email: ' + self.email + '\n' + 'position: ' + self.position 
     
-    def __repr__(self):
-        return str(self)
+#     def __repr__(self):
+#         return str(self)
 
-    def setUserName(userName):
-        self.__userName = userName
+#     def setUserName(userName):
+#         self.__userName = userName
     
-    def setPassword(password):
-        self.__password = password
+#     def setPassword(password):
+#         self.__password = password
     
-    def getUserName(self):
-        return self.__userName
+#     def getUserName(self):
+#         return self.__userName
     
-    def getPassword(self):
-        return self.__password
+#     def getPassword(self):
+#         return self.__password
 
 class Applicant(Person):
     def __init__(self,firstName, lastName,age,gender,dateOfBirth,email, \
