@@ -43,4 +43,4 @@ install: true
 script: 
     - py.test -v
 after_success:
-    - codecov -t 632bd6d7-f5c8-49d1-90fb-09ff22c1630a
+    - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a
