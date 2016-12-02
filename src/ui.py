@@ -291,6 +291,12 @@ class Ui_DialogAddNewApplicant(object):
         self.label_18 = QtGui.QLabel(DialogAddNewApplicant)
         self.label_18.setObjectName(_fromUtf8("label_18"))
         self.gridLayout.addWidget(self.label_18, 0, 1, 1, 2)
+
+        self.labelWarningMsg=QtGui.QLabel(DialogAddNewApplicant)
+        self.labelWarningMsg.setObjectName(_fromUtf8("labelWarningMsg"))
+        self.labelWarningMsg.setStyleSheet('color: red')
+        self.gridLayout.addWidget(self.labelWarningMsg,0,3,1,2)
+
         self.widget = QtGui.QWidget(DialogAddNewApplicant)
         self.widget.setObjectName(_fromUtf8("widget"))
         self.gridLayout.addWidget(self.widget, 8, 2, 1, 2)
@@ -347,6 +353,7 @@ class Ui_DialogAddNewApplicant(object):
         DialogAddNewApplicant.setTabOrder(self.comboBoxTribe, self.pushButtonCheckList)
         DialogAddNewApplicant.setTabOrder(self.pushButtonCheckList, self.pushButtonGenerateLetter)
         DialogAddNewApplicant.setTabOrder(self.pushButtonGenerateLetter, self.pushButtonSubmit)
+        DialogAddNewApplicant.setTabOrder(self.pushButtonSubmit,self.labelWarningMsg)
         self.p = p
         self.comboBoxCamp.addItem('')
         self.comboBoxBunkhouse.addItem('')
@@ -445,20 +452,29 @@ class Ui_DialogAddNewApplicant(object):
         print(self.checkBlankCells())
         if self.checkBlankCells():
             
-            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Invalid Inputs",
-            "The fileds with * cannot be empty.", QtGui.QMessageBox.Cancel,
-            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+            # QtGui.QMessageBox.warning(DialogAddNewApplicant,"Invalid Inputs",
+            # "The fileds with * cannot be empty.", QtGui.QMessageBox.Cancel,
+            # QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+            self.labelWarningMsg.clear()
+            self.labelWarningMsg.setText("The fileds with * cannot be empty.")
             
         elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not validationRes['ok']:
             
-            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Application cannot be accepted",
-            "This application cannot be accepted due to {}".format(validationRes['msg']), QtGui.QMessageBox.Cancel,
-            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+            # QtGui.QMessageBox.warning(DialogAddNewApplicant,"Application cannot be accepted",
+            # "This application cannot be accepted due to {}".format(validationRes['msg']), QtGui.QMessageBox.Cancel,
+            # QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+            self.labelWarningMsg.clear()
+            self.labelWarningMsg.setText("This application cannot be accepted due to {}".format(validationRes['msg']))
         
         elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not self.checkBoxPayment.isChecked():
-            QtGui.QMessageBox.warning(DialogAddNewApplicant,"Application cannot be accepted",
-            "This application cannot be accepted since the payment check has not been recieve", QtGui.QMessageBox.Cancel,
-            QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+            
+            # QtGui.QMessageBox.warning(DialogAddNewApplicant,"Application cannot be accepted",
+            # "This application cannot be accepted since the payment check has not been recieve", QtGui.QMessageBox.Cancel,
+            # QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+
+            self.labelWarningMsg.clear()
+            self.labelWarningMsg.setText("This application cannot be accepted since the payment check has not been recieve")
+        
 
         else:
             res = self.p.addNewApplicant(a)
@@ -1148,6 +1164,8 @@ class Ui_DialogUpdateApplicant(object):
             QtGui.QMessageBox.warning(DialogUpdateApplicant,"Invalid Inputs",
             "The fileds with * cannot be empty.", QtGui.QMessageBox.Cancel,
             QtGui.QMessageBox.NoButton, QtGui.QMessageBox.NoButton)
+
+            
             
         
         elif self.comboBoxAcceptanceDecision.currentIndex() == 1 and not self.checkBoxPayment.isChecked():
