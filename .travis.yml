@@ -4,6 +4,7 @@ python:
 
 
 before_install:
+    - pip install pytest codecov pytest-cov pytest-qt
     - sudo mkdir -p /downloads
     - sudo chmod a+rw /downloads
     - curl -L http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz -o /downloads/sip.tar.gz 
@@ -11,7 +12,7 @@ before_install:
     # Builds
     - sudo mkdir -p /builds
     - sudo chmod a+rw /builds
-    - pip install pytest codecov pytest-cov pytest-qt
+    
 
 install:
     - export DISPLAY=:99.0
@@ -40,6 +41,6 @@ install:
     - pip install -r requirements.txt
 
 script: 
-    - py.test
+    - py.test -v --cov = ./
 after_success:
     - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a

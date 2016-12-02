@@ -44,16 +44,6 @@ def test_ui(qtbot):
     qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
 
 
-
-
-
-    
-
-
-
-
-    qtbot.wait(500)
-
     # sys.exit(app.exec_())
     pros.kill()
 
