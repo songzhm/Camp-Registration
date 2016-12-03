@@ -4,7 +4,7 @@ python:
 
 
 before_install:
-    - pip install pytest codecov pytest-cov pytest-qt
+    - pip install pytest codecov pytest-cov pytest-qt pytest-faulthandler
     - sudo mkdir -p /downloads
     - sudo chmod a+rw /downloads
     - curl -L http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz -o /downloads/sip.tar.gz 
