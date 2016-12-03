@@ -41,7 +41,7 @@ install:
     - pip install -r requirements.txt
 
 script: 
-    - py.test --cov tests/
+    - py.test --cov=tests/
 
 after_success:
     - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a

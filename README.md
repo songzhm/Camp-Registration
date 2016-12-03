@@ -22,3 +22,10 @@ develop env python 3 + sqlite 3
 * Build exe file (replace "C:\Users\Ming\AppData\..." with your local PyQt4 path)
     `PyInstaller -y -F --distpath="." -p "C:\Users\Ming\AppData\Local\Programs\Python\Python35\Lib\site-packages\PyQt4" --windowed main.py`
 
+Linux Configure Process:
+
+* Download miniconda: http://conda.pydata.org/miniconda.html
+* Install: `bash MIniconda3-latest-Linux-x86_64.sh`
+* Create py35 env: `conda create -n camp python=3.5.1`
+* Activate py351 env: `source activate camp`
+* Install pyqt4 via conda: `conda install -c anaconda pyqt=4.11.4`
