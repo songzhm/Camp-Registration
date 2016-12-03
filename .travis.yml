@@ -1,6 +1,6 @@
 language: python
 python:
-    - "3.5.1"
+    - "3.5"
 
 
 before_install:
@@ -42,6 +42,6 @@ install:
 
 script: 
     - py.test --cov=./
+
+after_success:
     - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a
-# after_success:
-#     - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a
