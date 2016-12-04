@@ -77,7 +77,7 @@ def test_ui(qtbot):
     ui_UpdateApplicant = Ui_DialogUpdateApplicant()
     ui_UpdateApplicant.setupUi(DialogUpdateApplicant,pros)
 
-    DialogUpdateApplicant.show()
+    qtbot.mouseClick(ui_UpdateApplicant.pushButtonCheckList,QtCore.Qt.LeftButton)
 
     # qtbot.wait(10000)
     # sys.exit(app.exec_())
