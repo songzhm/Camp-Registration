@@ -65,7 +65,7 @@ def test_ui(qtbot):
     ui_LookUp.comboBoxCamp.setCurrentIndex(1)
     qtbot.mouseClick(ui_LookUp.pushButtonLookUp,QtCore.Qt.LeftButton)
 
-    DialogLookUpApplicant.show()
+    # DialogLookUpApplicant.show()
 
     assert ui_LookUp.tableWidgetApplicantTable.item(0,0).text()=='1'
     
@@ -81,6 +81,11 @@ def test_ui(qtbot):
 
     # qtbot.wait(10000)
     # sys.exit(app.exec_())
+
+
+    
+
+
     
     pros.kill()
 
