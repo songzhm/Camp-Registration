@@ -154,7 +154,7 @@
      <x>0</x>
      <y>0</y>
      <width>830</width>
-     <height>21</height>
+     <height>36</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -169,7 +169,6 @@
      <string>Setting</string>
     </property>
     <addaction name="actionChange_Number_of_Camps"/>
-    <addaction name="actionChange_Content_of_Acceptance_Letter"/>
     <addaction name="actionChange_Content_of_Check_List"/>
    </widget>
    <addaction name="menuFile"/>
