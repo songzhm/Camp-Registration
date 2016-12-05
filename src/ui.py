@@ -1032,6 +1032,12 @@ class Ui_DialogUpdateApplicant(object):
         self.pushButtonCheckList = QtGui.QPushButton(self.frame_2)
         self.pushButtonCheckList.setGeometry(QtCore.QRect(820, 30, 211, 40))
         self.pushButtonCheckList.setObjectName(_fromUtf8("pushButtonCheckList"))
+
+        self.pushButtonCancellation = QtGui.QPushButton(self.frame_2)
+        self.pushButtonCancellation.setGeometry(QtCore.QRect(600, 30, 211, 40))
+        self.pushButtonCancellation.setObjectName(_fromUtf8("pushButtonCancellation"))
+
+
         self.gridLayout.addWidget(self.frame_2, 22, 1, 1, 4)
         self.label_18 = QtGui.QLabel(DialogUpdateApplicant)
         self.label_18.setObjectName(_fromUtf8("label_18"))
@@ -1063,6 +1069,9 @@ class Ui_DialogUpdateApplicant(object):
         # click submit button
         self.pushButtonSubmit.clicked.connect(lambda:self.submitDataToDB(DialogUpdateApplicant))
         self.pushButtonCheckList.clicked.connect(lambda:self.generateCheckList(DialogUpdateApplicant))
+        self.pushButtonCancellation.clicked.connect(lambda:self.generateCancellationForm(DialogUpdateApplicant))
+
+        
         # value changes
         self.comboBoxCamp.currentIndexChanged.connect(lambda:self.showCampAvilability())
 
@@ -1132,6 +1141,15 @@ class Ui_DialogUpdateApplicant(object):
         ui.writeLetter(cl)
         
         self.DialogLetterOfAcceptance.show()
+
+
+    def generateCancellationForm(self,DialogUpdateApplicant):
+
+        self.DialogCancellation = QtGui.QDialog()
+        ui = Ui_DialogCancellation()
+        ui.setupUi(self.DialogCancellation,self.dateReviewDate.date().toPyDate())
+        
+        self.DialogCancellation.show()
         
     def submitDataToDB(self,DialogUpdateApplicant):
         id = self.labelId.text()
@@ -1246,8 +1264,66 @@ class Ui_DialogUpdateApplicant(object):
         self.label_5.setText(_translate("DialogUpdateApplicant", "Address:", None))
         self.pushButtonSubmit.setText(_translate("DialogUpdateApplicant", "Submit", None))
         self.pushButtonCheckList.setText(_translate("DialogUpdateApplicant", "Checkin Checklist", None))
+        self.pushButtonCancellation.setText(_translate("DialogUpdateApplicant", "Cancellation Request", None))
         self.label_18.setText(_translate("DialogUpdateApplicant", "Applicant Basic Information:", None))
         
         
         
         
+
+
+class Ui_DialogCancellation(object):
+    def setupUi(self, Ui_DialogCancellation,review_date):
+        Ui_DialogCancellation.setObjectName(_fromUtf8("Ui_DialogCancellation"))
+        Ui_DialogCancellation.resize(621, 601)
+        self.label = QtGui.QLabel(Ui_DialogCancellation)
+        self.label.setGeometry(QtCore.QRect(60, 40, 221, 21))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.dateEditCancellation = QtGui.QDateEdit(Ui_DialogCancellation)
+        self.dateEditCancellation.setGeometry(QtCore.QRect(340, 40, 121, 21))
+        self.dateEditCancellation.setObjectName(_fromUtf8("dateEditCancellation"))
+        self.dateEditCancellation.setDate(QtCore.QDate(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day))
+        self.textEditCancellationLetter = QtGui.QTextEdit(Ui_DialogCancellation)
+        self.textEditCancellationLetter.setGeometry(QtCore.QRect(30, 110, 561, 421))
+        self.textEditCancellationLetter.setObjectName(_fromUtf8("textEditCancellationLetter"))
+        
+
+        # self.pushButtonCalculate = QtGui.QPushButton(Ui_DialogCancellation)
+        # self.pushButtonCalculate.setGeometry(QtCore.QRect(60, 60, 221, 21))
+        # self.pushButtonCalculate.setObjectName(_fromUtf8("textEditCancellationLetter"))
+
+
+
+        self.review_date = review_date
+        self.submitcancellation()
+        self.dateEditCancellation.dateChanged.connect(lambda: self.submitcancellation())
+        self.deposit=1000
+
+        self.retranslateUi(Ui_DialogCancellation)
+        QtCore.QMetaObject.connectSlotsByName(Ui_DialogCancellation)
+    
+    def submitcancellation(self):
+        res = ''
+        time = self.dateEditCancellation.date().toPyDate() - self.review_date
+        if 0 <= time.days <= 21:
+            res += 'Welcome to Gila Breath Camp!'
+            res += 'You have a 90% refund of payment $' + str(self.deposit * 0.9) + '.\n'
+            res += 'Because your cancellation date is within 3 weeks of review date,{}.'.format(str(self.review_date))
+        elif 21 < time.days <= 42:
+            res += 'Welcome to Gila Breath Camp!'
+            res += 'You have a 45% refund of payment $' + str(self.deposit * 0.45) + '.\n'
+            res += 'Because your cancellation date is within 6 weeks of review date,{}.'.format(str(self.review_date))
+        else:
+            res += 'Welcome to Gila Breath Camp!'
+            res += 'You have a NO refund of payment '+ '.\n'
+            res += 'Because your cancellation date exceeds 6 weeks of review date,{}.'.format(str(self.review_date))
+        
+        print(res)
+        self.textEditCancellationLetter.setText(res)
+
+
+    def retranslateUi(self, Ui_DialogCancellation):
+        Ui_DialogCancellation.setWindowTitle(_translate("Ui_DialogCancellation", "Ui_DialogCancellation", None))
+        self.label.setText(_translate("Ui_DialogCancellation", "Cancellation Date:", None))
+        # self.pushButtonCalculate.setText(_translate("Ui_DialogCancellation", "Cancellate:", None))
+
