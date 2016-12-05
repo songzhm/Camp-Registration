@@ -29,6 +29,8 @@ except AttributeError:
 
 
 
+
+
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow,p):
         LoginWindow.setObjectName(_fromUtf8("LoginWindow"))
@@ -62,17 +64,7 @@ class Ui_LoginWindow(object):
         self.labelLogin.setGeometry(QtCore.QRect(120, 210, 281, 23))
         self.labelLogin.setText(_fromUtf8(""))
         self.labelLogin.setObjectName(_fromUtf8("labelLogin"))
-        self.frameCheckList = QtGui.QFrame(self.centralwidget)
-        self.frameCheckList.setGeometry(QtCore.QRect(280, 270, 391, 281))
-        self.frameCheckList.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frameCheckList.setFrameShadow(QtGui.QFrame.Raised)
-        self.frameCheckList.setObjectName(_fromUtf8("frameCheckList"))
-        self.textEditCheckList = QtGui.QTextEdit(self.frameCheckList)
-        self.textEditCheckList.setGeometry(QtCore.QRect(10, 10, 361, 221))
-        self.textEditCheckList.setObjectName(_fromUtf8("textEditCheckList"))
-        self.pushButtonCheckList = QtGui.QPushButton(self.frameCheckList)
-        self.pushButtonCheckList.setGeometry(QtCore.QRect(160, 240, 75, 23))
-        self.pushButtonCheckList.setObjectName(_fromUtf8("pushButtonCheckList"))
+
         self.frame = QtGui.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(290, 240, 351, 211))
         self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
@@ -132,18 +124,12 @@ class Ui_LoginWindow(object):
         self.actionAdd_New.setObjectName(_fromUtf8("actionAdd_New"))
         self.actionLook_Up = QtGui.QAction(LoginWindow)
         self.actionLook_Up.setObjectName(_fromUtf8("actionLook_Up"))
-        self.actionAdd_New_Applicant = QtGui.QAction(LoginWindow)
-        self.actionAdd_New_Applicant.setObjectName(_fromUtf8("actionAdd_New_Applicant"))
-        self.actionLook_Up_2 = QtGui.QAction(LoginWindow)
-        self.actionLook_Up_2.setObjectName(_fromUtf8("actionLook_Up_2"))
         self.actionChange_Camp_Dates = QtGui.QAction(LoginWindow)
         self.actionChange_Camp_Dates.setObjectName(_fromUtf8("actionChange_Camp_Dates"))
-        self.actionChange_Content_of_Checklist = QtGui.QAction(LoginWindow)
-        self.actionChange_Content_of_Checklist.setObjectName(_fromUtf8("actionChange_Content_of_Checklist"))
-        self.menuApplicant.addAction(self.actionAdd_New_Applicant)
-        self.menuApplicant.addAction(self.actionLook_Up_2)
+
+        self.menuApplicant.addAction(self.actionAdd_New)
+        self.menuApplicant.addAction(self.actionLook_Up)
         self.menuSetting.addAction(self.actionChange_Camp_Dates)
-        self.menuSetting.addAction(self.actionChange_Content_of_Checklist)
         self.menuBar.addAction(self.menuApplicant.menuAction())
         self.menuBar.addAction(self.menuSetting.menuAction())
 
@@ -152,9 +138,11 @@ class Ui_LoginWindow(object):
         self.regClerk_pw = '54321'
         self.menuBar.hide()
         self.frame.hide()
-        self.frameCheckList.hide()
         self.pushButtonLogin.clicked.connect(lambda:self.login())
-        
+        self.actionAdd_New.triggered.connect(lambda:self.showNewApplicantDialog())
+        self.actionLook_Up.triggered.connect(lambda:self.showLookUpApplicant())
+        self.actionChange_Camp_Dates.triggered.connect(lambda:self.showChangeCampDate())
+        self.pushButtonCampDates.clicked.connect(lambda:self.changeCampDate())
 
         self.retranslateUi(LoginWindow)
         QtCore.QMetaObject.connectSlotsByName(LoginWindow)
@@ -178,126 +166,6 @@ class Ui_LoginWindow(object):
                 
         elif not self.radioButtonDirector.isChecked() and not self.radioButtonRegClerk.isChecked():
             self.labelLogin.setText('please select an user to login')
-            
-
-    def retranslateUi(self, LoginWindow):
-        LoginWindow.setWindowTitle(_translate("LoginWindow", "Login", None))
-        self.label.setText(_translate("LoginWindow", "Gila Breath Camp", None))
-        self.radioButtonDirector.setText(_translate("LoginWindow", "Director", None))
-        self.radioButtonRegClerk.setText(_translate("LoginWindow", "Registration Clerk", None))
-        self.labelAccessCode.setText(_translate("LoginWindow", "Access Code:", None))
-        self.pushButtonLogin.setText(_translate("LoginWindow", "Login", None))
-        self.pushButtonCheckList.setText(_translate("LoginWindow", "Submit", None))
-        self.label_4.setText(_translate("LoginWindow", "Camp 1", None))
-        self.label_3.setText(_translate("LoginWindow", "Camp 1", None))
-        self.label_2.setText(_translate("LoginWindow", "Camp 1", None))
-        self.label_6.setText(_translate("LoginWindow", "End Date", None))
-        self.label_5.setText(_translate("LoginWindow", "Start Date", None))
-        self.pushButtonCampDates.setText(_translate("LoginWindow", "Submit", None))
-        self.menuApplicant.setTitle(_translate("LoginWindow", "Applicant", None))
-        self.menuSetting.setTitle(_translate("LoginWindow", "Setting", None))
-        self.actionAdd_New.setText(_translate("LoginWindow", "Add New Applicant", None))
-        self.actionLook_Up.setText(_translate("LoginWindow", "Look Up", None))
-        self.actionAdd_New_Applicant.setText(_translate("LoginWindow", "Add New Applicant", None))
-        self.actionLook_Up_2.setText(_translate("LoginWindow", "Look Up", None))
-        self.actionChange_Camp_Dates.setText(_translate("LoginWindow", "Change Camp Dates", None))
-        self.actionChange_Content_of_Checklist.setText(_translate("LoginWindow", "Change Content of Checklist", None))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Ui_MainWindow_RegClerk(object):
-    def setupUi(self, MainWindow,p):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(830, 462)
-        self.centralwidget = QtGui.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.label = QtGui.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(200, 120, 471, 151))
-        self.label.setStyleSheet(_fromUtf8("font: 75 20pt \"Kristen ITC\";"))
-        self.label.setObjectName(_fromUtf8("label"))
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 830, 36))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
-        self.menuFile = QtGui.QMenu(self.menubar)
-        self.menuFile.setObjectName(_fromUtf8("menuFile"))
-        self.menuView = QtGui.QMenu(self.menubar)
-        self.menuView.setObjectName(_fromUtf8("menuView"))
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        MainWindow.setStatusBar(self.statusbar)
-        self.actionAdd_New = QtGui.QAction(MainWindow)
-        self.actionAdd_New.setObjectName(_fromUtf8("actionAdd_New"))
-        ## trigger add new
-        self.actionAdd_New.triggered.connect(self.showNewApplicantDialog)
-        self.actionLook_Up = QtGui.QAction(MainWindow)
-        self.actionLook_Up.setObjectName(_fromUtf8("actionLook_Up"))
-        ## trigger add look up
-        self.actionLook_Up.triggered.connect(self.showLookUpApplicant)
-        self.menuFile.addAction(self.actionAdd_New)
-        self.menuFile.addAction(self.actionLook_Up)
-        self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuView.menuAction())
-        self.p = p
-
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        MainWindow.setWindowFlags(MainWindow.windowFlags() | QtCore.Qt.CustomizeWindowHint)
-
-
-
-
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Main", None))
-        self.label.setText(_translate("MainWindow", "Gila Breath Camp", None))
-        self.menuFile.setTitle(_translate("MainWindow", "Applicant", None))
-        self.menuView.setTitle(_translate("MainWindow", "View", None))
-        self.actionAdd_New.setText(_translate("MainWindow", "Add New Applicant", None))
-        self.actionLook_Up.setText(_translate("MainWindow", "Look Up", None))
 
     def showNewApplicantDialog(self):
         self.DialogAddNewApplicant = QtGui.QDialog()
@@ -311,9 +179,61 @@ class Ui_MainWindow_RegClerk(object):
         ui.setupUi(self.DialogLookUpApplicant,self.p)
         self.DialogLookUpApplicant.show()
 
+    def showChangeCampDate(self):
+        self.groupBoxList.hide()
+        self.frame.show()
+        camps = self.p.camps
+        startDate = datetime.datetime.strptime(camps[0].startDate,'%Y-%m-%d')
+        self.dateEditCampStart.setDate(QtCore.QDate(startDate.year,startDate.month,startDate.day))
+        endDate = datetime.datetime.strptime(camps[0].endDate,'%Y-%m-%d')
+        self.dateEditCamp1End.setDate(QtCore.QDate(endDate.year,endDate.month,endDate.day))
+        
+        startDate = datetime.datetime.strptime(camps[1].startDate,'%Y-%m-%d')
+        self.dateEditCamp2Start.setDate(QtCore.QDate(startDate.year,startDate.month,startDate.day))
+        endDate = datetime.datetime.strptime(camps[1].endDate,'%Y-%m-%d')
+        self.dateEditCamp2End.setDate(QtCore.QDate(endDate.year,endDate.month,endDate.day))
+
+        startDate = datetime.datetime.strptime(camps[2].startDate,'%Y-%m-%d')
+        self.dateEditCamp3Start.setDate(QtCore.QDate(startDate.year,startDate.month,startDate.day))
+        endDate = datetime.datetime.strptime(camps[2].endDate,'%Y-%m-%d')
+        self.dateEditCamp3End.setDate(QtCore.QDate(endDate.year,endDate.month,endDate.day))
+
+    def changeCampDate(self):
+        startDate = self.dateEditCampStart.date().toPyDate()
+        endDate = self.dateEditCamp1End.date().toPyDate()
+        self.p.interacteDB('update','camp',{'newData':{'startDate':startDate,'endDate':endDate},'conditions':{'id':1}})
+        startDate = self.dateEditCamp2Start.date().toPyDate()
+        endDate = self.dateEditCamp2End.date().toPyDate()
+        self.p.interacteDB('update','camp',{'newData':{'startDate':startDate,'endDate':endDate},'conditions':{'id':2}})
+        startDate = self.dateEditCamp3Start.date().toPyDate()
+        endDate = self.dateEditCamp3End.date().toPyDate()
+        self.p.interacteDB('update','camp',{'newData':{'startDate':startDate,'endDate':endDate},'conditions':{'id':3}})
+        self.p.camps = self.p.registerCamps()
+        self.frame.hide()
 
 
 
+        
+            
+
+    def retranslateUi(self, LoginWindow):
+        LoginWindow.setWindowTitle(_translate("LoginWindow", "Login", None))
+        self.label.setText(_translate("LoginWindow", "Gila Breath Camp", None))
+        self.radioButtonDirector.setText(_translate("LoginWindow", "Director", None))
+        self.radioButtonRegClerk.setText(_translate("LoginWindow", "Registration Clerk", None))
+        self.labelAccessCode.setText(_translate("LoginWindow", "Access Code:", None))
+        self.pushButtonLogin.setText(_translate("LoginWindow", "Login", None))
+        self.label_4.setText(_translate("LoginWindow", "Camp 1", None))
+        self.label_3.setText(_translate("LoginWindow", "Camp 1", None))
+        self.label_2.setText(_translate("LoginWindow", "Camp 1", None))
+        self.label_6.setText(_translate("LoginWindow", "End Date", None))
+        self.label_5.setText(_translate("LoginWindow", "Start Date", None))
+        self.pushButtonCampDates.setText(_translate("LoginWindow", "Submit", None))
+        self.menuApplicant.setTitle(_translate("LoginWindow", "Applicant", None))
+        self.menuSetting.setTitle(_translate("LoginWindow", "Setting", None))
+        self.actionAdd_New.setText(_translate("LoginWindow", "Add New Applicant", None))
+        self.actionLook_Up.setText(_translate("LoginWindow", "Look Up", None))
+        self.actionChange_Camp_Dates.setText(_translate("LoginWindow", "Change Camp Dates", None))
 
 
 
@@ -1296,9 +1216,9 @@ class Ui_DialogUpdateApplicant(object):
         # value changes
         self.comboBoxCamp.currentIndexChanged.connect(lambda:self.showCampAvilability())
 
-        self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
-        self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
-        self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
+        # self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
+        # self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        # self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
         
         self.retranslateUi(DialogUpdateApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogUpdateApplicant)

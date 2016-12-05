@@ -16,6 +16,7 @@ class Processor(object):
         self.camps = self.registerCamps()
         self.bunkhouses = self.registerBunkhouses()
         self.tribes = self.registerTribes()
+        self.cl = CheckList()
         # self.campers = self.registerCampers()
         
 
@@ -308,9 +309,9 @@ class Processor(object):
 
         return letter.generateLetter()
     
-    def generateCheckList(self, type):
-        cl = CheckList()
-        return cl.generageCheckList(type)
+    def generateCheckList(self):
+        
+        return self.cl.generageCheckList()
 
 
 
