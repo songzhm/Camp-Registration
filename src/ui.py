@@ -83,27 +83,33 @@ class Ui_LoginWindow(object):
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.dateEditCamp2Start = QtGui.QDateEdit(self.frame)
         self.dateEditCamp2Start.setObjectName(_fromUtf8("dateEditCamp2Start"))
+        self.dateEditCamp2Start.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditCamp2Start, 3, 1, 1, 1)
         self.dateEditCampStart = QtGui.QDateEdit(self.frame)
         self.dateEditCampStart.setObjectName(_fromUtf8("dateEditCampStart"))
+        self.dateEditCampStart.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditCampStart, 1, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.frame)
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.gridLayout.addWidget(self.label_6, 0, 2, 1, 1)
         self.dateEditCamp3End = QtGui.QDateEdit(self.frame)
         self.dateEditCamp3End.setObjectName(_fromUtf8("dateEditCamp3End"))
+        self.dateEditCamp3End.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditCamp3End, 4, 2, 1, 1)
         self.dateEditCamp2End = QtGui.QDateEdit(self.frame)
         self.dateEditCamp2End.setObjectName(_fromUtf8("dateEditCamp2End"))
+        self.dateEditCamp2End.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditCamp2End, 3, 2, 1, 1)
         self.label_5 = QtGui.QLabel(self.frame)
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.gridLayout.addWidget(self.label_5, 0, 1, 1, 1)
         self.dateEditCamp3Start = QtGui.QDateEdit(self.frame)
         self.dateEditCamp3Start.setObjectName(_fromUtf8("dateEditCamp3Start"))
+        self.dateEditCamp3Start.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditCamp3Start, 4, 1, 1, 1)
         self.dateEditCamp1End = QtGui.QDateEdit(self.frame)
         self.dateEditCamp1End.setObjectName(_fromUtf8("dateEditCamp1End"))
+        self.dateEditCamp1End.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditCamp1End, 1, 2, 1, 1)
         self.pushButtonCampDates = QtGui.QPushButton(self.frame)
         self.pushButtonCampDates.setObjectName(_fromUtf8("pushButtonCampDates"))
@@ -151,16 +157,18 @@ class Ui_LoginWindow(object):
     def login(self):
         if self.radioButtonDirector.isChecked() and not self.radioButtonRegClerk.isChecked():
             if self.lineEditAccessCode.text()!=self.director_pw:
-                    self.labelLogin.setText("invalide access code")
+                    self.labelLogin.setText("wrong access code")
             else:
+                self.labelLogin.setText("welcome")
                 self.menuBar.show()
                 self.groupBoxList.hide()
 
         elif not self.radioButtonDirector.isChecked() and self.radioButtonRegClerk.isChecked():
             if self.lineEditAccessCode.text()!=self.regClerk_pw:
-                self.labelLogin.setText("invalide access code")
+                self.labelLogin.setText("wrong access code")
             else:
                 self.groupBoxList.hide()
+                self.labelLogin.setText("welcome")
                 self.menuSetting.menuAction().setVisible(False)
                 self.menuBar.show()
                 
@@ -169,14 +177,14 @@ class Ui_LoginWindow(object):
 
     def showNewApplicantDialog(self):
         self.DialogAddNewApplicant = QtGui.QDialog()
-        ui = Ui_DialogAddNewApplicant()
-        ui.setupUi(self.DialogAddNewApplicant,self.p)
+        self.ui_addNew = Ui_DialogAddNewApplicant()
+        self.ui_addNew.setupUi(self.DialogAddNewApplicant,self.p)
         self.DialogAddNewApplicant.show()
     
     def showLookUpApplicant(self):
         self.DialogLookUpApplicant = QtGui.QDialog()
-        ui = Ui_DialogLookUpApplicant()
-        ui.setupUi(self.DialogLookUpApplicant,self.p)
+        self.ui_lookUP = Ui_DialogLookUpApplicant()
+        self.ui_lookUP.setupUi(self.DialogLookUpApplicant,self.p)
         self.DialogLookUpApplicant.show()
 
     def showChangeCampDate(self):
@@ -288,6 +296,7 @@ class Ui_DialogAddNewApplicant(object):
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
         self.gridLayout.addWidget(self.comboBoxBunkhouse, 21, 2, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogAddNewApplicant)
+        self.dateApplicationDate.setDisplayFormat('MM/dd/yyyy')
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
         self.gridLayout.addWidget(self.dateApplicationDate, 17, 2, 1, 1)
         self.labelPayment = QtGui.QLabel(DialogAddNewApplicant)
@@ -314,6 +323,7 @@ class Ui_DialogAddNewApplicant(object):
         self.labelEmergencyName.setObjectName(_fromUtf8("labelEmergencyName"))
         self.gridLayout.addWidget(self.labelEmergencyName, 14, 1, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogAddNewApplicant)
+        self.dateReviewDate.setDisplayFormat('MM/dd/yyyy')
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
         self.gridLayout.addWidget(self.dateReviewDate, 17, 4, 1, 1)
         self.labelReviewDate = QtGui.QLabel(DialogAddNewApplicant)
@@ -384,6 +394,7 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineZipCode, 11, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
         self.line_3 = QtGui.QFrame(DialogAddNewApplicant)
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
@@ -468,6 +479,7 @@ class Ui_DialogAddNewApplicant(object):
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
 
         self.retranslateUi(DialogAddNewApplicant)
@@ -535,9 +547,9 @@ class Ui_DialogAddNewApplicant(object):
         self.p.camps[self.comboBoxCamp.currentIndex()-1])
 
         self.DialogLetterOfAcceptance = QtGui.QDialog()
-        ui = Ui_DialogLetterOfAcceptance()
-        ui.setupUi(self.DialogLetterOfAcceptance)
-        ui.writeLetter(letter)
+        self.ui_acceptanceLetter = Ui_DialogLetterOfAcceptance()
+        self.ui_acceptanceLetter.setupUi(self.DialogLetterOfAcceptance)
+        self.ui_acceptanceLetter.writeLetter(letter)
         
         self.DialogLetterOfAcceptance.show()
 
@@ -551,9 +563,9 @@ class Ui_DialogAddNewApplicant(object):
         cl = 'Forms:\n'+cl_form + '\n'+'Equipments:\n'+cl_equipment
 
         self.DialogLetterOfAcceptance = QtGui.QDialog()
-        ui = Ui_DialogLetterOfAcceptance()
-        ui.setupUi(self.DialogLetterOfAcceptance)
-        ui.writeLetter(cl)
+        self.ui_acceptanceLetter = Ui_DialogLetterOfAcceptance()
+        self.ui_acceptanceLetter.setupUi(self.DialogLetterOfAcceptance)
+        self.ui_acceptanceLetter.writeLetter(cl)
         
         self.DialogLetterOfAcceptance.show()
         
@@ -757,6 +769,7 @@ class Ui_DialogLookUpApplicant(object):
         self.labelDOB.setObjectName(_fromUtf8("labelDOB"))
         self.gridLayout.addWidget(self.labelDOB, 1, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogLookUpApplicant)
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.gridLayout.addWidget(self.dateEditDOB, 1, 3, 1, 1)
         self.pushButtonLookUp = QtGui.QPushButton(DialogLookUpApplicant)
@@ -848,49 +861,49 @@ class Ui_DialogLookUpApplicant(object):
    
     def display(self):
         self.DialogUpdateApplicant = QtGui.QDialog()
-        ui = Ui_DialogUpdateApplicant()
-        ui.setupUi(self.DialogUpdateApplicant,self.p)
+        self.ui_update = Ui_DialogUpdateApplicant()
+        self.ui_update.setupUi(self.DialogUpdateApplicant,self.p)
         selected = self.tableWidgetApplicantTable.selectedItems()
         cols = ['Id','First Name', 'Last Name','Gender','Date Of Birth','Line 1',\
             'Line 2','City','State','Zip Code','Email','Home Phone','Cell Phone',\
             'Payment','Application Date','Review Date','Decision Id','Forms Checked',\
             'Equipments Checked', 'Camp Id', 'Emergency Contact Name', \
             'Emergency Contact Phone','Bunkhouse Id','Tribe Id']
-        ui.labelId.setText(selected[0].text())
-        ui.lineFirstName.setText(selected[1].text())
-        ui.lineLastName.setText(selected[2].text())
-        ui.lineGender.setText(selected[3].text())
+        self.ui_update.labelId.setText(selected[0].text())
+        self.ui_update.lineFirstName.setText(selected[1].text())
+        self.ui_update.lineLastName.setText(selected[2].text())
+        self.ui_update.lineGender.setText(selected[3].text())
         dob_str = selected[4].text().split('-')
-        ui.dateEditDOB.setDate(QtCore.QDate(int(dob_str[0]),int(dob_str[1]),int(dob_str[2])))
-        ui.lineLine1.setText(selected[5].text())
-        ui.lineLine2.setText(selected[6].text())
-        ui.lineCity.setText(selected[7].text())
-        ui.lineState.setText(selected[8].text())
-        ui.lineZipCode.setText(selected[9].text())
-        ui.lineEmail.setText(selected[10].text())
-        ui.lineHomePhone.setText(selected[11].text())
-        ui.lineCellPhone.setText(selected[12].text())
+        self.ui_update.dateEditDOB.setDate(QtCore.QDate(int(dob_str[0]),int(dob_str[1]),int(dob_str[2])))
+        self.ui_update.lineLine1.setText(selected[5].text())
+        self.ui_update.lineLine2.setText(selected[6].text())
+        self.ui_update.lineCity.setText(selected[7].text())
+        self.ui_update.lineState.setText(selected[8].text())
+        self.ui_update.lineZipCode.setText(selected[9].text())
+        self.ui_update.lineEmail.setText(selected[10].text())
+        self.ui_update.lineHomePhone.setText(selected[11].text())
+        self.ui_update.lineCellPhone.setText(selected[12].text())
         
         if selected[13].text()=='1':
             print(selected[13].text())
-            ui.checkBoxPayment.setChecked(True)
+            self.ui_update.checkBoxPayment.setChecked(True)
         applicationDate = selected[14].text().split('-')
-        ui.dateApplicationDate.setDate(QtCore.QDate(int(applicationDate[0]),int(applicationDate[1]),int(applicationDate[2])))
+        self.ui_update.dateApplicationDate.setDate(QtCore.QDate(int(applicationDate[0]),int(applicationDate[1]),int(applicationDate[2])))
         reviewDate = selected[15].text().split('-')
-        ui.dateReviewDate.setDate(QtCore.QDate(int(reviewDate[0]),int(reviewDate[1]),int(reviewDate[2])))
-        ui.comboBoxAcceptanceDecision.setCurrentIndex(int(selected[16].text()))
+        self.ui_update.dateReviewDate.setDate(QtCore.QDate(int(reviewDate[0]),int(reviewDate[1]),int(reviewDate[2])))
+        self.ui_update.comboBoxAcceptanceDecision.setCurrentIndex(int(selected[16].text()))
         if selected[17].text()=='1':
-            ui.checkBoxFormsCheck.setChecked(True)
+            self.ui_update.checkBoxFormsCheck.setChecked(True)
         if selected[18].text()=='1':
-            ui.checkBoxEquipmentsCheck.setChecked(True)
+            self.ui_update.checkBoxEquipmentsCheck.setChecked(True)
         if selected[19].text()!='':
-            ui.comboBoxCamp.setCurrentIndex(int(selected[19].text()))
-        ui.lineEmergencyName.setText(selected[20].text())
-        ui.lineEmergencyPhone.setText(selected[21].text())
+            self.ui_update.comboBoxCamp.setCurrentIndex(int(selected[19].text()))
+        self.ui_update.lineEmergencyName.setText(selected[20].text())
+        self.ui_update.lineEmergencyPhone.setText(selected[21].text())
         if selected[22].text()!='':
-            ui.comboBoxBunkhouse.setCurrentIndex(int(selected[22].text()))
+            self.ui_update.comboBoxBunkhouse.setCurrentIndex(int(selected[22].text()))
         if selected[23].text()!='':
-            ui.comboBoxTribe.setCurrentIndex(int(selected[23].text()))
+            self.ui_update.comboBoxTribe.setCurrentIndex(int(selected[23].text()))
 
         
 
@@ -1037,6 +1050,7 @@ class Ui_DialogUpdateApplicant(object):
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
         self.gridLayout.addWidget(self.comboBoxBunkhouse, 21, 2, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogUpdateApplicant)
+        self.dateApplicationDate.setDisplayFormat('MM/dd/yyyy')
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
         self.gridLayout.addWidget(self.dateApplicationDate, 17, 2, 1, 1)
         self.labelPayment = QtGui.QLabel(DialogUpdateApplicant)
@@ -1063,6 +1077,7 @@ class Ui_DialogUpdateApplicant(object):
         self.labelEmergencyName.setObjectName(_fromUtf8("labelEmergencyName"))
         self.gridLayout.addWidget(self.labelEmergencyName, 14, 1, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogUpdateApplicant)
+        self.dateReviewDate.setDisplayFormat('MM/dd/yyyy')
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
         self.gridLayout.addWidget(self.dateReviewDate, 17, 4, 1, 1)
         self.labelReviewDate = QtGui.QLabel(DialogUpdateApplicant)
@@ -1133,6 +1148,7 @@ class Ui_DialogUpdateApplicant(object):
         self.gridLayout.addWidget(self.lineZipCode, 11, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
         self.line_3 = QtGui.QFrame(DialogUpdateApplicant)
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
@@ -1314,16 +1330,18 @@ class Ui_DialogUpdateApplicant(object):
 
     def generateCancellationForm(self,DialogUpdateApplicant):
 
+        self.comboBoxAcceptanceDecision.setCurrentIndex(4)
+
         self.DialogCancellation = QtGui.QDialog()
-        ui = Ui_DialogCancellation()
-        ui.setupUi(self.DialogCancellation,self.dateReviewDate.date().toPyDate())
+        self.ui_cancellation = Ui_DialogCancellation()
+        self.ui_cancellation.setupUi(self.DialogCancellation,self.dateReviewDate.date().toPyDate())
         
         self.DialogCancellation.show()
     
     def showPreferenceForm(self,DialogUpdateApplicant, p,type):
         self.DialogPreference = QtGui.QDialog()
-        ui = Ui_DialogPreference()
-        ui.setupUi(self.DialogPreference,int(self.labelId.text()),self.comboBoxCamp.currentIndex(),p,type)
+        self.ui_preference = Ui_DialogPreference()
+        self.ui_preference.setupUi(self.DialogPreference,int(self.labelId.text()),self.comboBoxCamp.currentIndex(),p,type)
         
 
         self.DialogPreference.show()
@@ -1364,6 +1382,8 @@ class Ui_DialogUpdateApplicant(object):
         reviewDate = reviewDate,decisionId = decisionId,formsChecked = formsChecked,\
         equipmentsChecked = equipmentsChecked,campId = campId,bunkhouseId = bunkhouseId,\
         tribeId = tribeId)
+        validationRes = self.p.validateApplicant(campId,gender,age)
+
 
 
         if self.checkBlankCells():
@@ -1559,6 +1579,7 @@ class Ui_DialogCancellation(object):
         self.dateEditCancellation.setGeometry(QtCore.QRect(340, 40, 121, 21))
         self.dateEditCancellation.setObjectName(_fromUtf8("dateEditCancellation"))
         self.dateEditCancellation.setDate(QtCore.QDate(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day))
+        self.dateEditCancellation.setDisplayFormat('MM/dd/yyyy')
         self.textEditCancellationLetter = QtGui.QTextEdit(Ui_DialogCancellation)
         self.textEditCancellationLetter.setGeometry(QtCore.QRect(30, 110, 561, 421))
         self.textEditCancellationLetter.setObjectName(_fromUtf8("textEditCancellationLetter"))
