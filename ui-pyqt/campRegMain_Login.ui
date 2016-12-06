@@ -118,50 +118,11 @@
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frameCheckList">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>270</y>
-      <width>391</width>
-      <height>281</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QTextEdit" name="textEditCheckList">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>361</width>
-       <height>221</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButtonCheckList">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>240</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Submit</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>240</y>
+      <x>280</x>
+      <y>290</y>
       <width>351</width>
       <height>211</height>
      </rect>
@@ -252,6 +213,7 @@
     </property>
     <addaction name="actionAdd_New_Applicant"/>
     <addaction name="actionLook_Up_2"/>
+    <addaction name="actionAssign_Bunkhouses_and_Tribes"/>
    </widget>
    <widget class="QMenu" name="menuSetting">
     <property name="title">
@@ -291,6 +253,11 @@
   <action name="actionChange_Content_of_Checklist">
    <property name="text">
     <string>Change Content of Checklist</string>
+   </property>
+  </action>
+  <action name="actionAssign_Bunkhouses_and_Tribes">
+   <property name="text">
+    <string>Assign Bunkhouses and Tribes</string>
    </property>
   </action>
  </widget>

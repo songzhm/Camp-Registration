@@ -309,21 +309,171 @@ class Processor(object):
 
         return letter.generateLetter()
     
-    def generateCheckList(self):
+    def generateCheckList(self,type):
         
-        return self.cl.generageCheckList()
+        return self.cl.generageCheckList(type)
+
+
+    def switch(self, final_list, clist, elist):
+        switch_list = []
+        e_temp_id = 0
+        for x in clist:
+            # read data
+            temp_bunklist = []
+            temp_id_1 = x[0]
+            temp_id_2 = x[1]
+            temp_b_1 = final_list[temp_id_1][2]
+            temp_a_1 = final_list[temp_id_1][0]
+            temp_b_2 = final_list[temp_id_2][2]
+            temp_a_2 = final_list[temp_id_2][0]
+            # if they are in the same bunkhouse, no swith
+            if temp_b_1 == temp_b_2: break
+            # if not, read all members in the bunkhouse number == id_2
+
+            temp_fianl_list = final_list[1]
+            for y in final_list:
+                if y[2] == temp_b_2 and y[1] != temp_id_2: temp_bunklist.append(y)
+
+            # if id_1 is on someone's elist in bunkhouse_2, can't switch id_1 to temp_b_2
+            for x in elist:
+                if temp_id_1 == x[0]:
+                    # found the id that reject id_1
+                    e_temp_id = x[1]
+            # see if the id reject id_1 in the list of temp_bunklist, true => break
+            if final_list[e_temp_id][2] == temp_b_2:
+                break
+
+            res = [abs(x[0] - temp_a_1) for x in temp_bunklist]
+            id_final = temp_bunklist[res.index(min(res))][1]
+            switch_list.append([temp_id_1, id_final])
+
+        for x in elist:
+            # read data
+            temp_bunklist = []
+            temp_id_1 = x[0]
+            temp_id_2 = x[1]
+            temp_b_1 = final_list[temp_id_1][2]
+            temp_a_1 = final_list[temp_id_1][0]
+            temp_g_1 = final_list[temp_id_1][3]
+            temp_b_2 = final_list[temp_id_2][2]
+            temp_a_2 = final_list[temp_id_2][0]
+            # if they are not in the same bunkhouse, no swith
+            if temp_b_1 == temp_b_2:
+                # if yes, read all members in the bunkhouse number == id_2
+
+                temp_fianl_list = final_list[1]
+                for y in final_list:
+                    if y[2] != temp_b_2 and y[1] != temp_id_2 and y[1] != temp_id_1 and temp_g_1 == y[
+                        3]: temp_bunklist.append(y)
+
+                res = [abs(x[0] - temp_a_1) for x in temp_bunklist]
+                id_final = temp_bunklist[res.index(min(res))][1]
+                switch_list.append([temp_id_1, id_final])
+
+        return switch_list
+
+
+    def assignBunkhouses(self,campId):
+        camp = self.camps[campId - 1]
+        bunkhousenumber = camp.numberOfBoyBunkhouses+camp.numberOfGirlBunkhouses
+        male='M'
+        female='F'
+        res = self.interacteDB('select','applicant','campId={} and decisionId=1'.format(str(campId)))['result']
+        alist = [datetime.datetime.strptime(x['applicationDate'],'%Y-%m-%d').year - datetime.datetime.strptime(x['dateOfBirth'],'%Y-%m-%d').year for x in res]
+        ilist = [x['id'] for x in res]
+        blist=[]
+        glist = [x['gender'] for x in res]
+
+        for x in range(0, len(ilist)):
+            if glist[x] == male: blist.append(x % int(bunkhousenumber / 2) + 1)
+
+        for x in range(0, len(ilist)):
+            if glist[x] == female: blist.append(x % int(bunkhousenumber / 2) + int(bunkhousenumber / 2) + 1)
+
+        age_sorted = sorted(zip(alist, ilist, blist, glist))
+        age_sorted = sorted(age_sorted, key = lambda x:x[1])
+
+        res = self.interacteDB('select','bkpreference','campId='+str(campId))['result']
+        clist = []
+        elist = []
+        for x in res:
+            if x['stay']=='':
+                elist.append((x['applicantId'],x['reject']))
+            elif x['reject']=='':
+                clist.append((x['applicantId'],x['stay']))
+
+        switch_list = self.switch(age_sorted,clist,elist)
+
+        final_list = []
+        for x in age_sorted:
+            final_list.append(list(x))
+        for x in switch_list:
+            id_1 = x[0]
+            id_2 = x[1]
+            temp = final_list[id_1][2]
+            final_list[id_1][2] = final_list[id_2][2]
+            final_list[id_2][2] = temp
+        
+        for x in final_list:
+            bkId = x[2]
+            aId = x[1]
+            self.interacteDB('update','applicant',{'newData':{'bunkhouseId':bkId},'conditions':{'id':aId}})
+            
+            
+
+        
 
 
 
-    def assignBunkhouses(self, campers, requirements):
-        result = {}
-        pass
-        return result
 
-    def assignTribes(self, campers, requirements):
-        result = {}
-        pass
-        return result
+    def assignTribes(self,campId):
+        camp = self.camps[campId - 1]
+        tribenumber = camp.numberOfTribes
+        male='M'
+        female='F'
+        res = self.interacteDB('select','applicant','campId={} and decisionId=1'.format(str(campId)))['result']
+        alist = [datetime.datetime.strptime(x['applicationDate'],'%Y-%m-%d').year - datetime.datetime.strptime(x['dateOfBirth'],'%Y-%m-%d').year for x in res]
+        ilist = [x['id'] for x in res]
+        tlist=[]
+        glist = [x['gender'] for x in res]
+
+        for x in range(0, len(ilist)):
+            if glist[x] == male: tlist.append(x % tribenumber + 1)
+
+        for x in range(0, len(ilist)):
+            if glist[x] == female: tlist.append(x % tribenumber  + 1)
+
+        age_sorted = sorted(zip(alist, ilist, tlist, glist))
+        age_sorted = sorted(age_sorted, key = lambda x:x[1])
+
+        res = self.interacteDB('select','tribepreference','campId='+str(campId))['result']
+        clist = []
+        elist = []
+        for x in res:
+            if x['stay']=='':
+                elist.append((x['applicantId'],x['reject']))
+            elif x['reject']=='':
+                clist.append((x['applicantId'],x['stay']))
+
+        switch_list = self.switch(age_sorted,clist,elist)
+
+        final_list = []
+        for x in age_sorted:
+            final_list.append(list(x))
+        for x in switch_list:
+            id_1 = x[0]
+            id_2 = x[1]
+            temp = final_list[id_1][2]
+            final_list[id_1][2] = final_list[id_2][2]
+            final_list[id_2][2] = temp
+        
+        for x in final_list:
+            tId = x[2]
+            aId = x[1]
+            self.interacteDB('update','applicant',{'newData':{'tribeId':tId},'conditions':{'id':aId}})
+            
+            
+
 
     def kill(self):
         self.db.disconnect()

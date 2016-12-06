@@ -11,8 +11,6 @@ class DB(object):
 
         db_is_new = not os.path.exists(self.dbFile)
 
-        
-
         with sqlite3.connect(self.dbFile) as conn:
             if db_is_new:
                 print('Creating schema')
@@ -22,7 +20,7 @@ class DB(object):
 
                 print('Inserting initial data')
 
-                decisions = {'1':'acceptance', '2':'conditional acceptance', '3':'denial','4':'waiting list'}
+                decisions = {'1':'acceptance', '2':'conditional acceptance', '3':'denial','4':'cancel'}
                 
                 for key, value in decisions.items():
 
@@ -32,12 +30,12 @@ class DB(object):
                     """.format(int(key),str(value))
                     )
 
-                bunkhouses = {'1':{'name':'b1','gender':'M'},
-                '2':{'name':'b2','gender':'M'},
-                '3':{'name':'b3','gender':'M'},
-                '4':{'name':'g1','gender':'F'},
-                '5':{'name':'g2','gender':'F'},
-                '6':{'name':'g3','gender':'F'}}
+                bunkhouses = {'1':{'name':'b1','gender':'F'},
+                '2':{'name':'b2','gender':'F'},
+                '3':{'name':'b3','gender':'F'},
+                '4':{'name':'g1','gender':'M'},
+                '5':{'name':'g2','gender':'M'},
+                '6':{'name':'g3','gender':'M'}}
 
                 for key, value in bunkhouses.items():
                     conn.execute("""
@@ -234,12 +232,15 @@ class DB(object):
         ok = False
         result = {}
 
-        queryStatement = "delete from "+ tableName + " where "
-        l = []
-        for key,value in data.items():
-            l.append(str(key) + "=" +"\"" + str(value) + "\"")
-        
-        queryStatement += " and ".join(map(str,l))
+        if data=='':
+            queryStatement = "delete from "+tableName
+        else:
+            queryStatement = "delete from "+ tableName + " where "
+            l = []
+            for key,value in data.items():
+                l.append(str(key) + "=" +"\"" + str(value) + "\"")
+            
+            queryStatement += " and ".join(map(str,l))
 
         try:
 

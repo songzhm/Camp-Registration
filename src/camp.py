@@ -6,6 +6,7 @@ class Camp(object):
         self.endDate = endDate
         self.numberOfGirlBunkhouses = 3
         self.numberOfBoyBunkhouses = 3
+        self.numberOfTribes = 6
         self.totalGrilNumber = 36
         self.totalBoyNumber = 36
         self.totalCapacity = totalCapacity

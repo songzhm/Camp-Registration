@@ -505,7 +505,7 @@ class Ui_DialogAddNewApplicant(object):
         self.comboBoxCamp.addItems([str(x.name) for x in self.p.camps])
         self.comboBoxBunkhouse.addItems([str(x.name) for x in self.p.bunkhouses])
         self.comboBoxTribe.addItems([str(x.name) for x in self.p.tribes])
-        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial'])
+        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial', '4-Canceled'])
 
         # list = [firstName, lastName,..]
     def showCampAvilability(self):
@@ -563,7 +563,7 @@ class Ui_DialogAddNewApplicant(object):
         gender = self.lineGender.text()
         dateOfBirth =self.dateEditDOB.date().toPyDate()
         print(dateOfBirth)
-        age =datetime.datetime.now().year - dateOfBirth.year
+        
         email = self.lineEmail.text()
         homePhone = self.lineHomePhone.text()
         cellPhone = self.lineCellPhone.text()
@@ -576,6 +576,7 @@ class Ui_DialogAddNewApplicant(object):
         emergencyContactName = self.lineEmergencyName.text()
         emergencyContactPhone = self.lineEmergencyPhone.text()
         applicationDate = self.dateApplicationDate.date().toPyDate()
+        age =applicationDate.year - dateOfBirth.year
         reviewDate = self.dateReviewDate.date().toPyDate()
         payment = 1 if self.checkBoxPayment.isChecked() else 0
         decisionId = self.comboBoxAcceptanceDecision.currentIndex()
@@ -764,6 +765,17 @@ class Ui_DialogLookUpApplicant(object):
         self.comboBoxCamp = QtGui.QComboBox(DialogLookUpApplicant)
         self.comboBoxCamp.setObjectName(_fromUtf8("comboBoxCamp"))
         self.gridLayout.addWidget(self.comboBoxCamp, 1, 1, 1, 1)
+        self.frame = QtGui.QFrame(DialogLookUpApplicant)
+        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame.setObjectName(_fromUtf8("frame"))
+        self.pushButton = QtGui.QPushButton(self.frame)
+        self.pushButton.setGeometry(QtCore.QRect(30, 0, 131, 40))
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.pushButton_2 = QtGui.QPushButton(self.frame)
+        self.pushButton_2.setGeometry(QtCore.QRect(220, 0, 131, 40))
+        self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        self.gridLayout.addWidget(self.frame, 4, 3, 1, 1)
 
         self.retranslateUi(DialogLookUpApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogLookUpApplicant)
@@ -779,6 +791,8 @@ class Ui_DialogLookUpApplicant(object):
         self.comboBoxCamp.addItems([str(x.name) for x in self.p.camps])
         self.pushButtonLookUp.clicked.connect(lambda: self.lookUpApplicant())
         self.pushButtonUpdate.clicked.connect(lambda: self.display())
+        self.pushButton.clicked.connect(lambda:self.p.assignBunkhouses(self.comboBoxCamp.currentIndex()))
+        self.pushButton_2.clicked.connect(lambda:self.p.assignTribes(self.comboBoxCamp.currentIndex()))
 
     def lookUpApplicant(self):
         firstName = self.lineFirstName.text()
@@ -869,11 +883,14 @@ class Ui_DialogLookUpApplicant(object):
             ui.checkBoxFormsCheck.setChecked(True)
         if selected[18].text()=='1':
             ui.checkBoxEquipmentsCheck.setChecked(True)
-        ui.comboBoxCamp.setCurrentIndex(int(selected[19].text()))
+        if selected[19].text()!='':
+            ui.comboBoxCamp.setCurrentIndex(int(selected[19].text()))
         ui.lineEmergencyName.setText(selected[20].text())
         ui.lineEmergencyPhone.setText(selected[21].text())
-        ui.comboBoxBunkhouse.setCurrentIndex(int(selected[22].text()))
-        ui.comboBoxTribe.setCurrentIndex(int(selected[23].text()))
+        if selected[22].text()!='':
+            ui.comboBoxBunkhouse.setCurrentIndex(int(selected[22].text()))
+        if selected[23].text()!='':
+            ui.comboBoxTribe.setCurrentIndex(int(selected[23].text()))
 
         
 
@@ -883,7 +900,6 @@ class Ui_DialogLookUpApplicant(object):
         
         
         selectedRow = self.tableWidgetApplicantTable.selectedIndexes
-
 
 
 
@@ -946,6 +962,8 @@ class Ui_DialogLookUpApplicant(object):
         self.labelCamp.setText(_translate("DialogLookUpApplicant", "Camp", None))
         self.labelDOB.setText(_translate("DialogLookUpApplicant", "Date of Birth", None))
         self.pushButtonLookUp.setText(_translate("DialogLookUpApplicant", "Look Up", None))
+        self.pushButton.setText(_translate("DialogLookUpApplicant", "Assign BK", None))
+        self.pushButton_2.setText(_translate("DialogLookUpApplicant", "Assign Tribes", None))
 
 
 
@@ -1178,7 +1196,14 @@ class Ui_DialogUpdateApplicant(object):
         self.pushButtonCancellation.setGeometry(QtCore.QRect(600, 30, 211, 40))
         self.pushButtonCancellation.setObjectName(_fromUtf8("pushButtonCancellation"))
 
+        self.pushButtonPreference = QtGui.QPushButton(self.frame_2)
+        self.pushButtonPreference.setGeometry(QtCore.QRect(0, 29, 171, 41))
+        self.pushButtonPreference.setObjectName(_fromUtf8("pushButtonPreference"))
 
+        self.pushButtonPreference_2 = QtGui.QPushButton(self.frame_2)
+        self.pushButtonPreference_2.setGeometry(QtCore.QRect(190, 30, 171, 41))
+        self.pushButtonPreference_2.setObjectName(_fromUtf8("pushButtonPreference_2"))
+        
         self.gridLayout.addWidget(self.frame_2, 22, 1, 1, 4)
         self.label_18 = QtGui.QLabel(DialogUpdateApplicant)
         self.label_18.setObjectName(_fromUtf8("label_18"))
@@ -1205,13 +1230,14 @@ class Ui_DialogUpdateApplicant(object):
         self.comboBoxCamp.addItems([str(x.name) for x in self.p.camps])
         self.comboBoxBunkhouse.addItems([str(x.name) for x in self.p.bunkhouses])
         self.comboBoxTribe.addItems([str(x.name) for x in self.p.tribes])
-        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial'])
+        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial','4-Canceled'])
         
         # click submit button
         self.pushButtonSubmit.clicked.connect(lambda:self.submitDataToDB(DialogUpdateApplicant))
         self.pushButtonCheckList.clicked.connect(lambda:self.generateCheckList(DialogUpdateApplicant))
         self.pushButtonCancellation.clicked.connect(lambda:self.generateCancellationForm(DialogUpdateApplicant))
-
+        self.pushButtonPreference.clicked.connect(lambda:self.showPreferenceForm(DialogUpdateApplicant,self.p,'bkpreference'))
+        self.pushButtonPreference_2.clicked.connect(lambda:self.showPreferenceForm(DialogUpdateApplicant,self.p,'tribepreference'))
         
         # value changes
         self.comboBoxCamp.currentIndexChanged.connect(lambda:self.showCampAvilability())
@@ -1219,6 +1245,8 @@ class Ui_DialogUpdateApplicant(object):
         # self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
         # self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         # self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
+
+        
         
         self.retranslateUi(DialogUpdateApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogUpdateApplicant)
@@ -1291,6 +1319,14 @@ class Ui_DialogUpdateApplicant(object):
         ui.setupUi(self.DialogCancellation,self.dateReviewDate.date().toPyDate())
         
         self.DialogCancellation.show()
+    
+    def showPreferenceForm(self,DialogUpdateApplicant, p,type):
+        self.DialogPreference = QtGui.QDialog()
+        ui = Ui_DialogPreference()
+        ui.setupUi(self.DialogPreference,int(self.labelId.text()),self.comboBoxCamp.currentIndex(),p,type)
+        
+
+        self.DialogPreference.show()
         
     def submitDataToDB(self,DialogUpdateApplicant):
         id = self.labelId.text()
@@ -1298,7 +1334,7 @@ class Ui_DialogUpdateApplicant(object):
         lastName = self.lineLastName.text()
         gender = self.lineGender.text()
         dateOfBirth =self.dateEditDOB.date().toPyDate()
-        age =datetime.datetime.now().year - dateOfBirth.year
+        
         email = self.lineEmail.text()
         homePhone = self.lineHomePhone.text()
         cellPhone = self.lineCellPhone.text()
@@ -1311,6 +1347,7 @@ class Ui_DialogUpdateApplicant(object):
         emergencyContactName = self.lineEmergencyName.text()
         emergencyContactPhone = self.lineEmergencyPhone.text()
         applicationDate = self.dateApplicationDate.date().toPyDate()
+        age =applicationDate.year - dateOfBirth.year
         reviewDate = self.dateReviewDate.date().toPyDate()
         payment = 1 if self.checkBoxPayment.isChecked() else 0
         decisionId = self.comboBoxAcceptanceDecision.currentIndex()
@@ -1407,9 +1444,107 @@ class Ui_DialogUpdateApplicant(object):
         self.pushButtonCheckList.setText(_translate("DialogUpdateApplicant", "Checkin Checklist", None))
         self.pushButtonCancellation.setText(_translate("DialogUpdateApplicant", "Cancellation Request", None))
         self.label_18.setText(_translate("DialogUpdateApplicant", "Applicant Basic Information:", None))
+        self.pushButtonPreference.setText(_translate("DialogUpdateApplicant", "BK Preference", None))
+        self.pushButtonPreference_2.setText(_translate("DialogUpdateApplicant", "Tribe Preference", None))
+
         
+
+
+
+class Ui_DialogPreference(object):
+    def setupUi(self, DialogPreference,applicantId,campId,p,ptype):
+        DialogPreference.setObjectName(_fromUtf8("DialogPreference"))
+        DialogPreference.resize(733, 665)
+        self.textEdit = QtGui.QTextEdit(DialogPreference)
+        self.textEdit.setGeometry(QtCore.QRect(80, 130, 221, 381))
+        self.textEdit.setObjectName(_fromUtf8("textEdit"))
+        self.textEdit_2 = QtGui.QTextEdit(DialogPreference)
+        self.textEdit_2.setGeometry(QtCore.QRect(420, 130, 221, 381))
+        self.textEdit_2.setObjectName(_fromUtf8("textEdit_2"))
+        self.label = QtGui.QLabel(DialogPreference)
+        self.label.setGeometry(QtCore.QRect(80, 70, 221, 41))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.label_2 = QtGui.QLabel(DialogPreference)
+        self.label_2.setGeometry(QtCore.QRect(420, 70, 221, 41))
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.pushButton = QtGui.QPushButton(DialogPreference)
+        self.pushButton.setGeometry(QtCore.QRect(290, 580, 131, 40))
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.applicantId = applicantId
+        self.campId = campId
+        self.pushButton.clicked.connect(lambda:self.submit(DialogPreference,applicantId,campId,ptype))
+        self.p = p
+
+
+        res = self.p.interacteDB('select',ptype,'applicantId={} and campId={}'.format(applicantId,campId))
+        res = res['result']
+        stay = [str(x['stay']) for x in res if x['stay']!='']
+        reject = [str(x['reject']) for x in res if x['reject']!='']
         
-        
+        stay = '\n'.join(stay)
+        reject = '\n'.join(reject)
+        self.textEdit.setText(stay)
+        self.textEdit_2.setText(reject)
+
+        self.retranslateUi(DialogPreference)
+        QtCore.QMetaObject.connectSlotsByName(DialogPreference)
+
+
+
+    def submit(self,DialogPreference,applicantId,campId,ptype):
+        stay = self.textEdit.toPlainText()
+        reject = self.textEdit_2.toPlainText()
+        if stay =='' and reject =='':
+            DialogPreference.accept()
+        elif stay !='' and reject =='':
+            try:
+                stay_list = stay.split('\n')
+                stay_list = [int(x) for x in stay_list if x != '']
+                dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':str(x),'reject':''} for x in stay_list]
+                self.p.interacteDB('delete',ptype,'')
+                self.p.interacteDB('insert',ptype,dbData)
+                DialogPreference.accept()
+                
+            except:
+                pass
+        elif stay =='' and reject !='':
+            try:
+                reject_list = reject.split('\n')
+                reject_list = [int(x) for x in reject_list if x != '']
+                dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':'','reject':str(x)} for x in reject_list]
+                self.p.interacteDB('delete',ptype,'')
+                self.p.interacteDB('insert',ptype,dbData)
+                DialogPreference.accept()
+            except:
+                pass
+        elif stay !='' and reject !='':
+            # try:
+            stay_list = stay.split('\n')
+            stay_list = [int(x) for x in stay_list if x != '']
+            dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':str(x),'reject':''} for x in stay_list]
+            self.p.interacteDB('delete',ptype,'')
+            self.p.interacteDB('insert',ptype,dbData)
+            reject_list = reject.split('\n')
+            reject_list = [int(x) for x in reject_list if x != '']
+            dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':'','reject':str(x)} for x in reject_list]
+            self.p.interacteDB('insert',ptype,dbData)
+            DialogPreference.accept()
+            
+            
+            # except:
+            #     pass        
+            
+
+
+
+
+    def retranslateUi(self, DialogPreference):
+        DialogPreference.setWindowTitle(_translate("DialogPreference", "Preference", None))
+        self.label.setText(_translate("DialogPreference", "Have to Stay with:", None))
+        self.label_2.setText(_translate("DialogPreference", "Cannot Stay with:", None))
+        self.pushButton.setText(_translate("DialogPreference", "Submit", None))
+
+
         
 
 
@@ -1427,7 +1562,9 @@ class Ui_DialogCancellation(object):
         self.textEditCancellationLetter = QtGui.QTextEdit(Ui_DialogCancellation)
         self.textEditCancellationLetter.setGeometry(QtCore.QRect(30, 110, 561, 421))
         self.textEditCancellationLetter.setObjectName(_fromUtf8("textEditCancellationLetter"))
-        
+        # self.pushButtonSubmit = QtGui.QPushButton(Ui_DialogCancellation)
+        # self.pushButtonSubmit.setGeometry(QtCore.QRect(240, 550, 131, 40))
+        # self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
 
         # self.pushButtonCalculate = QtGui.QPushButton(Ui_DialogCancellation)
         # self.pushButtonCalculate.setGeometry(QtCore.QRect(60, 60, 221, 21))
@@ -1436,17 +1573,20 @@ class Ui_DialogCancellation(object):
 
 
         self.review_date = review_date
-        self.submitcancellation()
-        self.dateEditCancellation.dateChanged.connect(lambda: self.submitcancellation())
+
+        self.calculateRefund()
+        self.dateEditCancellation.dateChanged.connect(lambda: self.calculateRefund())
         self.deposit=1000
 
         self.retranslateUi(Ui_DialogCancellation)
         QtCore.QMetaObject.connectSlotsByName(Ui_DialogCancellation)
     
-    def submitcancellation(self):
+    def calculateRefund(self):
         res = ''
         time = self.dateEditCancellation.date().toPyDate() - self.review_date
-        if 0 <= time.days <= 21:
+        if time.days<0:
+            res += 'Cancellation request date cannot be earlier than review date'
+        elif 0 <= time.days <= 21:
             res += 'Welcome to Gila Breath Camp!'
             res += 'You have a 90% refund of payment $' + str(self.deposit * 0.9) + '.\n'
             res += 'Because your cancellation date is within 3 weeks of review date,{}.'.format(str(self.review_date))
@@ -1459,13 +1599,17 @@ class Ui_DialogCancellation(object):
             res += 'You have a NO refund of payment '+ '.\n'
             res += 'Because your cancellation date exceeds 6 weeks of review date,{}.'.format(str(self.review_date))
         
-        print(res)
         self.textEditCancellationLetter.setText(res)
+    
+            
+            
+        
 
 
     def retranslateUi(self, Ui_DialogCancellation):
         Ui_DialogCancellation.setWindowTitle(_translate("Ui_DialogCancellation", "Ui_DialogCancellation", None))
         self.label.setText(_translate("Ui_DialogCancellation", "Cancellation Date:", None))
-        # self.pushButtonCalculate.setText(_translate("Ui_DialogCancellation", "Cancellate:", None))
+        # self.pushButtonSubmit.setText(_translate("Ui_DialogCancellation", "Submit", None))
+
 
 

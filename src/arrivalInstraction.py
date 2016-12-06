@@ -38,41 +38,38 @@ class LetterOfAcceptance(object):
 
 class CheckList():
     def __init__(self):
-        self.msg = 'Forms:\n* medical\n* legal\n* emergency contact\n\nEquipments:\n* riding helmet\n* boots\n* sleeping bag\n* water bottle\n* sun screen\n* bug spray\n* lights'
+        self.form = Forms()
+        self.equipment = Equipments()
 
-    def generageCheckList(self):
-        # if type == "form":
-        #     return str(self.form)
-        # elif type == "equipment":
-        #     return str(self.equipment)
-
-        return self.msg
-    def setCheckListContent(self,msg):
-        self.msg = msg
+    def generageCheckList(self,type):
+        if type == "form":
+            return str(self.form)
+        elif type == "equipment":
+            return str(self.equipment)
         
 
-# class Forms(object):
-#     def __init__(self):
-#         self.forms = ['medical', 'legal', 'emergency contact']
+class Forms(object):
+    def __init__(self):
+        self.forms = ['medical', 'legal', 'emergency contact']
 
-#     def __str__(self):
+    def __str__(self):
 
-#         res = ''
+        res = ''
 
-#         for form in self.forms:
-#             res+='* '+ form + '\n'
+        for form in self.forms:
+            res+='* '+ form + '\n'
 
-#         return res
+        return res
 
-# class Equipments(object):
-#     def __init__(self):
-#         self.equipments = ['riding helmet','boots', 'sleeping bag', \
-#         'water bottle', 'sun screen', 'bug spray', 'lights']
+class Equipments(object):
+    def __init__(self):
+        self.equipments = ['riding helmet','boots', 'sleeping bag', \
+        'water bottle', 'sun screen', 'bug spray', 'lights']
     
-#     def __str__(self):
-#         res = ''
+    def __str__(self):
+        res = ''
 
-#         for equipment in self.equipments:
-#             res+='* ' + equipment + '\n'
+        for equipment in self.equipments:
+            res+='* ' + equipment + '\n'
         
-#         return res
+        return res

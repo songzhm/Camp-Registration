@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'letterOfAcceptance.ui'
+# Form implementation generated from reading ui file 'letterofcancellation.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -22,31 +22,28 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_DialogLetterOfAcceptance(object):
-    def setupUi(self, DialogLetterOfAcceptance):
-        DialogLetterOfAcceptance.setObjectName(_fromUtf8("DialogLetterOfAcceptance"))
-        DialogLetterOfAcceptance.resize(443, 348)
-        self.textBrowserLetterOfAcceptance = QtGui.QTextBrowser(DialogLetterOfAcceptance)
-        self.textBrowserLetterOfAcceptance.setGeometry(QtCore.QRect(40, 20, 371, 271))
-        self.textBrowserLetterOfAcceptance.setObjectName(_fromUtf8("textBrowserLetterOfAcceptance"))
-        self.pushButtonOkay = QtGui.QPushButton(DialogLetterOfAcceptance)
-        self.pushButtonOkay.setGeometry(QtCore.QRect(190, 310, 75, 23))
-        self.pushButtonOkay.setObjectName(_fromUtf8("pushButtonOkay"))
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName(_fromUtf8("Dialog"))
+        Dialog.resize(621, 601)
+        self.label = QtGui.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(60, 40, 221, 21))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.dateEditCancellation = QtGui.QDateEdit(Dialog)
+        self.dateEditCancellation.setGeometry(QtCore.QRect(340, 40, 121, 21))
+        self.dateEditCancellation.setObjectName(_fromUtf8("dateEditCancellation"))
+        self.textEditCancellationLetter = QtGui.QTextEdit(Dialog)
+        self.textEditCancellationLetter.setGeometry(QtCore.QRect(30, 110, 561, 421))
+        self.textEditCancellationLetter.setObjectName(_fromUtf8("textEditCancellationLetter"))
+        self.pushButtonSubmit = QtGui.QPushButton(Dialog)
+        self.pushButtonSubmit.setGeometry(QtCore.QRect(240, 550, 131, 40))
+        self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
 
-        self.retranslateUi(DialogLetterOfAcceptance)
-        QtCore.QMetaObject.connectSlotsByName(DialogLetterOfAcceptance)
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-    def retranslateUi(self, DialogLetterOfAcceptance):
-        DialogLetterOfAcceptance.setWindowTitle(_translate("DialogLetterOfAcceptance", "Letter of Acceptance", None))
-        self.pushButtonOkay.setText(_translate("DialogLetterOfAcceptance", "Okay", None))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    DialogLetterOfAcceptance = QtGui.QDialog()
-    ui = Ui_DialogLetterOfAcceptance()
-    ui.setupUi(DialogLetterOfAcceptance)
-    DialogLetterOfAcceptance.show()
-    sys.exit(app.exec_())
+    def retranslateUi(self, Dialog):
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog", None))
+        self.label.setText(_translate("Dialog", "Cancellation Date:", None))
+        self.pushButtonSubmit.setText(_translate("Dialog", "Submit", None))
 
