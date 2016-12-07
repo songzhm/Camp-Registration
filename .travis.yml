@@ -7,6 +7,7 @@ cache: pip
 
 before_install:
     - pip install pytest codecov pytest-cov pytest-qt pytest-faulthandler
+    - pip install https://github.com/pyinstaller/pyinstaller/archive/develop.zip
     - sudo mkdir -p /downloads
     - sudo chmod a+rw /downloads
     - curl -L http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz -o /downloads/sip.tar.gz 
@@ -44,7 +45,9 @@ install:
 
 script: 
     - py.test --cov=./
+    
 
 after_success:
+    - pyinstaller -F -w  --noupx -n camp --distpath="." "main.py"
     - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a
 

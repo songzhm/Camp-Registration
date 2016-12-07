@@ -379,7 +379,6 @@ class Processor(object):
         male='M'
         female='F'
         res = self.interacteDB('select','applicant','campId={} and decisionId=1'.format(str(campId)))['result']
-        print(res)
         alist = [datetime.datetime.strptime(x['applicationDate'],'%Y-%m-%d').year - datetime.datetime.strptime(x['dateOfBirth'],'%Y-%m-%d').year for x in res]
         
         ilist = [x['id'] for x in res]

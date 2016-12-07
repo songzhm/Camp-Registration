@@ -574,7 +574,6 @@ class Ui_DialogAddNewApplicant(object):
         lastName = self.lineLastName.text()
         gender = self.lineGender.text()
         dateOfBirth =self.dateEditDOB.date().toPyDate()
-        print(dateOfBirth)
         
         email = self.lineEmail.text()
         homePhone = self.lineHomePhone.text()
@@ -885,7 +884,6 @@ class Ui_DialogLookUpApplicant(object):
         self.ui_update.lineCellPhone.setText(selected[12].text())
         
         if selected[13].text()=='1':
-            print(selected[13].text())
             self.ui_update.checkBoxPayment.setChecked(True)
         applicationDate = selected[14].text().split('-')
         self.ui_update.dateApplicationDate.setDate(QtCore.QDate(int(applicationDate[0]),int(applicationDate[1]),int(applicationDate[2])))
@@ -1514,7 +1512,6 @@ class Ui_DialogPreference(object):
     def submit(self,DialogPreference,applicantId,campId,ptype):
         stay = self.textEdit.toPlainText()
         reject = self.textEdit_2.toPlainText()
-        print(stay)
         if stay =='' and reject =='':
             self.p.interacteDB('delete',ptype,{'applicantId':applicantId})
             DialogPreference.accept()
