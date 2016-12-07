@@ -27,72 +27,221 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow,p):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(830, 462)
-        self.centralwidget = QtGui.QWidget(MainWindow)
+
+
+
+
+class Ui_LoginWindow(object):
+    def setupUi(self, LoginWindow,p):
+        LoginWindow.setObjectName(_fromUtf8("LoginWindow"))
+        LoginWindow.resize(993, 651)
+        self.centralwidget = QtGui.QWidget(LoginWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.label = QtGui.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(200, 120, 471, 151))
+        self.label.setGeometry(QtCore.QRect(250, 90, 471, 151))
         self.label.setStyleSheet(_fromUtf8("font: 75 20pt \"Kristen ITC\";"))
         self.label.setObjectName(_fromUtf8("label"))
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 830, 36))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
-        self.menuFile = QtGui.QMenu(self.menubar)
-        self.menuFile.setObjectName(_fromUtf8("menuFile"))
-        self.menuView = QtGui.QMenu(self.menubar)
-        self.menuView.setObjectName(_fromUtf8("menuView"))
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
+        self.groupBoxList = QtGui.QGroupBox(self.centralwidget)
+        self.groupBoxList.setGeometry(QtCore.QRect(220, 270, 501, 301))
+        self.groupBoxList.setTitle(_fromUtf8(""))
+        self.groupBoxList.setObjectName(_fromUtf8("groupBoxList"))
+        self.radioButtonDirector = QtGui.QRadioButton(self.groupBoxList)
+        self.radioButtonDirector.setGeometry(QtCore.QRect(140, 50, 211, 41))
+        self.radioButtonDirector.setObjectName(_fromUtf8("radioButtonDirector"))
+        self.radioButtonRegClerk = QtGui.QRadioButton(self.groupBoxList)
+        self.radioButtonRegClerk.setGeometry(QtCore.QRect(140, 90, 211, 41))
+        self.radioButtonRegClerk.setObjectName(_fromUtf8("radioButtonRegClerk"))
+        self.lineEditAccessCode = QtGui.QLineEdit(self.groupBoxList)
+        self.lineEditAccessCode.setGeometry(QtCore.QRect(140, 180, 221, 21))
+        self.lineEditAccessCode.setObjectName(_fromUtf8("lineEditAccessCode"))
+        self.labelAccessCode = QtGui.QLabel(self.groupBoxList)
+        self.labelAccessCode.setGeometry(QtCore.QRect(140, 140, 221, 16))
+        self.labelAccessCode.setObjectName(_fromUtf8("labelAccessCode"))
+        self.pushButtonLogin = QtGui.QPushButton(self.groupBoxList)
+        self.pushButtonLogin.setGeometry(QtCore.QRect(200, 250, 101, 23))
+        self.pushButtonLogin.setObjectName(_fromUtf8("pushButtonLogin"))
+        self.labelLogin = QtGui.QLabel(self.groupBoxList)
+        self.labelLogin.setGeometry(QtCore.QRect(120, 210, 281, 23))
+        self.labelLogin.setText(_fromUtf8(""))
+        self.labelLogin.setObjectName(_fromUtf8("labelLogin"))
+
+        self.frame = QtGui.QFrame(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(290, 240, 351, 211))
+        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame.setObjectName(_fromUtf8("frame"))
+        self.gridLayout = QtGui.QGridLayout(self.frame)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.label_4 = QtGui.QLabel(self.frame)
+        self.label_4.setObjectName(_fromUtf8("label_4"))
+        self.gridLayout.addWidget(self.label_4, 4, 0, 1, 1)
+        self.label_3 = QtGui.QLabel(self.frame)
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
+        self.label_2 = QtGui.QLabel(self.frame)
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        self.dateEditCamp2Start = QtGui.QDateEdit(self.frame)
+        self.dateEditCamp2Start.setObjectName(_fromUtf8("dateEditCamp2Start"))
+        self.dateEditCamp2Start.setDisplayFormat('MM/dd/yyyy')
+        self.gridLayout.addWidget(self.dateEditCamp2Start, 3, 1, 1, 1)
+        self.dateEditCampStart = QtGui.QDateEdit(self.frame)
+        self.dateEditCampStart.setObjectName(_fromUtf8("dateEditCampStart"))
+        self.dateEditCampStart.setDisplayFormat('MM/dd/yyyy')
+        self.gridLayout.addWidget(self.dateEditCampStart, 1, 1, 1, 1)
+        self.label_6 = QtGui.QLabel(self.frame)
+        self.label_6.setObjectName(_fromUtf8("label_6"))
+        self.gridLayout.addWidget(self.label_6, 0, 2, 1, 1)
+        self.dateEditCamp3End = QtGui.QDateEdit(self.frame)
+        self.dateEditCamp3End.setObjectName(_fromUtf8("dateEditCamp3End"))
+        self.dateEditCamp3End.setDisplayFormat('MM/dd/yyyy')
+        self.gridLayout.addWidget(self.dateEditCamp3End, 4, 2, 1, 1)
+        self.dateEditCamp2End = QtGui.QDateEdit(self.frame)
+        self.dateEditCamp2End.setObjectName(_fromUtf8("dateEditCamp2End"))
+        self.dateEditCamp2End.setDisplayFormat('MM/dd/yyyy')
+        self.gridLayout.addWidget(self.dateEditCamp2End, 3, 2, 1, 1)
+        self.label_5 = QtGui.QLabel(self.frame)
+        self.label_5.setObjectName(_fromUtf8("label_5"))
+        self.gridLayout.addWidget(self.label_5, 0, 1, 1, 1)
+        self.dateEditCamp3Start = QtGui.QDateEdit(self.frame)
+        self.dateEditCamp3Start.setObjectName(_fromUtf8("dateEditCamp3Start"))
+        self.dateEditCamp3Start.setDisplayFormat('MM/dd/yyyy')
+        self.gridLayout.addWidget(self.dateEditCamp3Start, 4, 1, 1, 1)
+        self.dateEditCamp1End = QtGui.QDateEdit(self.frame)
+        self.dateEditCamp1End.setObjectName(_fromUtf8("dateEditCamp1End"))
+        self.dateEditCamp1End.setDisplayFormat('MM/dd/yyyy')
+        self.gridLayout.addWidget(self.dateEditCamp1End, 1, 2, 1, 1)
+        self.pushButtonCampDates = QtGui.QPushButton(self.frame)
+        self.pushButtonCampDates.setObjectName(_fromUtf8("pushButtonCampDates"))
+        self.gridLayout.addWidget(self.pushButtonCampDates, 5, 1, 1, 1)
+        LoginWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QtGui.QStatusBar(LoginWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        MainWindow.setStatusBar(self.statusbar)
-        self.actionAdd_New = QtGui.QAction(MainWindow)
+        LoginWindow.setStatusBar(self.statusbar)
+        self.menuBar = QtGui.QMenuBar(LoginWindow)
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 993, 36))
+        self.menuBar.setObjectName(_fromUtf8("menuBar"))
+        self.menuApplicant = QtGui.QMenu(self.menuBar)
+        self.menuApplicant.setObjectName(_fromUtf8("menuApplicant"))
+        self.menuSetting = QtGui.QMenu(self.menuBar)
+        self.menuSetting.setObjectName(_fromUtf8("menuSetting"))
+        LoginWindow.setMenuBar(self.menuBar)
+        self.actionAdd_New = QtGui.QAction(LoginWindow)
         self.actionAdd_New.setObjectName(_fromUtf8("actionAdd_New"))
-        ## trigger add new
-        self.actionAdd_New.triggered.connect(self.showNewApplicantDialog)
-        self.actionLook_Up = QtGui.QAction(MainWindow)
+        self.actionLook_Up = QtGui.QAction(LoginWindow)
         self.actionLook_Up.setObjectName(_fromUtf8("actionLook_Up"))
-        ## trigger add look up
-        self.actionLook_Up.triggered.connect(self.showLookUpApplicant)
-        self.menuFile.addAction(self.actionAdd_New)
-        self.menuFile.addAction(self.actionLook_Up)
-        self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuView.menuAction())
+        self.actionChange_Camp_Dates = QtGui.QAction(LoginWindow)
+        self.actionChange_Camp_Dates.setObjectName(_fromUtf8("actionChange_Camp_Dates"))
+
+        self.menuApplicant.addAction(self.actionAdd_New)
+        self.menuApplicant.addAction(self.actionLook_Up)
+        self.menuSetting.addAction(self.actionChange_Camp_Dates)
+        self.menuBar.addAction(self.menuApplicant.menuAction())
+        self.menuBar.addAction(self.menuSetting.menuAction())
+
         self.p = p
+        self.director_pw = '12345'
+        self.regClerk_pw = '54321'
+        self.menuBar.hide()
+        self.frame.hide()
+        self.pushButtonLogin.clicked.connect(lambda:self.login())
+        self.actionAdd_New.triggered.connect(lambda:self.showNewApplicantDialog())
+        self.actionLook_Up.triggered.connect(lambda:self.showLookUpApplicant())
+        self.actionChange_Camp_Dates.triggered.connect(lambda:self.showChangeCampDate())
+        self.pushButtonCampDates.clicked.connect(lambda:self.changeCampDate())
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        MainWindow.setWindowFlags(MainWindow.windowFlags() | QtCore.Qt.CustomizeWindowHint)
+        self.retranslateUi(LoginWindow)
+        QtCore.QMetaObject.connectSlotsByName(LoginWindow)
 
+    
+    def login(self):
+        if self.radioButtonDirector.isChecked() and not self.radioButtonRegClerk.isChecked():
+            if self.lineEditAccessCode.text()!=self.director_pw:
+                    self.labelLogin.setText("wrong access code")
+            else:
+                self.labelLogin.setText("welcome")
+                self.menuBar.show()
+                self.groupBoxList.hide()
 
-
-
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Main", None))
-        self.label.setText(_translate("MainWindow", "Gila Breath Camp", None))
-        self.menuFile.setTitle(_translate("MainWindow", "Applicant", None))
-        self.menuView.setTitle(_translate("MainWindow", "View", None))
-        self.actionAdd_New.setText(_translate("MainWindow", "Add New Applicant", None))
-        self.actionLook_Up.setText(_translate("MainWindow", "Look Up", None))
+        elif not self.radioButtonDirector.isChecked() and self.radioButtonRegClerk.isChecked():
+            if self.lineEditAccessCode.text()!=self.regClerk_pw:
+                self.labelLogin.setText("wrong access code")
+            else:
+                self.groupBoxList.hide()
+                self.labelLogin.setText("welcome")
+                self.menuSetting.menuAction().setVisible(False)
+                self.menuBar.show()
+                
+        elif not self.radioButtonDirector.isChecked() and not self.radioButtonRegClerk.isChecked():
+            self.labelLogin.setText('please select an user to login')
 
     def showNewApplicantDialog(self):
         self.DialogAddNewApplicant = QtGui.QDialog()
-        ui = Ui_DialogAddNewApplicant()
-        ui.setupUi(self.DialogAddNewApplicant,self.p)
+        self.ui_addNew = Ui_DialogAddNewApplicant()
+        self.ui_addNew.setupUi(self.DialogAddNewApplicant,self.p)
         self.DialogAddNewApplicant.show()
     
     def showLookUpApplicant(self):
         self.DialogLookUpApplicant = QtGui.QDialog()
-        ui = Ui_DialogLookUpApplicant()
-        ui.setupUi(self.DialogLookUpApplicant,self.p)
+        self.ui_lookUP = Ui_DialogLookUpApplicant()
+        self.ui_lookUP.setupUi(self.DialogLookUpApplicant,self.p)
         self.DialogLookUpApplicant.show()
 
+    def showChangeCampDate(self):
+        self.groupBoxList.hide()
+        self.frame.show()
+        camps = self.p.camps
+        startDate = datetime.datetime.strptime(camps[0].startDate,'%Y-%m-%d')
+        self.dateEditCampStart.setDate(QtCore.QDate(startDate.year,startDate.month,startDate.day))
+        endDate = datetime.datetime.strptime(camps[0].endDate,'%Y-%m-%d')
+        self.dateEditCamp1End.setDate(QtCore.QDate(endDate.year,endDate.month,endDate.day))
+        
+        startDate = datetime.datetime.strptime(camps[1].startDate,'%Y-%m-%d')
+        self.dateEditCamp2Start.setDate(QtCore.QDate(startDate.year,startDate.month,startDate.day))
+        endDate = datetime.datetime.strptime(camps[1].endDate,'%Y-%m-%d')
+        self.dateEditCamp2End.setDate(QtCore.QDate(endDate.year,endDate.month,endDate.day))
+
+        startDate = datetime.datetime.strptime(camps[2].startDate,'%Y-%m-%d')
+        self.dateEditCamp3Start.setDate(QtCore.QDate(startDate.year,startDate.month,startDate.day))
+        endDate = datetime.datetime.strptime(camps[2].endDate,'%Y-%m-%d')
+        self.dateEditCamp3End.setDate(QtCore.QDate(endDate.year,endDate.month,endDate.day))
+
+    def changeCampDate(self):
+        startDate = self.dateEditCampStart.date().toPyDate()
+        endDate = self.dateEditCamp1End.date().toPyDate()
+        self.p.interacteDB('update','camp',{'newData':{'startDate':startDate,'endDate':endDate},'conditions':{'id':1}})
+        startDate = self.dateEditCamp2Start.date().toPyDate()
+        endDate = self.dateEditCamp2End.date().toPyDate()
+        self.p.interacteDB('update','camp',{'newData':{'startDate':startDate,'endDate':endDate},'conditions':{'id':2}})
+        startDate = self.dateEditCamp3Start.date().toPyDate()
+        endDate = self.dateEditCamp3End.date().toPyDate()
+        self.p.interacteDB('update','camp',{'newData':{'startDate':startDate,'endDate':endDate},'conditions':{'id':3}})
+        self.p.camps = self.p.registerCamps()
+        self.frame.hide()
 
 
 
+        
+            
+
+    def retranslateUi(self, LoginWindow):
+        LoginWindow.setWindowTitle(_translate("LoginWindow", "Login", None))
+        self.label.setText(_translate("LoginWindow", "Gila Breath Camp", None))
+        self.radioButtonDirector.setText(_translate("LoginWindow", "Director", None))
+        self.radioButtonRegClerk.setText(_translate("LoginWindow", "Registration Clerk", None))
+        self.labelAccessCode.setText(_translate("LoginWindow", "Access Code:", None))
+        self.pushButtonLogin.setText(_translate("LoginWindow", "Login", None))
+        self.label_4.setText(_translate("LoginWindow", "Camp 1", None))
+        self.label_3.setText(_translate("LoginWindow", "Camp 1", None))
+        self.label_2.setText(_translate("LoginWindow", "Camp 1", None))
+        self.label_6.setText(_translate("LoginWindow", "End Date", None))
+        self.label_5.setText(_translate("LoginWindow", "Start Date", None))
+        self.pushButtonCampDates.setText(_translate("LoginWindow", "Submit", None))
+        self.menuApplicant.setTitle(_translate("LoginWindow", "Applicant", None))
+        self.menuSetting.setTitle(_translate("LoginWindow", "Setting", None))
+        self.actionAdd_New.setText(_translate("LoginWindow", "Add New Applicant", None))
+        self.actionLook_Up.setText(_translate("LoginWindow", "Look Up", None))
+        self.actionChange_Camp_Dates.setText(_translate("LoginWindow", "Change Camp Dates", None))
 
 
 
@@ -147,6 +296,7 @@ class Ui_DialogAddNewApplicant(object):
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
         self.gridLayout.addWidget(self.comboBoxBunkhouse, 21, 2, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogAddNewApplicant)
+        self.dateApplicationDate.setDisplayFormat('MM/dd/yyyy')
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
         self.gridLayout.addWidget(self.dateApplicationDate, 17, 2, 1, 1)
         self.labelPayment = QtGui.QLabel(DialogAddNewApplicant)
@@ -173,6 +323,7 @@ class Ui_DialogAddNewApplicant(object):
         self.labelEmergencyName.setObjectName(_fromUtf8("labelEmergencyName"))
         self.gridLayout.addWidget(self.labelEmergencyName, 14, 1, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogAddNewApplicant)
+        self.dateReviewDate.setDisplayFormat('MM/dd/yyyy')
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
         self.gridLayout.addWidget(self.dateReviewDate, 17, 4, 1, 1)
         self.labelReviewDate = QtGui.QLabel(DialogAddNewApplicant)
@@ -243,6 +394,7 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineZipCode, 11, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
         self.line_3 = QtGui.QFrame(DialogAddNewApplicant)
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
@@ -327,6 +479,7 @@ class Ui_DialogAddNewApplicant(object):
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
 
         self.retranslateUi(DialogAddNewApplicant)
@@ -364,7 +517,7 @@ class Ui_DialogAddNewApplicant(object):
         self.comboBoxCamp.addItems([str(x.name) for x in self.p.camps])
         self.comboBoxBunkhouse.addItems([str(x.name) for x in self.p.bunkhouses])
         self.comboBoxTribe.addItems([str(x.name) for x in self.p.tribes])
-        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial'])
+        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial', '4-Canceled'])
 
         # list = [firstName, lastName,..]
     def showCampAvilability(self):
@@ -394,9 +547,9 @@ class Ui_DialogAddNewApplicant(object):
         self.p.camps[self.comboBoxCamp.currentIndex()-1])
 
         self.DialogLetterOfAcceptance = QtGui.QDialog()
-        ui = Ui_DialogLetterOfAcceptance()
-        ui.setupUi(self.DialogLetterOfAcceptance)
-        ui.writeLetter(letter)
+        self.ui_acceptanceLetter = Ui_DialogLetterOfAcceptance()
+        self.ui_acceptanceLetter.setupUi(self.DialogLetterOfAcceptance)
+        self.ui_acceptanceLetter.writeLetter(letter)
         
         self.DialogLetterOfAcceptance.show()
 
@@ -410,9 +563,9 @@ class Ui_DialogAddNewApplicant(object):
         cl = 'Forms:\n'+cl_form + '\n'+'Equipments:\n'+cl_equipment
 
         self.DialogLetterOfAcceptance = QtGui.QDialog()
-        ui = Ui_DialogLetterOfAcceptance()
-        ui.setupUi(self.DialogLetterOfAcceptance)
-        ui.writeLetter(cl)
+        self.ui_acceptanceLetter = Ui_DialogLetterOfAcceptance()
+        self.ui_acceptanceLetter.setupUi(self.DialogLetterOfAcceptance)
+        self.ui_acceptanceLetter.writeLetter(cl)
         
         self.DialogLetterOfAcceptance.show()
         
@@ -422,7 +575,7 @@ class Ui_DialogAddNewApplicant(object):
         gender = self.lineGender.text()
         dateOfBirth =self.dateEditDOB.date().toPyDate()
         print(dateOfBirth)
-        age =datetime.datetime.now().year - dateOfBirth.year
+        
         email = self.lineEmail.text()
         homePhone = self.lineHomePhone.text()
         cellPhone = self.lineCellPhone.text()
@@ -435,6 +588,7 @@ class Ui_DialogAddNewApplicant(object):
         emergencyContactName = self.lineEmergencyName.text()
         emergencyContactPhone = self.lineEmergencyPhone.text()
         applicationDate = self.dateApplicationDate.date().toPyDate()
+        age =applicationDate.year - dateOfBirth.year
         reviewDate = self.dateReviewDate.date().toPyDate()
         payment = 1 if self.checkBoxPayment.isChecked() else 0
         decisionId = self.comboBoxAcceptanceDecision.currentIndex()
@@ -615,6 +769,7 @@ class Ui_DialogLookUpApplicant(object):
         self.labelDOB.setObjectName(_fromUtf8("labelDOB"))
         self.gridLayout.addWidget(self.labelDOB, 1, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogLookUpApplicant)
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.gridLayout.addWidget(self.dateEditDOB, 1, 3, 1, 1)
         self.pushButtonLookUp = QtGui.QPushButton(DialogLookUpApplicant)
@@ -623,6 +778,17 @@ class Ui_DialogLookUpApplicant(object):
         self.comboBoxCamp = QtGui.QComboBox(DialogLookUpApplicant)
         self.comboBoxCamp.setObjectName(_fromUtf8("comboBoxCamp"))
         self.gridLayout.addWidget(self.comboBoxCamp, 1, 1, 1, 1)
+        self.frame = QtGui.QFrame(DialogLookUpApplicant)
+        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame.setObjectName(_fromUtf8("frame"))
+        self.pushButton = QtGui.QPushButton(self.frame)
+        self.pushButton.setGeometry(QtCore.QRect(30, 0, 131, 40))
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.pushButton_2 = QtGui.QPushButton(self.frame)
+        self.pushButton_2.setGeometry(QtCore.QRect(220, 0, 131, 40))
+        self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        self.gridLayout.addWidget(self.frame, 4, 3, 1, 1)
 
         self.retranslateUi(DialogLookUpApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogLookUpApplicant)
@@ -638,6 +804,8 @@ class Ui_DialogLookUpApplicant(object):
         self.comboBoxCamp.addItems([str(x.name) for x in self.p.camps])
         self.pushButtonLookUp.clicked.connect(lambda: self.lookUpApplicant())
         self.pushButtonUpdate.clicked.connect(lambda: self.display())
+        self.pushButton.clicked.connect(lambda:self.p.assignBunkhouses(self.comboBoxCamp.currentIndex()))
+        self.pushButton_2.clicked.connect(lambda:self.p.assignTribes(self.comboBoxCamp.currentIndex()))
 
     def lookUpApplicant(self):
         firstName = self.lineFirstName.text()
@@ -693,46 +861,49 @@ class Ui_DialogLookUpApplicant(object):
    
     def display(self):
         self.DialogUpdateApplicant = QtGui.QDialog()
-        ui = Ui_DialogUpdateApplicant()
-        ui.setupUi(self.DialogUpdateApplicant,self.p)
+        self.ui_update = Ui_DialogUpdateApplicant()
+        self.ui_update.setupUi(self.DialogUpdateApplicant,self.p)
         selected = self.tableWidgetApplicantTable.selectedItems()
         cols = ['Id','First Name', 'Last Name','Gender','Date Of Birth','Line 1',\
             'Line 2','City','State','Zip Code','Email','Home Phone','Cell Phone',\
             'Payment','Application Date','Review Date','Decision Id','Forms Checked',\
             'Equipments Checked', 'Camp Id', 'Emergency Contact Name', \
             'Emergency Contact Phone','Bunkhouse Id','Tribe Id']
-        ui.labelId.setText(selected[0].text())
-        ui.lineFirstName.setText(selected[1].text())
-        ui.lineLastName.setText(selected[2].text())
-        ui.lineGender.setText(selected[3].text())
+        self.ui_update.labelId.setText(selected[0].text())
+        self.ui_update.lineFirstName.setText(selected[1].text())
+        self.ui_update.lineLastName.setText(selected[2].text())
+        self.ui_update.lineGender.setText(selected[3].text())
         dob_str = selected[4].text().split('-')
-        ui.dateEditDOB.setDate(QtCore.QDate(int(dob_str[0]),int(dob_str[1]),int(dob_str[2])))
-        ui.lineLine1.setText(selected[5].text())
-        ui.lineLine2.setText(selected[6].text())
-        ui.lineCity.setText(selected[7].text())
-        ui.lineState.setText(selected[8].text())
-        ui.lineZipCode.setText(selected[9].text())
-        ui.lineEmail.setText(selected[10].text())
-        ui.lineHomePhone.setText(selected[11].text())
-        ui.lineCellPhone.setText(selected[12].text())
+        self.ui_update.dateEditDOB.setDate(QtCore.QDate(int(dob_str[0]),int(dob_str[1]),int(dob_str[2])))
+        self.ui_update.lineLine1.setText(selected[5].text())
+        self.ui_update.lineLine2.setText(selected[6].text())
+        self.ui_update.lineCity.setText(selected[7].text())
+        self.ui_update.lineState.setText(selected[8].text())
+        self.ui_update.lineZipCode.setText(selected[9].text())
+        self.ui_update.lineEmail.setText(selected[10].text())
+        self.ui_update.lineHomePhone.setText(selected[11].text())
+        self.ui_update.lineCellPhone.setText(selected[12].text())
         
         if selected[13].text()=='1':
             print(selected[13].text())
-            ui.checkBoxPayment.setChecked(True)
+            self.ui_update.checkBoxPayment.setChecked(True)
         applicationDate = selected[14].text().split('-')
-        ui.dateApplicationDate.setDate(QtCore.QDate(int(applicationDate[0]),int(applicationDate[1]),int(applicationDate[2])))
+        self.ui_update.dateApplicationDate.setDate(QtCore.QDate(int(applicationDate[0]),int(applicationDate[1]),int(applicationDate[2])))
         reviewDate = selected[15].text().split('-')
-        ui.dateReviewDate.setDate(QtCore.QDate(int(reviewDate[0]),int(reviewDate[1]),int(reviewDate[2])))
-        ui.comboBoxAcceptanceDecision.setCurrentIndex(int(selected[16].text()))
+        self.ui_update.dateReviewDate.setDate(QtCore.QDate(int(reviewDate[0]),int(reviewDate[1]),int(reviewDate[2])))
+        self.ui_update.comboBoxAcceptanceDecision.setCurrentIndex(int(selected[16].text()))
         if selected[17].text()=='1':
-            ui.checkBoxFormsCheck.setChecked(True)
+            self.ui_update.checkBoxFormsCheck.setChecked(True)
         if selected[18].text()=='1':
-            ui.checkBoxEquipmentsCheck.setChecked(True)
-        ui.comboBoxCamp.setCurrentIndex(int(selected[19].text()))
-        ui.lineEmergencyName.setText(selected[20].text())
-        ui.lineEmergencyPhone.setText(selected[21].text())
-        ui.comboBoxBunkhouse.setCurrentIndex(int(selected[22].text()))
-        ui.comboBoxTribe.setCurrentIndex(int(selected[23].text()))
+            self.ui_update.checkBoxEquipmentsCheck.setChecked(True)
+        if selected[19].text()!='':
+            self.ui_update.comboBoxCamp.setCurrentIndex(int(selected[19].text()))
+        self.ui_update.lineEmergencyName.setText(selected[20].text())
+        self.ui_update.lineEmergencyPhone.setText(selected[21].text())
+        if selected[22].text()!='':
+            self.ui_update.comboBoxBunkhouse.setCurrentIndex(int(selected[22].text()))
+        if selected[23].text()!='':
+            self.ui_update.comboBoxTribe.setCurrentIndex(int(selected[23].text()))
 
         
 
@@ -742,7 +913,6 @@ class Ui_DialogLookUpApplicant(object):
         
         
         selectedRow = self.tableWidgetApplicantTable.selectedIndexes
-
 
 
 
@@ -805,6 +975,8 @@ class Ui_DialogLookUpApplicant(object):
         self.labelCamp.setText(_translate("DialogLookUpApplicant", "Camp", None))
         self.labelDOB.setText(_translate("DialogLookUpApplicant", "Date of Birth", None))
         self.pushButtonLookUp.setText(_translate("DialogLookUpApplicant", "Look Up", None))
+        self.pushButton.setText(_translate("DialogLookUpApplicant", "Assign BK", None))
+        self.pushButton_2.setText(_translate("DialogLookUpApplicant", "Assign Tribes", None))
 
 
 
@@ -878,6 +1050,7 @@ class Ui_DialogUpdateApplicant(object):
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
         self.gridLayout.addWidget(self.comboBoxBunkhouse, 21, 2, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogUpdateApplicant)
+        self.dateApplicationDate.setDisplayFormat('MM/dd/yyyy')
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
         self.gridLayout.addWidget(self.dateApplicationDate, 17, 2, 1, 1)
         self.labelPayment = QtGui.QLabel(DialogUpdateApplicant)
@@ -904,6 +1077,7 @@ class Ui_DialogUpdateApplicant(object):
         self.labelEmergencyName.setObjectName(_fromUtf8("labelEmergencyName"))
         self.gridLayout.addWidget(self.labelEmergencyName, 14, 1, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogUpdateApplicant)
+        self.dateReviewDate.setDisplayFormat('MM/dd/yyyy')
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
         self.gridLayout.addWidget(self.dateReviewDate, 17, 4, 1, 1)
         self.labelReviewDate = QtGui.QLabel(DialogUpdateApplicant)
@@ -974,6 +1148,7 @@ class Ui_DialogUpdateApplicant(object):
         self.gridLayout.addWidget(self.lineZipCode, 11, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
         self.line_3 = QtGui.QFrame(DialogUpdateApplicant)
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
@@ -1037,7 +1212,14 @@ class Ui_DialogUpdateApplicant(object):
         self.pushButtonCancellation.setGeometry(QtCore.QRect(600, 30, 211, 40))
         self.pushButtonCancellation.setObjectName(_fromUtf8("pushButtonCancellation"))
 
+        self.pushButtonPreference = QtGui.QPushButton(self.frame_2)
+        self.pushButtonPreference.setGeometry(QtCore.QRect(0, 29, 171, 41))
+        self.pushButtonPreference.setObjectName(_fromUtf8("pushButtonPreference"))
 
+        self.pushButtonPreference_2 = QtGui.QPushButton(self.frame_2)
+        self.pushButtonPreference_2.setGeometry(QtCore.QRect(190, 30, 171, 41))
+        self.pushButtonPreference_2.setObjectName(_fromUtf8("pushButtonPreference_2"))
+        
         self.gridLayout.addWidget(self.frame_2, 22, 1, 1, 4)
         self.label_18 = QtGui.QLabel(DialogUpdateApplicant)
         self.label_18.setObjectName(_fromUtf8("label_18"))
@@ -1064,20 +1246,23 @@ class Ui_DialogUpdateApplicant(object):
         self.comboBoxCamp.addItems([str(x.name) for x in self.p.camps])
         self.comboBoxBunkhouse.addItems([str(x.name) for x in self.p.bunkhouses])
         self.comboBoxTribe.addItems([str(x.name) for x in self.p.tribes])
-        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial'])
+        self.comboBoxAcceptanceDecision.addItems(['1-Accept','2-Conditional Accept', '3-Denial','4-Canceled'])
         
         # click submit button
         self.pushButtonSubmit.clicked.connect(lambda:self.submitDataToDB(DialogUpdateApplicant))
         self.pushButtonCheckList.clicked.connect(lambda:self.generateCheckList(DialogUpdateApplicant))
         self.pushButtonCancellation.clicked.connect(lambda:self.generateCancellationForm(DialogUpdateApplicant))
-
+        self.pushButtonPreference.clicked.connect(lambda:self.showPreferenceForm(DialogUpdateApplicant,self.p,'bkpreference'))
+        self.pushButtonPreference_2.clicked.connect(lambda:self.showPreferenceForm(DialogUpdateApplicant,self.p,'tribepreference'))
         
         # value changes
         self.comboBoxCamp.currentIndexChanged.connect(lambda:self.showCampAvilability())
 
-        self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
-        self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
-        self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
+        # self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
+        # self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
+        # self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
+
+        
         
         self.retranslateUi(DialogUpdateApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogUpdateApplicant)
@@ -1145,11 +1330,21 @@ class Ui_DialogUpdateApplicant(object):
 
     def generateCancellationForm(self,DialogUpdateApplicant):
 
+        self.comboBoxAcceptanceDecision.setCurrentIndex(4)
+
         self.DialogCancellation = QtGui.QDialog()
-        ui = Ui_DialogCancellation()
-        ui.setupUi(self.DialogCancellation,self.dateReviewDate.date().toPyDate())
+        self.ui_cancellation = Ui_DialogCancellation()
+        self.ui_cancellation.setupUi(self.DialogCancellation,self.dateReviewDate.date().toPyDate())
         
         self.DialogCancellation.show()
+    
+    def showPreferenceForm(self,DialogUpdateApplicant, p,type):
+        self.DialogPreference = QtGui.QDialog()
+        self.ui_preference = Ui_DialogPreference()
+        self.ui_preference.setupUi(self.DialogPreference,int(self.labelId.text()),self.comboBoxCamp.currentIndex(),p,type)
+        
+
+        self.DialogPreference.show()
         
     def submitDataToDB(self,DialogUpdateApplicant):
         id = self.labelId.text()
@@ -1157,7 +1352,7 @@ class Ui_DialogUpdateApplicant(object):
         lastName = self.lineLastName.text()
         gender = self.lineGender.text()
         dateOfBirth =self.dateEditDOB.date().toPyDate()
-        age =datetime.datetime.now().year - dateOfBirth.year
+        
         email = self.lineEmail.text()
         homePhone = self.lineHomePhone.text()
         cellPhone = self.lineCellPhone.text()
@@ -1170,6 +1365,7 @@ class Ui_DialogUpdateApplicant(object):
         emergencyContactName = self.lineEmergencyName.text()
         emergencyContactPhone = self.lineEmergencyPhone.text()
         applicationDate = self.dateApplicationDate.date().toPyDate()
+        age =applicationDate.year - dateOfBirth.year
         reviewDate = self.dateReviewDate.date().toPyDate()
         payment = 1 if self.checkBoxPayment.isChecked() else 0
         decisionId = self.comboBoxAcceptanceDecision.currentIndex()
@@ -1186,6 +1382,8 @@ class Ui_DialogUpdateApplicant(object):
         reviewDate = reviewDate,decisionId = decisionId,formsChecked = formsChecked,\
         equipmentsChecked = equipmentsChecked,campId = campId,bunkhouseId = bunkhouseId,\
         tribeId = tribeId)
+        validationRes = self.p.validateApplicant(campId,gender,age)
+
 
 
         if self.checkBlankCells():
@@ -1266,9 +1464,107 @@ class Ui_DialogUpdateApplicant(object):
         self.pushButtonCheckList.setText(_translate("DialogUpdateApplicant", "Checkin Checklist", None))
         self.pushButtonCancellation.setText(_translate("DialogUpdateApplicant", "Cancellation Request", None))
         self.label_18.setText(_translate("DialogUpdateApplicant", "Applicant Basic Information:", None))
+        self.pushButtonPreference.setText(_translate("DialogUpdateApplicant", "BK Preference", None))
+        self.pushButtonPreference_2.setText(_translate("DialogUpdateApplicant", "Tribe Preference", None))
+
         
+
+
+
+class Ui_DialogPreference(object):
+    def setupUi(self, DialogPreference,applicantId,campId,p,ptype):
+        DialogPreference.setObjectName(_fromUtf8("DialogPreference"))
+        DialogPreference.resize(733, 665)
+        self.textEdit = QtGui.QTextEdit(DialogPreference)
+        self.textEdit.setGeometry(QtCore.QRect(80, 130, 221, 381))
+        self.textEdit.setObjectName(_fromUtf8("textEdit"))
+        self.textEdit_2 = QtGui.QTextEdit(DialogPreference)
+        self.textEdit_2.setGeometry(QtCore.QRect(420, 130, 221, 381))
+        self.textEdit_2.setObjectName(_fromUtf8("textEdit_2"))
+        self.label = QtGui.QLabel(DialogPreference)
+        self.label.setGeometry(QtCore.QRect(80, 70, 221, 41))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.label_2 = QtGui.QLabel(DialogPreference)
+        self.label_2.setGeometry(QtCore.QRect(420, 70, 221, 41))
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.pushButton = QtGui.QPushButton(DialogPreference)
+        self.pushButton.setGeometry(QtCore.QRect(290, 580, 131, 40))
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.applicantId = applicantId
+        self.campId = campId
+        self.pushButton.clicked.connect(lambda:self.submit(DialogPreference,applicantId,campId,ptype))
+        self.p = p
+
+
+        res = self.p.interacteDB('select',ptype,'applicantId={} and campId={}'.format(applicantId,campId))
+        res = res['result']
+        stay = [str(x['stay']) for x in res if x['stay']!='']
+        reject = [str(x['reject']) for x in res if x['reject']!='']
         
-        
+        stay = '\n'.join(stay)
+        reject = '\n'.join(reject)
+        self.textEdit.setText(stay)
+        self.textEdit_2.setText(reject)
+
+        self.retranslateUi(DialogPreference)
+        QtCore.QMetaObject.connectSlotsByName(DialogPreference)
+
+
+
+    def submit(self,DialogPreference,applicantId,campId,ptype):
+        stay = self.textEdit.toPlainText()
+        reject = self.textEdit_2.toPlainText()
+        if stay =='' and reject =='':
+            DialogPreference.accept()
+        elif stay !='' and reject =='':
+            try:
+                stay_list = stay.split('\n')
+                stay_list = [int(x) for x in stay_list if x != '']
+                dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':str(x),'reject':''} for x in stay_list]
+                self.p.interacteDB('delete',ptype,'')
+                self.p.interacteDB('insert',ptype,dbData)
+                DialogPreference.accept()
+                
+            except:
+                pass
+        elif stay =='' and reject !='':
+            try:
+                reject_list = reject.split('\n')
+                reject_list = [int(x) for x in reject_list if x != '']
+                dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':'','reject':str(x)} for x in reject_list]
+                self.p.interacteDB('delete',ptype,'')
+                self.p.interacteDB('insert',ptype,dbData)
+                DialogPreference.accept()
+            except:
+                pass
+        elif stay !='' and reject !='':
+            # try:
+            stay_list = stay.split('\n')
+            stay_list = [int(x) for x in stay_list if x != '']
+            dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':str(x),'reject':''} for x in stay_list]
+            self.p.interacteDB('delete',ptype,'')
+            self.p.interacteDB('insert',ptype,dbData)
+            reject_list = reject.split('\n')
+            reject_list = [int(x) for x in reject_list if x != '']
+            dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':'','reject':str(x)} for x in reject_list]
+            self.p.interacteDB('insert',ptype,dbData)
+            DialogPreference.accept()
+            
+            
+            # except:
+            #     pass        
+            
+
+
+
+
+    def retranslateUi(self, DialogPreference):
+        DialogPreference.setWindowTitle(_translate("DialogPreference", "Preference", None))
+        self.label.setText(_translate("DialogPreference", "Have to Stay with:", None))
+        self.label_2.setText(_translate("DialogPreference", "Cannot Stay with:", None))
+        self.pushButton.setText(_translate("DialogPreference", "Submit", None))
+
+
         
 
 
@@ -1283,10 +1579,13 @@ class Ui_DialogCancellation(object):
         self.dateEditCancellation.setGeometry(QtCore.QRect(340, 40, 121, 21))
         self.dateEditCancellation.setObjectName(_fromUtf8("dateEditCancellation"))
         self.dateEditCancellation.setDate(QtCore.QDate(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day))
+        self.dateEditCancellation.setDisplayFormat('MM/dd/yyyy')
         self.textEditCancellationLetter = QtGui.QTextEdit(Ui_DialogCancellation)
         self.textEditCancellationLetter.setGeometry(QtCore.QRect(30, 110, 561, 421))
         self.textEditCancellationLetter.setObjectName(_fromUtf8("textEditCancellationLetter"))
-        
+        # self.pushButtonSubmit = QtGui.QPushButton(Ui_DialogCancellation)
+        # self.pushButtonSubmit.setGeometry(QtCore.QRect(240, 550, 131, 40))
+        # self.pushButtonSubmit.setObjectName(_fromUtf8("pushButtonSubmit"))
 
         # self.pushButtonCalculate = QtGui.QPushButton(Ui_DialogCancellation)
         # self.pushButtonCalculate.setGeometry(QtCore.QRect(60, 60, 221, 21))
@@ -1295,17 +1594,20 @@ class Ui_DialogCancellation(object):
 
 
         self.review_date = review_date
-        self.submitcancellation()
-        self.dateEditCancellation.dateChanged.connect(lambda: self.submitcancellation())
+
+        self.calculateRefund()
+        self.dateEditCancellation.dateChanged.connect(lambda: self.calculateRefund())
         self.deposit=1000
 
         self.retranslateUi(Ui_DialogCancellation)
         QtCore.QMetaObject.connectSlotsByName(Ui_DialogCancellation)
     
-    def submitcancellation(self):
+    def calculateRefund(self):
         res = ''
         time = self.dateEditCancellation.date().toPyDate() - self.review_date
-        if 0 <= time.days <= 21:
+        if time.days<0:
+            res += 'Cancellation request date cannot be earlier than review date'
+        elif 0 <= time.days <= 21:
             res += 'Welcome to Gila Breath Camp!'
             res += 'You have a 90% refund of payment $' + str(self.deposit * 0.9) + '.\n'
             res += 'Because your cancellation date is within 3 weeks of review date,{}.'.format(str(self.review_date))
@@ -1318,12 +1620,17 @@ class Ui_DialogCancellation(object):
             res += 'You have a NO refund of payment '+ '.\n'
             res += 'Because your cancellation date exceeds 6 weeks of review date,{}.'.format(str(self.review_date))
         
-        print(res)
         self.textEditCancellationLetter.setText(res)
+    
+            
+            
+        
 
 
     def retranslateUi(self, Ui_DialogCancellation):
         Ui_DialogCancellation.setWindowTitle(_translate("Ui_DialogCancellation", "Ui_DialogCancellation", None))
         self.label.setText(_translate("Ui_DialogCancellation", "Cancellation Date:", None))
-        # self.pushButtonCalculate.setText(_translate("Ui_DialogCancellation", "Cancellate:", None))
+        # self.pushButtonSubmit.setText(_translate("Ui_DialogCancellation", "Submit", None))
+
+
 

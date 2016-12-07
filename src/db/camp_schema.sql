@@ -64,3 +64,19 @@ CREATE TABLE emergencyContact (
 	phone varchar,
 	FOREIGN KEY(id) REFERENCES applicants(emergencyContactId)
 );
+
+CREATE TABLE bkpreference (
+	id integer PRIMARY KEY AUTOINCREMENT,
+	applicantId integer,
+	campId integer,
+	stay integer,
+	reject integer
+);
+
+CREATE TABLE tribepreference (
+	id integer PRIMARY KEY AUTOINCREMENT,
+	applicantId integer,
+	campId integer,
+	stay integer,
+	reject integer
+);

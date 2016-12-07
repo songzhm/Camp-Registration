@@ -116,6 +116,17 @@ class Ui_DialogLookUpApplicant(object):
         self.comboBoxCamp = QtGui.QComboBox(DialogLookUpApplicant)
         self.comboBoxCamp.setObjectName(_fromUtf8("comboBoxCamp"))
         self.gridLayout.addWidget(self.comboBoxCamp, 1, 1, 1, 1)
+        self.frame = QtGui.QFrame(DialogLookUpApplicant)
+        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame.setObjectName(_fromUtf8("frame"))
+        self.pushButton = QtGui.QPushButton(self.frame)
+        self.pushButton.setGeometry(QtCore.QRect(30, 0, 131, 40))
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.pushButton_2 = QtGui.QPushButton(self.frame)
+        self.pushButton_2.setGeometry(QtCore.QRect(220, 0, 131, 40))
+        self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        self.gridLayout.addWidget(self.frame, 4, 3, 1, 1)
 
         self.retranslateUi(DialogLookUpApplicant)
         QtCore.QMetaObject.connectSlotsByName(DialogLookUpApplicant)
@@ -182,14 +193,6 @@ class Ui_DialogLookUpApplicant(object):
         self.labelCamp.setText(_translate("DialogLookUpApplicant", "Camp", None))
         self.labelDOB.setText(_translate("DialogLookUpApplicant", "Date of Birth", None))
         self.pushButtonLookUp.setText(_translate("DialogLookUpApplicant", "Look Up", None))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    DialogLookUpApplicant = QtGui.QDialog()
-    ui = Ui_DialogLookUpApplicant()
-    ui.setupUi(DialogLookUpApplicant)
-    DialogLookUpApplicant.show()
-    sys.exit(app.exec_())
+        self.pushButton.setText(_translate("DialogLookUpApplicant", "Assign BK", None))
+        self.pushButton_2.setText(_translate("DialogLookUpApplicant", "Assign Tribes", None))
 

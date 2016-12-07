@@ -69,9 +69,9 @@ def test_processor_updateApplicant(processor):
 
 def test_processor_checkSpaceAvilibility(processor):
     assert processor.checkSpaceAvilibility(1,"M")['availableSpace'] == 0
-    assert processor.checkSpaceAvilibility(1,"F")['availableSpace'] == 35
-    assert processor.checkSpaceAvilibility(2,"M")['availableSpace'] == 30
-    assert processor.checkSpaceAvilibility(2,"F")['availableSpace'] == 34
+    assert processor.checkSpaceAvilibility(1,"F")['availableSpace'] == 1
+    assert processor.checkSpaceAvilibility(2,"M")['availableSpace'] == 36
+    assert processor.checkSpaceAvilibility(2,"F")['availableSpace'] == 36
     assert processor.checkSpaceAvilibility(3,"M")['availableSpace'] == 36
     assert processor.checkSpaceAvilibility(3,"F")['availableSpace'] == 36
 
