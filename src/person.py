@@ -10,14 +10,14 @@ class Person(object):
         self.dateOfBirth = dateOfBirth
         self.email = email
     
-    def __str__(self):
-        return 'First Name: ' + self.firstName + '\n' + 'Last Name: ' + \
-        self.lastName + '\n' + 'Age: ' + self.age + '\n' + 'Gender: ' + \
-        self.gender + '\n' + 'Date of Birth: ' + self.dateOfBirth + '\n' + \
-        'Email: ' + self.email
+    # def __str__(self):
+    #     return 'First Name: ' + self.firstName + '\n' + 'Last Name: ' + \
+    #     self.lastName + '\n' + 'Age: ' + self.age + '\n' + 'Gender: ' + \
+    #     self.gender + '\n' + 'Date of Birth: ' + self.dateOfBirth + '\n' + \
+    #     'Email: ' + self.email
     
-    def __repr__(self):
-        return str(self)
+    # def __repr__(self):
+    #     return str(self)
 
 
 # class Employee(Person):
