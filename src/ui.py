@@ -83,33 +83,33 @@ class Ui_LoginWindow(object):
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.dateEditCamp2Start = QtGui.QDateEdit(self.frame)
         self.dateEditCamp2Start.setObjectName(_fromUtf8("dateEditCamp2Start"))
-        self.dateEditCamp2Start.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCamp2Start.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditCamp2Start, 3, 1, 1, 1)
         self.dateEditCampStart = QtGui.QDateEdit(self.frame)
         self.dateEditCampStart.setObjectName(_fromUtf8("dateEditCampStart"))
-        self.dateEditCampStart.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCampStart.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditCampStart, 1, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.frame)
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.gridLayout.addWidget(self.label_6, 0, 2, 1, 1)
         self.dateEditCamp3End = QtGui.QDateEdit(self.frame)
         self.dateEditCamp3End.setObjectName(_fromUtf8("dateEditCamp3End"))
-        self.dateEditCamp3End.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCamp3End.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditCamp3End, 4, 2, 1, 1)
         self.dateEditCamp2End = QtGui.QDateEdit(self.frame)
         self.dateEditCamp2End.setObjectName(_fromUtf8("dateEditCamp2End"))
-        self.dateEditCamp2End.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCamp2End.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditCamp2End, 3, 2, 1, 1)
         self.label_5 = QtGui.QLabel(self.frame)
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.gridLayout.addWidget(self.label_5, 0, 1, 1, 1)
         self.dateEditCamp3Start = QtGui.QDateEdit(self.frame)
         self.dateEditCamp3Start.setObjectName(_fromUtf8("dateEditCamp3Start"))
-        self.dateEditCamp3Start.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCamp3Start.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditCamp3Start, 4, 1, 1, 1)
         self.dateEditCamp1End = QtGui.QDateEdit(self.frame)
         self.dateEditCamp1End.setObjectName(_fromUtf8("dateEditCamp1End"))
-        self.dateEditCamp1End.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCamp1End.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditCamp1End, 1, 2, 1, 1)
         self.pushButtonCampDates = QtGui.QPushButton(self.frame)
         self.pushButtonCampDates.setObjectName(_fromUtf8("pushButtonCampDates"))
@@ -296,7 +296,7 @@ class Ui_DialogAddNewApplicant(object):
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
         self.gridLayout.addWidget(self.comboBoxBunkhouse, 21, 2, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogAddNewApplicant)
-        self.dateApplicationDate.setDisplayFormat('MM/dd/yyyy')
+        self.dateApplicationDate.setDisplayFormat('yyyy/MM/dd')
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
         self.gridLayout.addWidget(self.dateApplicationDate, 17, 2, 1, 1)
         self.labelPayment = QtGui.QLabel(DialogAddNewApplicant)
@@ -323,7 +323,7 @@ class Ui_DialogAddNewApplicant(object):
         self.labelEmergencyName.setObjectName(_fromUtf8("labelEmergencyName"))
         self.gridLayout.addWidget(self.labelEmergencyName, 14, 1, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogAddNewApplicant)
-        self.dateReviewDate.setDisplayFormat('MM/dd/yyyy')
+        self.dateReviewDate.setDisplayFormat('yyyy/MM/dd')
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
         self.gridLayout.addWidget(self.dateReviewDate, 17, 4, 1, 1)
         self.labelReviewDate = QtGui.QLabel(DialogAddNewApplicant)
@@ -394,7 +394,7 @@ class Ui_DialogAddNewApplicant(object):
         self.gridLayout.addWidget(self.lineZipCode, 11, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
-        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditDOB.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
         self.line_3 = QtGui.QFrame(DialogAddNewApplicant)
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
@@ -479,7 +479,7 @@ class Ui_DialogAddNewApplicant(object):
         self.dateEditDOB = QtGui.QDateEdit(DialogAddNewApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.dateEditDOB.setDate(QtCore.QDate(1800,1,1))
-        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditDOB.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
 
         self.retranslateUi(DialogAddNewApplicant)
@@ -769,7 +769,7 @@ class Ui_DialogLookUpApplicant(object):
         self.labelDOB.setObjectName(_fromUtf8("labelDOB"))
         self.gridLayout.addWidget(self.labelDOB, 1, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogLookUpApplicant)
-        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditDOB.setDisplayFormat('yyyy/MM/dd')
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
         self.gridLayout.addWidget(self.dateEditDOB, 1, 3, 1, 1)
         self.pushButtonLookUp = QtGui.QPushButton(DialogLookUpApplicant)
@@ -817,7 +817,7 @@ class Ui_DialogLookUpApplicant(object):
         else:
             cols = ['firstName', 'lastName','dateOfBirth','campId']
             values = [firstName,lastName,dob,campId]
-            tests = [firstName!='',lastName!='',dob>datetime.date(2016,1,1),campId!='']
+            tests = [firstName!='',lastName!='',dob > datetime.date(2001,1,1),campId!=0]
             cons = [cols[i] + '=' +'\''+str(values[i])+'\'' for i in range(len(cols)) if tests[i]]
             condition = ' and '.join(cons)
         res = self.p.interacteDB('select','applicant',condition) 
@@ -1050,7 +1050,7 @@ class Ui_DialogUpdateApplicant(object):
         self.comboBoxBunkhouse.setObjectName(_fromUtf8("comboBoxBunkhouse"))
         self.gridLayout.addWidget(self.comboBoxBunkhouse, 21, 2, 1, 1)
         self.dateApplicationDate = QtGui.QDateEdit(DialogUpdateApplicant)
-        self.dateApplicationDate.setDisplayFormat('MM/dd/yyyy')
+        self.dateApplicationDate.setDisplayFormat('yyyy/MM/dd')
         self.dateApplicationDate.setObjectName(_fromUtf8("dateApplicationDate"))
         self.gridLayout.addWidget(self.dateApplicationDate, 17, 2, 1, 1)
         self.labelPayment = QtGui.QLabel(DialogUpdateApplicant)
@@ -1077,7 +1077,7 @@ class Ui_DialogUpdateApplicant(object):
         self.labelEmergencyName.setObjectName(_fromUtf8("labelEmergencyName"))
         self.gridLayout.addWidget(self.labelEmergencyName, 14, 1, 1, 1)
         self.dateReviewDate = QtGui.QDateEdit(DialogUpdateApplicant)
-        self.dateReviewDate.setDisplayFormat('MM/dd/yyyy')
+        self.dateReviewDate.setDisplayFormat('yyyy/MM/dd')
         self.dateReviewDate.setObjectName(_fromUtf8("dateReviewDate"))
         self.gridLayout.addWidget(self.dateReviewDate, 17, 4, 1, 1)
         self.labelReviewDate = QtGui.QLabel(DialogUpdateApplicant)
@@ -1148,7 +1148,7 @@ class Ui_DialogUpdateApplicant(object):
         self.gridLayout.addWidget(self.lineZipCode, 11, 2, 1, 1)
         self.dateEditDOB = QtGui.QDateEdit(DialogUpdateApplicant)
         self.dateEditDOB.setObjectName(_fromUtf8("dateEditDOB"))
-        self.dateEditDOB.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditDOB.setDisplayFormat('yyyy/MM/dd')
         self.gridLayout.addWidget(self.dateEditDOB, 2, 4, 1, 1)
         self.line_3 = QtGui.QFrame(DialogUpdateApplicant)
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
@@ -1514,14 +1514,16 @@ class Ui_DialogPreference(object):
     def submit(self,DialogPreference,applicantId,campId,ptype):
         stay = self.textEdit.toPlainText()
         reject = self.textEdit_2.toPlainText()
+        print(stay)
         if stay =='' and reject =='':
+            self.p.interacteDB('delete',ptype,{'applicantId':applicantId})
             DialogPreference.accept()
         elif stay !='' and reject =='':
             try:
                 stay_list = stay.split('\n')
                 stay_list = [int(x) for x in stay_list if x != '']
                 dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':str(x),'reject':''} for x in stay_list]
-                self.p.interacteDB('delete',ptype,'')
+                self.p.interacteDB('delete',ptype,{'applicantId':applicantId})
                 self.p.interacteDB('insert',ptype,dbData)
                 DialogPreference.accept()
                 
@@ -1532,7 +1534,7 @@ class Ui_DialogPreference(object):
                 reject_list = reject.split('\n')
                 reject_list = [int(x) for x in reject_list if x != '']
                 dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':'','reject':str(x)} for x in reject_list]
-                self.p.interacteDB('delete',ptype,'')
+                self.p.interacteDB('delete',ptype,{'applicantId':applicantId})
                 self.p.interacteDB('insert',ptype,dbData)
                 DialogPreference.accept()
             except:
@@ -1542,7 +1544,7 @@ class Ui_DialogPreference(object):
             stay_list = stay.split('\n')
             stay_list = [int(x) for x in stay_list if x != '']
             dbData = [{'applicantId':str(applicantId),'campId':str(campId),'stay':str(x),'reject':''} for x in stay_list]
-            self.p.interacteDB('delete',ptype,'')
+            self.p.interacteDB('delete',ptype,{'applicantId':applicantId})
             self.p.interacteDB('insert',ptype,dbData)
             reject_list = reject.split('\n')
             reject_list = [int(x) for x in reject_list if x != '']
@@ -1579,7 +1581,7 @@ class Ui_DialogCancellation(object):
         self.dateEditCancellation.setGeometry(QtCore.QRect(340, 40, 121, 21))
         self.dateEditCancellation.setObjectName(_fromUtf8("dateEditCancellation"))
         self.dateEditCancellation.setDate(QtCore.QDate(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day))
-        self.dateEditCancellation.setDisplayFormat('MM/dd/yyyy')
+        self.dateEditCancellation.setDisplayFormat('yyyy/MM/dd')
         self.textEditCancellationLetter = QtGui.QTextEdit(Ui_DialogCancellation)
         self.textEditCancellationLetter.setGeometry(QtCore.QRect(30, 110, 561, 421))
         self.textEditCancellationLetter.setObjectName(_fromUtf8("textEditCancellationLetter"))

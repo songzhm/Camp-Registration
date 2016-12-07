@@ -70,7 +70,44 @@ def test_ui(qtbot):
     # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
     # assert ui_AddNew.labelWarningMsg.text()[0:7]=="Success"
 
+    ## ui_lookup test
+    ui.actionLook_Up.trigger()
+    qtbot.keyClicks( ui.ui_lookUP.lineFirstName, 'Ori')
+    qtbot.keyClicks( ui.ui_lookUP.lineLastName, 'Alfreda')
+    ui.ui_lookUP.comboBoxCamp.setCurrentIndex(1)
+    ui.ui_lookUP.dateEditDOB.setDate(QtCore.QDate(1988,1,1))
+    qtbot.mouseClick( ui.ui_lookUP.pushButtonLookUp, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.pushButton, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.pushButton_2, QtCore.Qt.LeftButton)
+    ui.ui_lookUP.tableWidgetApplicantTable.selectRow(0)
+    qtbot.mouseClick( ui.ui_lookUP.pushButtonUpdate, QtCore.Qt.LeftButton)
+    assert ui.ui_lookUP.ui_update.label_18.text() == "Applicant Basic Information:"
 
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineFirstName, 'Ori')
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineLastName, 'Alfreda')
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineGender,"F")
+    ui.ui_lookUP.ui_update.dateEditDOB.setDate(QtCore.QDate(1988,1,1))
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineEmail,"laksjdlf@kalsjdf.com")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineHomePhone,"192873198723")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineCellPhone,"87697676576")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineLine1,"laskjd")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineLine2,"jhkjhasdf")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineCity,"upkajsf")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineState,"cs")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineEmergencyName,"aksdjfk")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineEmergencyPhone,"0981749827")
+
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonPreference, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonPreference_2, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonCancellation, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonCheckList, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonSubmit, QtCore.Qt.LeftButton)
+    ui.ui_lookUP.ui_update.comboBoxCamp.setCurrentIndex(1)
+    assert ui.ui_lookUP.ui_update.labelWarningMsg.text()[:3] == "Suc"
+    ui.ui_lookUP.ui_update.checkBoxFormsCheck.setChecked(True)
+    ui.ui_lookUP.ui_update.checkBoxEquipmentsCheck.setChecked(True)
+    ui.ui_lookUP.ui_update.comboBoxBunkhouse.setCurrentIndex(0)
+    ui.ui_lookUP.ui_update.comboBoxTribe.setCurrentIndex(0)
     
 
 
@@ -136,7 +173,7 @@ def test_ui(qtbot):
 
     # qtbot.mouseClick(ui_UpdateApplicant.pushButtonCheckList,QtCore.Qt.LeftButton)
 
-    qtbot.wait(5000)
+    # qtbot.wait(5000)
     # sys.exit(app.exec_())
 
 
