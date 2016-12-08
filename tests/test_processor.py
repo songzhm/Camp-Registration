@@ -7,7 +7,7 @@ def processor(request):
     
     pros = Processor()
     dbFile = os.getcwd() + os.path.sep+ 'tests'+os.path.sep+'camp_test.db'
-    db = DB(dbFile,'')
+    db = DB(dbFile,os.getcwd() + os.path.sep+ 'src' + os.path.sep + 'db' + os.path.sep + 'Camp_schema.sql')
     pros.db = db
 
     yield pros

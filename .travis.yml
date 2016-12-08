@@ -48,6 +48,6 @@ script:
     
 
 after_success:
-    - pyinstaller -F -w  --noupx -n camp --distpath="." "main.py"
+    - pyinstaller -F -w --noupx -n camp --icon=camping.ico --distpath="." "main.py"
     - codecov --token=632bd6d7-f5c8-49d1-90fb-09ff22c1630a
 
