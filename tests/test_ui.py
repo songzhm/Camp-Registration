@@ -70,73 +70,53 @@ def test_ui(qtbot):
     # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
     # assert ui_AddNew.labelWarningMsg.text()[0:7]=="Success"
 
+     ## ui_lookup test_new
+    ui.actionLook_Up.trigger()
+    qtbot.keyClicks( ui.ui_lookUP.lineFirstName, 'Ori')
+    qtbot.keyClicks( ui.ui_lookUP.lineLastName, 'Alfreda')
+    ui.ui_lookUP.comboBoxCamp.setCurrentIndex(1)
+    ui.ui_lookUP.dateEditDOB.setDate(QtCore.QDate(1988,1,1))
+    qtbot.mouseClick( ui.ui_lookUP.pushButtonLookUp, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.pushButton, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.pushButton_2, QtCore.Qt.LeftButton)
+    ui.ui_lookUP.tableWidgetApplicantTable.selectRow(0)
+    qtbot.mouseClick( ui.ui_lookUP.pushButtonUpdate, QtCore.Qt.LeftButton)
+    assert ui.ui_lookUP.ui_update.label_18.text() == "Applicant Basic Information:"
+
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineFirstName, 'Ori')
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineLastName, 'Alfreda')
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineGender,"F")
+    ui.ui_lookUP.ui_update.dateEditDOB.setDate(QtCore.QDate(1988,1,1))
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineEmail,"laksjdlf@kalsjdf.com")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineHomePhone,"192873198723")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineCellPhone,"87697676576")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineLine1,"laskjd")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineLine2,"jhkjhasdf")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineCity,"upkajsf")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineState,"cs")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineEmergencyName,"aksdjfk")
+    qtbot.keyClicks( ui.ui_lookUP.ui_update.lineEmergencyPhone,"0981749827")
+
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonPreference, QtCore.Qt.LeftButton)
+    ui.ui_lookUP.ui_update.ui_preference.textEdit.setText('2')
+    ui.ui_lookUP.ui_update.ui_preference.textEdit_2.setText('2')
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.ui_preference.pushButton, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonPreference_2, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonCancellation, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonCheckList, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.ui_update.pushButtonSubmit, QtCore.Qt.LeftButton)
+    ui.ui_lookUP.ui_update.comboBoxCamp.setCurrentIndex(1)
+    assert ui.ui_lookUP.ui_update.labelWarningMsg.text()[:3] == "Suc"
+    ui.ui_lookUP.ui_update.checkBoxFormsCheck.setChecked(True)
+    ui.ui_lookUP.ui_update.checkBoxEquipmentsCheck.setChecked(True)
+    ui.ui_lookUP.ui_update.comboBoxBunkhouse.setCurrentIndex(0)
+    ui.ui_lookUP.ui_update.comboBoxTribe.setCurrentIndex(0)
+
+    qtbot.mouseClick( ui.ui_lookUP.pushButton, QtCore.Qt.LeftButton)
+    qtbot.mouseClick( ui.ui_lookUP.pushButton_2, QtCore.Qt.LeftButton)
 
     
-
-
-    # DialogAddNewApplicant = QtGui.QDialog()
-    # ui_AddNew = Ui_DialogAddNewApplicant()
-    # ui_AddNew.setupUi(DialogAddNewApplicant,pros)
-    # # DialogAddNewApplicant.show()
-    # assert ui_AddNew.label_18.text() == "Applicant Basic Information:"
-    # qtbot.keyClicks(ui_AddNew.lineFirstName, "saldkjf")
-    # qtbot.keyClicks(ui_AddNew.lineLastName,"jhksjdh")
-    # qtbot.keyClicks(ui_AddNew.lineGender,"M")
-    # # qtbot.keyClicks(ui_AddNew.dateEditDOB,"01/1/88")
-    # ui_AddNew.dateEditDOB.setDate(QtCore.QDate(1988,1,1))
-    # qtbot.keyClicks(ui_AddNew.lineEmail,"laksjdlf@kalsjdf.com")
-    # qtbot.keyClicks(ui_AddNew.lineHomePhone,"192873198723")
-    # qtbot.keyClicks(ui_AddNew.lineCellPhone,"87697676576")
-    # qtbot.keyClicks(ui_AddNew.comboBoxCamp,"2")
-    # qtbot.keyClicks(ui_AddNew.lineLine1,"laskjd")
-    # qtbot.keyClicks(ui_AddNew.lineLine2,"jhkjhasdf")
-    # qtbot.keyClicks(ui_AddNew.lineCity,"upkajsf")
-    # qtbot.keyClicks(ui_AddNew.lineState,"cs")
-    # qtbot.keyClicks(ui_AddNew.lineEmergencyName,"aksdjfk")
-    # qtbot.keyClicks(ui_AddNew.lineEmergencyPhone,"0981749827")
-    # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
-    # ui_AddNew.comboBoxCamp.setCurrentIndex(1)
-    # assert ui_AddNew.labelWarningMsg.text() == "The fileds with * cannot be empty"
-    # qtbot.keyClicks(ui_AddNew.lineZipCode,"98731")
-    # qtbot.keyClicks(ui_AddNew.comboBoxAcceptanceDecision,"1")
-    # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
-    # assert ui_AddNew.labelWarningMsg.text() == "This application cannot be accepted due to applicant need to be 9-18 years old"
-    # ui_AddNew.dateEditDOB.setDate(QtCore.QDate(2006,1,1))
-    # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
-    # assert ui_AddNew.labelWarningMsg.text() == "This application cannot be accepted due to there is no space in camp c1"
-    # ui_AddNew.comboBoxCamp.setCurrentIndex(2)
-    # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
-    # assert ui_AddNew.labelWarningMsg.text() == "This application cannot be accepted since the payment check has not been recieve"
-    # qtbot.keyClicks(ui_AddNew.checkBoxPayment," ")
-    # qtbot.mouseClick(ui_AddNew.pushButtonCheckList,QtCore.Qt.LeftButton)
-    # qtbot.mouseClick(ui_AddNew.pushButtonGenerateLetter,QtCore.Qt.LeftButton)
-    # qtbot.mouseClick(ui_AddNew.pushButtonSubmit,QtCore.Qt.LeftButton)
-    # assert ui_AddNew.labelWarningMsg.text()[0:7]=="Success"
-
-    # DialogAddNewApplicant.accept()
-    
-    # DialogLookUpApplicant = QtGui.QDialog()
-    # ui_LookUp = Ui_DialogLookUpApplicant()
-    # ui_LookUp.setupUi(DialogLookUpApplicant,pros)
-    
-    # ui_LookUp.comboBoxCamp.setCurrentIndex(1)
-    # qtbot.mouseClick(ui_LookUp.pushButtonLookUp,QtCore.Qt.LeftButton)
-
-    # # DialogLookUpApplicant.show()
-
-    # assert ui_LookUp.tableWidgetApplicantTable.item(0,0).text()=='1'
-    
-    # ui_LookUp.tableWidgetApplicantTable.selectRow(0)
-
-    # qtbot.mouseClick(ui_LookUp.pushButtonUpdate,QtCore.Qt.LeftButton)
-
-    # DialogUpdateApplicant = QtGui.QDialog()
-    # ui_UpdateApplicant = Ui_DialogUpdateApplicant()
-    # ui_UpdateApplicant.setupUi(DialogUpdateApplicant,pros)
-
-    # qtbot.mouseClick(ui_UpdateApplicant.pushButtonCheckList,QtCore.Qt.LeftButton)
-
-    qtbot.wait(5000)
+    # qtbot.wait(5000)
     # sys.exit(app.exec_())
 
 

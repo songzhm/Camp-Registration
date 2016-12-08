@@ -55,14 +55,14 @@ def test_processor_interacteDB(processor):
     assert len(res['result']) == 3
 
 def test_processor_addNewApplicant(processor):
-    applicant = Applicant('Ming','asfdaf','16','M','12-01-2000','klasjdflk@lsakdf',\
-    '198329','989287','918349','kjadsf','askjfdh','1232','akjdflsj','asfd','12312',True,'12-01-2016','12-01-2016',1,False,False,1,0,0)
+    applicant = Applicant('Ming','asfdaf','16','M','2000-12-01','klasjdflk@lsakdf',\
+    '198329','989287','918349','kjadsf','askjfdh','1232','akjdflsj','asfd','12312',True,'2000-12-01','2000-12-01',1,False,False,1,0,0)
     res = processor.addNewApplicant(applicant)
     assert res['ok'] == True
 
 def test_processor_updateApplicant(processor):
-    applicant = Applicant('MingSjks','asfdaf','16','M','12-01-2000','klasjdflk@lsakdf',\
-    '198329','989287','918349','kjadsf','askjfdh','1232','akjdflsj','asfd','12312',True,'12-01-2016','12-01-2016',1,False,False,1,0,0)
+    applicant = Applicant('MingSjks','asfdaf','16','M','2000-12-01','klasjdflk@lsakdf',\
+    '198329','989287','918349','kjadsf','askjfdh','1232','akjdflsj','asfd','12312',True,'2000-12-01','2000-12-01',1,False,False,1,0,0)
     id = 47
     res = processor.updateApplicant(applicant,id)
     assert res['ok'] == True
