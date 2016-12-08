@@ -1,12 +1,6 @@
-# Camp-Registration
+# Camp-Registration [![Build Status](https://travis-ci.com/songzhm/Camp-Registration.svg?token=eZqkyDBTstz7c4k1na4p&branch=master)](https://travis-ci.com/songzhm/Camp-Registration) [![codecov](https://codecov.io/gh/songzhm/Camp-Registration/branch/master/graph/badge.svg?token=rm8ZPBOsT9)](https://codecov.io/gh/songzhm/Camp-Registration)
 
-Build Status: 
 
-[![Build Status](https://travis-ci.com/songzhm/Camp-Registration.svg?token=eZqkyDBTstz7c4k1na4p&branch=master)](https://travis-ci.com/songzhm/Camp-Registration)
-
-Code Coverage Status:
-
-[![codecov](https://codecov.io/gh/songzhm/Camp-Registration/branch/master/graph/badge.svg?token=rm8ZPBOsT9)](https://codecov.io/gh/songzhm/Camp-Registration)
 
 class project
 develop env python 3 + sqlite 3
