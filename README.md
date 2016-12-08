@@ -21,8 +21,7 @@
 * Fire up the application : `python main.py`
 
 ## Windows Linux Development Set-Up Process:
-* Download miniconda: http://conda.pydata.org/miniconda.html
-* Install: `bash MIniconda3-latest-Linux-x86_64.sh`
+* Download and install miniconda: http://conda.pydata.org/miniconda.html
 * Create py35 env: `conda create -n camp python=3.5.1`
 * Activate py351 env: `activate camp`
 * Install pyqt4 via conda: `conda install -c anaconda pyqt=4.11.4`
