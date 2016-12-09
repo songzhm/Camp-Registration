@@ -106,6 +106,43 @@ class DB(object):
         
         queryStatement = "insert or ignore into " + str(tableName) + \
         " (" + ", ".join(map(str,cols)) + ") values ("
+
+
+        for record in data:
+            # test to see if this record exists
+            # compose the where condition
+            
+            conditionList = []
+            condition = ""
+
+        #     for key, value in record.items():
+        #         conditionList.append(str(key)+"="+"\'"+str(value)+"\'")
+            
+        #     condition = "and ".join(conditionList)
+
+
+        #     res = self.select(tableName,condition)
+        #     if len(res['result'])>0:
+        #         duplicatedRecords.append(record)
+        #     else:
+            
+        #         query = queryStatement
+        #         values = list(record.values())
+        #         values = ['\''+str(x)+'\'' for x in values]
+        #         query += ', '.join(map(str, values)) + ')'
+        #         self.cursor.execute(query)
+
+        # self.conn.commit()
+
+        # ok = True
+        # msg = str(len(data)-len(duplicatedRecords)) + ' record(s) ' + \
+        # 'inserted, and ' + str(len(duplicatedRecords)) + \
+        # ' record(s) exist already.'
+        # result = {'msg': msg}
+
+        # return {'ok':ok,'result':result}
+
+
         try:
             for record in data:
                 # test to see if this record exists
